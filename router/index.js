@@ -3,6 +3,7 @@ const UserController = require('../controller/userController')
 const router = express.Router()
 
 router.post('/steamLogin',UserController.steamLogin)
-router.get('/login',UserController.login)
+router.post('/login',UserController.login)
+router.post('/register',UserController.register)
 
 module.exports = router
