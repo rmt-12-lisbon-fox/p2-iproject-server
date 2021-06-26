@@ -1,10 +1,10 @@
-const steamKey = require('../api/steamApi')
+const { getIdSteam,getNewsSteam } = require('../api/steamApi')
 const { User } = require('../models')
 const { generateToken } =require('../helpers/jwt')
 
 class UserController{
   static async steamLogin (req,res,next) {
-    let steamProfile = steamKey(req.body.username)
+    let steamProfile = getIdSteam(req.body.username)
     console.log(steamProfile);
     // if(steamProfile){
     //   User.findOne({
@@ -42,6 +42,10 @@ class UserController{
     } catch (error) {
       res.status(500).json({message:error.message})
     }
+  }
+  static getNews(req,res,next){
+    let game = req.body.game
+    let news =  getNewsSteam(game)
   }
 }
 

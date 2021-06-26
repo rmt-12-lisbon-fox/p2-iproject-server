@@ -17,4 +17,15 @@ function getIdSteam(username){
     })
 }
 
-module.exports = getIdSteam
+function getNewsSteam(game) {
+  steam.getGameNews(game)
+  .then((data)=>{
+    data.forEach(el=>{
+      console.log(el.contents);
+    })
+  })
+  .catch((err)=>{
+    console.log(err);
+  })
+}
+module.exports = {getIdSteam,getNewsSteam}
