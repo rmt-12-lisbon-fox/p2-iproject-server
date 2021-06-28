@@ -14,6 +14,9 @@ class Controller {
       err.errors ? next({code:400, message: errors}) : next({code:500})
     })
   }
+  static hello(req, res, next) {
+    res.status(200).json({message: 'welcome to smartinvestment'})
+  }
 }
 
 module.exports = Controller
