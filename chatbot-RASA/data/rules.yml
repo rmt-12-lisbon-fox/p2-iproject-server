@@ -1,0 +1,49 @@
+version: "2.0"
+
+rules:
+
+- rule: Say goodbye anytime the user says goodbye
+  steps:
+  - intent: goodbye
+  - action: utter_goodbye
+
+- rule: Say 'I am a bot' anytime the user challenges
+  steps:
+  - intent: bot_challenge
+  - action: utter_iamabot
+
+- rule: Activate form check covid symptoms
+  steps:
+  - intent: check_symptoms
+  - action: covid_symptoms_form
+  - active_loop: covid_symptoms_form
+
+- rule: Submit form check covid symptoms
+  condition:
+  - active_loop: covid_symptoms_form
+  steps:
+  - action: covid_symptoms_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_submit
+  - action: utter_slot_values_covid_symptoms
+  - action: action_check_covid
+
+- rule: Activate form check cough type
+  steps:
+  - intent: check_cough_type
+  - action: cough_type_form
+  - active_loop: cough_type_form
+
+- rule: Submit form check cough type
+  condition:
+  - active_loop: cough_type_form
+  steps:
+  - action: cough_type_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_submit
+  - action: utter_slot_values_cough_type
+  - action: action_check_cough

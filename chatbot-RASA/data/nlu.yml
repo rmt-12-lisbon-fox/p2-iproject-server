@@ -1,0 +1,93 @@
+version: "2.0"
+nlu:
+- intent: greet
+  examples: |
+    - hey
+    - hello
+    - hi
+    - hello there
+    - good morning
+    - good evening
+    - moin
+    - hey there
+    - let's go
+    - hey dude
+    - goodmorning
+    - goodevening
+    - good afternoon
+- intent: goodbye
+  examples: |
+    - good afternoon
+    - cu
+    - good by
+    - cee you later
+    - good night
+    - bye
+    - goodbye
+    - have a nice day
+    - see you around
+    - bye bye
+    - see you later
+- intent: bot_challenge
+  examples: |
+    - are you a bot?
+    - are you a human?
+    - am I talking to a bot?
+    - am I talking to a human?
+- intent: ask_covid_info
+  examples: |
+    - what is covid-19?
+    - what is corona virus?
+    - covid-19
+    - covid
+    - corona
+    - virus
+    - give me information about covid-19
+    - give me information about the corona virus
+    - give me information about COVID-19
+    - what is covid-19
+- intent: ask_covid_symptoms
+  examples: |
+    - what are covid-19 symptoms?
+    - what are corona symptoms?
+    - what are the symptoms?
+    - what are covid-19 symptoms
+- intent: check_symptoms
+  examples: |
+    - i want to check for covid-19 symptoms
+    - check for covid-19 symptoms
+    - can i check covid infected?
+    - check covid infected
+    - check corona virus infection
+    - am i infected by covid-19?
+    - am i infected by corona virus?
+    - check for covid-19
+    - [female](text)
+    - [36](float)
+    - [no](text)
+    - [yes](text)
+    - [male](text)
+    - [36](float)
+    - [yes](text)
+- intent: ask_bot_ability
+  examples: |
+    - help
+    - help me
+    - what can you do?
+    - what can i ask you?
+- intent: thankyou_compliment
+  examples: |
+    - thank you
+    - you are the best
+    - thank you so much
+    - you are great
+    - thank you DECO
+    - okay thank you
+- intent: check_cough_type
+  examples: |
+    - what is my cough type?
+    - can you check my cough type?
+    - check my cough type
+    - what is my cough type
+    - https://sound-example.s3.us-east-2.amazonaws.com/cough-example.wav
+    - check for my cough type
