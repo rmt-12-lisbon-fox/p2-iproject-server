@@ -25,6 +25,8 @@ router.post('/login', AuthController.login)
 router.post('/googlelogin', AuthController.googlelogin)
 
 
+router.post('/signal', Controller.signal)
+
 router.use(errorHandling)
 
 module.exports = router
