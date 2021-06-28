@@ -19,7 +19,7 @@ const upload = multer({
   },
   limits:{ fileSize: 255000 }
 })
-
+ 
 router.post('/register', AuthController.register)
 router.post('/login', AuthController.login)
 router.post('/googlelogin', AuthController.googlelogin)
