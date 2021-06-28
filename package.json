@@ -10,7 +10,7 @@
     "seedall": "SET NODE_ENV=development&&sequelize db:seed:all",
     "dev1": "nodemon ./bin/http",
     "dev": "SET NODE_ENV=development&&nodemon bin/http",
-    "start": "node app.js"
+    "start": "node ./bin/http"
   },
   "repository": {
     "type": "git",
