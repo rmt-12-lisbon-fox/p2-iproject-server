@@ -1,5 +1,13 @@
 var jwt = require('jsonwebtoken');
-var token = jwt.sign({ foo: 'bar' }, 'shhhhh');
 
+function generateJWT(payload){
+  var token = jwt.sign(payload, 'rahasia');
+  return token
+}
 
-var decoded = jwt.verify(token, 'shhhhh');
+function decodeJWt(req){
+  var data = jwt.verify(req.headers.access_token, 'rahasia');
+  return data
+}
+
+module.exports = { decodeJWt, generateJWT }
