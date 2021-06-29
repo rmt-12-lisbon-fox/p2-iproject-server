@@ -4,6 +4,7 @@ const FormData = require('form-data')
 let bcrypt = require('bcryptjs');
 let generateJwt = require('../helpers/jwt.js').generateJwt
 const {OAuth2Client} = require('google-auth-library');
+const sendEmail = require('../features/nodemailer.js')
 
 class Controller {
     static register(req, res, next) { // OK
@@ -68,6 +69,7 @@ class Controller {
                 data.active_status = user.active_status
     
                 res.status(201).json(data)
+                sendEmail(data)
             })
             .catch(err => {
                 next({ name: err.name, validation: err.errors, code: 500, message: err.message })
@@ -146,6 +148,7 @@ class Controller {
                     data.active_status = user.active_status
         
                     res.status(201).json(data)
+                    sendEmail(data)
                 })
                 .catch(err => {
                     next({ name: err.name, validation: err.errors, code: 500, message: err.message })

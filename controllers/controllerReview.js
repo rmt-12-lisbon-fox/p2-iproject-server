@@ -1,4 +1,5 @@
 const { Review, Founder, Investor } = require('../models')
+let translate = require('../helpers/translate.js')
 
 class Controller {
     static getReviews(req, res, next) { // OK
@@ -137,6 +138,29 @@ class Controller {
             res.status(200).json({message: `Review with ID ${reviewContent.id} is now verified`})
         })
         .catch(err => {
+            next({ code: 500, message: err.message })
+        })
+    }
+
+    static translate(req, res, next) {
+        let reviewId = req.params.id
+
+        Review.findByPk(reviewId)
+        .then(review => {
+            if (!req.body.language) {
+                res.status(400).json({message: 'Please define your language'})
+            } else {
+                req.messageToTranslate = review.review
+                req.lang = req.body.language
+    
+                return translate(req, res, next)    
+            }
+        })
+        .then(data => {
+            res.status(200).json(data.data.data.translations[0].translatedText)
+        })
+        .catch(err => {
+            console.log(err)
             next({ code: 500, message: err.message })
         })
     }

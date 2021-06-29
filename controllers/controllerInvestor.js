@@ -1,4 +1,5 @@
 const { Founder, Review, Investor } = require('../models')
+let whatsappNotif = require('../features/whatsappNotif')
 
 class Controller {
     static registerInvestors(req, res, next) { // OK
@@ -70,6 +71,7 @@ class Controller {
                 investor.linkedin_url = investors[i].linkedin_url
                 investor.investor_type = investors[i].investor_type
                 investor.status = investors[i].status     
+                investor.requesterId = investors[i].requesterId     
 
                 allInvestors.push(investor)
             }
@@ -119,6 +121,7 @@ class Controller {
     static verifyInvestor(req, res, next) { // OK
         let investorId = req.params.id
         let investor;
+        let phoneNumber;
         Investor.findByPk(investorId)
         .then(user => {
             if (user) {
@@ -133,9 +136,21 @@ class Controller {
             }
         })
         .then(() => {
-            console.log('UPDATED')
-            console.log(investor.id, investor.name)
-            res.status(200).json({message: `${investor.name} is now verified`})
+            return Founder.findByPk(investor.requesterId)
+        })
+        .then(founder => {
+            phoneNumber = founder.phoneNumber
+            let message = `Hi ${founder.first_name}!\nThank you for registering a new investor at Rate Your Investor. \n\nWe are letting you know that ${investor.name} is now verified.\n\nYou can start writing a new review for them!\n\nFollow this link to write a new review: <link>`
+
+            req.notifPhone = phoneNumber.toString()
+            req.notifMessage = message
+
+            console.log(req.notifPhone, 'NOTIFPHONE')
+
+            return whatsappNotif(req,res,next)
+        })
+        .then(() => {
+            res.status(200).json({message: `${investor.name} is now verified, Whatsapp Notification Sent to ${req.notifPhone}`})
         })
         .catch(err => {
             next({ code: 500, message: err.message })
