@@ -1,380 +1,144 @@
-const { Movie, User, Genre, History } = require('../models')
-const axios = require('axios')
-const FormData = require('form-data')
+const { Review, Founder, Investor } = require('../models')
 
 class Controller {
-    static getMovies(req, res, next) {
-        let authorId;
-        let genreId;
-        let whereStatement;
-        let sort = ['title', 'ASC']
-        let movieWithoutUserPassword = []
-        
-        if (req.query.sort) {
-            if (req.query.sort == 'newest') {
-                sort = ['id', 'DESC']
-            } else if (req.query.sort == 'oldest') {
-                sort = ['id', 'ASC']
-            }
-        }
-
-        if (req.query.authorid || req.query.genreid) { // check if there's query to filter by authorId (filter movie by author Id, for the 'My Movies' page)
-            if (req.query.authorid) {
-                authorId = +req.query.authorid
-                whereStatement = {}
-                whereStatement.authorId = authorId    
-            } else if (req.query.genreid) {
-                genreId = +req.query.genreid
-                whereStatement = {}
-                whereStatement.genreId = genreId                    
-            }
-            Movie.findAll({
-                include: [User, Genre],
-                order: [
-                    sort
-                ],
-                where: whereStatement
-            })
-            .then(movies => {
-                movieWithoutUserPassword = movies
-
-                for (let i = 0; i < movies.length; i++) {
-                    delete movieWithoutUserPassword[i].User.dataValues.password
-                }
-
-                res.status(200).json(movieWithoutUserPassword)
-            })
-            .catch(err => {
-                next({ code: 500, message: err.message })
-            })    
-        } else { // if no query
-            Movie.findAll({
-                include: [User, Genre],
-                order: [
-                    sort
-                ]
-            })    
-            .then(movies => {
-                movieWithoutUserPassword = movies
-
-                for (let i = 0; i < movies.length; i++) {
-                    delete movieWithoutUserPassword[i].User.dataValues.password
-                }
-
-                res.status(200).json(movieWithoutUserPassword)
-            })
-            .catch(err => {
-                next({ code: 500, message: err.message })
-            })
-        }
-    }
-
-    static createMovies(req, res, next) {
-        let newMovie = {}
-        let history = {}
-
-        if (!req.file) { // if no file is uploaded
-                newMovie.title = req.body.title
-                newMovie.synopsis = req.body.synopsis
-                newMovie.rating = req.body.rating
-                newMovie.genreId = req.body.genreId
-                newMovie.trailerUrl = req.body.trailerUrl
-                newMovie.authorId = req.loggedUser.id
-                newMovie.status = 'active'
-    
-                Movie.create(newMovie)
-                .then(newMovie => {
-                    history.movieId = newMovie.id
-                    history.title = newMovie.title
-                    history.description = `Movie with id ${newMovie.id} created`
-                    history.updatedBy = req.loggedUser.email
-
-                    return History.create(history)
-                })
-                .then(() => {
-                    res.status(201).json(newMovie)
-                })
-                .catch(err => {
-                    next({ name: err.name, validation: err.errors, code: 500, message: err.message })
-                })    
-        } else { // if file is uploaded
-            let image = new FormData()
-
-            let fileType = false
-            let fileSize = false
-
-            if (req.file.mimetype == 'image/jpeg' || req.file.mimetype == 'image/jpg' || req.file.mimetype == 'image/png' || req.file.mimetype == 'image/gif') {
-                fileType = true
-            }
-
-            if (req.file.size <= 230400) { // 1 kB = 1024 bytes; 225 kB = 230,400 bytes (according to google & my laptop)
-                fileSize = true
-            }
-            if (fileType == true && fileSize == true) {
-                image.append('file', req.file.buffer.toString("base64"))
-                image.append('fileName', req.file.originalname)
-                image.append('useUniqueFileName', 'false')
-    
-                console.log(req.file)
-        
-                axios({
-                    url: 'https://upload.imagekit.io/api/v1/files/upload',
-                    method: 'post',
-                    auth: {
-                        username: process.env.IMAGEKIT_KEY
-                    },
-                    headers: {
-                        ...image.getHeaders()
-                    },
-                    data: image
-                })
-                .then(newImage => {
-                    newMovie.title = req.body.title
-                    newMovie.synopsis = req.body.synopsis
-                    newMovie.rating = req.body.rating
-                    newMovie.genreId = req.body.genreId
-                    newMovie.trailerUrl = req.body.trailerUrl
-                    newMovie.imgUrl = newImage.data.url
-                    newMovie.authorId = req.loggedUser.id
-                    newMovie.status = 'active'
-        
-                    return Movie.create(newMovie)
-                })
-                .then(newMovie => {
-                    history.movieId = newMovie.id
-                    history.title = newMovie.title
-                    history.description = `Movie with id ${newMovie.id} created`
-                    history.updatedBy = req.loggedUser.email
-
-                    return History.create(history)
-                })
-                .then(() => {
-                    res.status(201).json(newMovie)
-                })
-                .catch(err => {
-                    next({ name: err.name, validation: err.errors, code: 500, message: err.message })
-                })    
-            } else {
-                next({ code: 400, message: 'Only formats .jpg, .jpeg, .png, are allowed, with max. size of 225kB' })
-            }
-        }
-    }
-
-    static getMoviesById(req, res, next) {
-        let movieId = req.params.id
-        Movie.findByPk(movieId)
-        .then(movie => {
-            if (movie) {
-                res.status(200).json(movie)
-            } else {
-                res.status(404).json({ message: 'error: movie not found'} )
-            }
+    static getReviews(req, res, next) { // OK
+        Review.findAll({
+            include: [Investor, Founder]
+        })
+        .then(reviews => {
+            res.status(200).json(reviews)
         })
         .catch(err => {
             next({ code: 500, message: err.message })
         })
     }
 
-    static updateMovies(req, res, next) {
-        let movieId = req.params.id
-        let updatedData = req.body
-        let history = {}
-
-        if (!req.file || req.poster == 'undefined') { // if no image uploaded
-            Movie.findByPk(movieId)
-            .then(movie => {
-                if (movie) {
-                    let sentData = {
-                        title: req.body.title,
-                        synopsis: req.body.synopsis,
-                        trailerUrl: req.body.trailerUrl,
-                        rating: req.body.rating,
-                        genreId: req.body.genreId
-                    }
-                    return Movie.update(sentData, {
-                        where: {id: movieId}
-                    })
-                } else {
-                    res.status(404).json({ message: 'error: movie not found'} )
-                }                
-            })
-            .then(() => {
-                history.movieId = movieId
-                history.title = req.body.title
-                history.description = `Movie with id ${movieId} updated`
-                history.updatedBy = req.loggedUser.email
-
-                return History.create(history)
-            })
-            .then(() => {
-                res.status(200).json(updatedData)
-            })
-            .catch(err => {
-                next({ name: err.name, validation: err.errors, code: 500, message: err.message })
-            })
-        } else {
-            let image = new FormData()
-
-            let fileType = false
-            let fileSize = false
-
-            if (req.file.mimetype == 'image/jpeg' || req.file.mimetype == 'image/jpg' || req.file.mimetype == 'image/png' || req.file.mimetype == 'image/gif') {
-                fileType = true
-            }
-
-            if (req.file.size <= 230400) { // 1 kB = 1024 bytes; 225 kB = 230,400 bytes (according to google & my laptop)
-                fileSize = true
-            }
-            if (fileType == true && fileSize == true) {
-                image.append('file', req.file.buffer.toString("base64"))
-                image.append('fileName', req.file.originalname)
-                image.append('useUniqueFileName', 'false')                
-        
-                axios({
-                    url: 'https://upload.imagekit.io/api/v1/files/upload',
-                    method: 'post',
-                    auth: {
-                        username: process.env.IMAGEKIT_KEY
-                    },
-                    headers: {
-                        ...image.getHeaders() // what is this (?)
-                    },
-                    data: image
-                })
-                .then(newImage => {
-                    updatedData.imgUrl = newImage.data.url
-                    return Movie.findByPk(movieId)
-                })
-                .then(movie => {
-                    if (movie) {
-                        return Movie.update(updatedData, {
-                            where: {id: movieId}
-                        })
-                    } else {
-                        res.status(404).json({ message: 'error: movie not found'} )
-                    }                
-                })
-                .then(() => {
-                    history.movieId = movieId
-                    history.title = req.body.title
-                    history.description = `Movie with id ${movieId} updated`
-                    history.updatedBy = req.loggedUser.email
-    
-                    return History.create(history)
-                })
-                .then(() => {
-                    res.status(200).json(updatedData)
-                })
-                .catch(err => {
-                    next({ name: err.name, validation: err.errors, code: 500, message: err.message })
-                })   
-            } else {
-                next({ code: 400, message: 'Only formats .jpg, .jpeg, .png, are allowed, with max. size of 225kB' })
-            }         
-        }
-    }
-
-    static deleteMovie(req,res,next) {
-        let movieId = req.params.id
-        let movieName = ''
-        let history = {}
-
-        Movie.findByPk(movieId)
-        .then(movie => {
-            if (movie) {
-                movieName += movie.title
-                return Movie.destroy({
-                    where: { id: movieId }
+    static getReviewsById(req, res, next) { // OK
+        let reviewId = req.params.id
+        Review.findByPk(reviewId)
+        .then(review => {
+            if (review) {
+                return Review.findOne({
+                    where: {id: reviewId},
+                    include: [Investor, Founder]
                 })
             } else {
-                res.status(404).json({ message: 'error: movie not found'} )
+                res.status(404).json({ message: 'error: review not found'})
             }
         })
-        .then(() => {
-            history.movieId = movieId
-            history.title = movieName
-            history.description = `Movie with id ${movieId} permanently deleted`
-            history.updatedBy = req.loggedUser.email
-
-            return History.create(history)
-        })
-        .then(() => {
-            res.status(200).json( {message: `${movieName} successfully deleted`} )
-        })
-        .catch(err => {
-            next({ code: 500, message: err.message })
-        })      
-    }
-
-    static seeAllImages(req,res,next) { // not used
-        axios({
-        url: 'https://api.imagekit.io/v1/files',
-        method: 'get',
-        auth: {
-                username: process.env.IMAGEKIT_KEY
-              }
-        })
-        .then(image => {
-            res.status(200).json(image.data)
+        .then(review => {
+            res.status(200).json(review)
         })
         .catch(err => {
             next({ code: 500, message: err.message })
         })
     }
 
-    static updateStatus(req, res, next) {
-        let movieId = req.params.id
-        let previousStatus;
-        let updatedStatus = req.body.status
-        let movie;
-        let history = {}
+    static createReview(req, res, next) { // OK
+        let newReview = {}
 
-        Movie.findByPk(movieId)
-        .then(foundMovie => {
-            if (foundMovie) {
-                movie = foundMovie
-                previousStatus = movie.status
-                return Movie.update({ status: updatedStatus }, {
-                    where: {
-                      id: movieId
-                    }
-                })
-            } else {
-                res.status(404).json({ message: 'error: movie not found'} )
-            }
-        })
-        .then(() => {
-            history.movieId = movieId
-            history.title = movie.title
-            history.description = `Movie with id ${movieId} status has been updated from ${previousStatus} to ${updatedStatus}`
-            history.updatedBy = req.loggedUser.email
+        newReview.FounderId = req.loggedUser.id
+        newReview.InvestorId = req.body.InvestorId
+        newReview.reviewer = req.body.reviewer
+        newReview.title = req.body.title
+        newReview.investor_role = req.body.investor_role
+        newReview.investment_stage = req.body.investment_stage
+        newReview.review = req.body.review
+        newReview.rating_overall = req.body.rating_overall
+        newReview.rating_professionalism = req.body.rating_professionalism
+        newReview.rating_speed = req.body.rating_speed
+        newReview.rating_dd_complexity = req.body.rating_dd_complexity
+        newReview.rating_post_inv_support = req.body.rating_post_inv_support
+        newReview.rating_founder_friendly = req.body.rating_founder_friendly
+        newReview.likes = 0
+        newReview.likes_id = []
+        newReview.status = 'Unverified'
 
-            return History.create(history)
-        })
-        .then(() => {
-            res.status(200).json({message: `Success! Movie ${movie.title}'s status is now ${updatedStatus}`})
+        Review.create(newReview)
+        .then(review => {
+            res.status(201).json(review)
         })
         .catch(err => {
             next({ name: err.name, validation: err.errors, code: 500, message: err.message })
-        })
+        })    
     }
 
-    static getHistory(req, res, next) {
-        let history; 
+    static addLikes(req, res, next) {  // OK
+        let reviewId = req.params.id
+        let savedReview;
+        let flag = true
 
-        History.findAll()
-        .then(data => {
-            // history = data
-            // for (let i = 0; i < history.length; i++) {
-            //     console.log(data[i].createdAt.toLocaleDateString())
-            //     history[i].createdAt = data[i].createdAt.toLocaleDateString()
-            //     console.log(history[i].createdAt)
-            // }
-            res.status(200).json(data)
+        Review.findByPk(reviewId)
+        .then(review => {
+            console.log(review)
+            savedReview = review
+
+            if (review) {
+                for (let i = 0; i < review.likes_id.length; i++) {
+                    if (req.loggedUser.id == review.likes_id[i]) {
+                        flag = false
+                    }
+                }
+
+                if (flag == true) {
+                    let newLikes = +review.likes + 1
+                    let newLikesId = review.likes_id
+    
+                    newLikesId.push(req.loggedUser.id)
+        
+                    return Review.update({
+                        likes: newLikes,
+                        likes_id: newLikesId
+                    }, {
+                        where: {
+                            id: reviewId
+                        }
+                    })
+                } else {
+                    res.status(400).json({message: 'You have already liked this review'})
+                } 
+            } else {
+                    res.status(404).json({message: 'error: review not found'})
+                }
+            })
+            .then(() => {
+                return Review.findByPk(reviewId)
+            })
+            .then(review => {
+                review.message = 'Success adding a new like'
+                console.log('likes added')
+                console.log(review.id, review.likes, review.likes_id)
+                res.status(200).json(review)
+            })
+            .catch(err => {
+                next({ code: 500, message: err.message })
+            })
+    }
+
+    static verifyReview(req, res, next) { // OK
+        let reviewId = req.params.id
+        let reviewContent;
+        Review.findByPk(reviewId)
+        .then(review => {
+            if (review) {
+                reviewContent = review
+                return review.update({status: 'Verified'}, {
+                    where: {
+                        id: reviewId
+                    }
+                })
+            } else {
+                res.status(404).json({ message: 'error: review not found'})
+            }
+        })
+        .then(() => {
+            console.log('UPDATED')
+            console.log(reviewContent.id, reviewContent.title)
+            res.status(200).json({message: `Review with ID ${reviewContent.id} is now verified`})
         })
         .catch(err => {
             next({ code: 500, message: err.message })
-        })    
+        })
     }
 }
 
