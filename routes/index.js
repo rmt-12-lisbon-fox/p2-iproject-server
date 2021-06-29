@@ -3,6 +3,7 @@ const router = express.Router()
 const AuthController = require('../controllers/authController')
 const decksRoute = require('./decksRoute')
 const wikiRoute = require('./wikiRoute')
+const profileRoute = require('./profileRoute')
 const errorHandler = require('../middlewares/errorHandler')
 const {authentication, authorization} = require('../middlewares/auth')
 

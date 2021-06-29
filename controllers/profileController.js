@@ -1,4 +1,4 @@
-const {User} = require('../models')
+const {User, Deck} = require('../models')
 
 class ProfileController {
     static async getProfile(req, res, next) {
@@ -9,9 +9,13 @@ class ProfileController {
             // console.log(foundUser)
             // const {id, username, email, imageUrl, createAt, updatedAt, Decks} = foundUser
             res.status(200).json(foundUser)
-        } catch {
+        } catch{
+            // console.log(err)
             next({ code: 500 })
         }
+    }
+    static async patchProfile(req, res, next) {
+
     }
 }
 

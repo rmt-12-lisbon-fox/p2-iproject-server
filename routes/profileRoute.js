@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const ProfileController = require('../controllers/profileController')
 
-router.get('/:cardId', ProfileController.getProfile)
+router.get('/', ProfileController.getProfile)
+router.patch('/', ProfileController.patchProfile)
 
 module.exports = router
