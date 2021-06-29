@@ -33,7 +33,8 @@ module.exports = (sequelize, DataTypes) => {
     website_url: DataTypes.STRING,
     linkedin_url: DataTypes.STRING,
     investor_type: DataTypes.STRING,
-    status: DataTypes.STRING
+    status: DataTypes.STRING,
+    requesterId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Investor',

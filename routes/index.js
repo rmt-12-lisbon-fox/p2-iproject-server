@@ -10,6 +10,7 @@ let homeRoute = require('./homeRoute.js')
 let reviewRoute = require('./reviewRoute.js')
 let founderRoute = require('./founderRoute.js')
 let investorRoute = require('./investorRoute.js')
+let newsRoute = require('./newsRoute.js')
 
 router.use('/', homeRoute);
 
@@ -20,6 +21,7 @@ router.post('/login', ControllerFounder.login) // OK
 router.use('/reviews', reviewRoute);
 router.use('/founders', founderRoute);
 router.use('/investors', investorRoute);
+router.use('/news', newsRoute);
 
 router.use(authentication)
 router.get('/logout', ControllerFounder.logout)

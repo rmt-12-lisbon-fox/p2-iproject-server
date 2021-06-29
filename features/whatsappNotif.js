@@ -1,29 +1,27 @@
 function whatsappNotif(req, res, next) {
-    let axios = require('axios')
-
-    // URL for request POST /message
-
-    var token = 'mmie2rlxicbg9cnm';
-    var instanceId = '295680';
-    var url = `https://api.chat-api.com/instance${instanceId}/message?token=${token}`;
-    var data = {
-        phone: '6281319023264', // Receivers phone
-        body: 'HUAHAHAHAHH!', // Message
-    };
-
-    axios({
-        url: url,
-        method: "POST",
-        data: data
-    })
-    .then(() => {
-        console.log('success!')
-        res.status(200).json({message: `Message Sent ${data.body}`})
-    })
-    .catch(err => {
-        console.log(err)
-        res.status(500).json({message: err})
-    })
+        let axios = require('axios')
+    
+        let remark;
+        var token = process.env.API_CHAT_TOKEN;
+        var instanceId = '295680';
+        var url = `https://api.chat-api.com/instance${instanceId}/message?token=${token}`;
+        var data = {
+            phone: req.notifPhone, // Receivers phone
+            body: req.notifMessage, // Message
+        };
+    
+        axios({
+            url: url,
+            method: "POST",
+            data: data
+        })
+        .then(data => {
+            remark = `Whatsapp Notification Sent to ${req.notifPhone}`
+            console.log(remark)
+        })
+        .catch(err => {
+            console.log(err)
+        })    
 }
 
 module.exports = whatsappNotif
