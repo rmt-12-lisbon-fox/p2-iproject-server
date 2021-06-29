@@ -26,11 +26,12 @@ class Controller {
     }
 
     static allMyCommunity(req,res) {
-        MyCommunity.findAll({
+        User.findAll({
             where: {
-                UserId: req.user.id
+                id: req.user.id
             },
-            include: [User, Community]
+            include: Community
+
         })
         .then(data => {
             res.status(200).json(data)
