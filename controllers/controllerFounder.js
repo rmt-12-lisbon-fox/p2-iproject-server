@@ -1,23 +1,9 @@
-const { User, Movie } = require('../models')
+const { Founder, Review } = require('../models')
 let bcrypt = require('bcryptjs');
 let generateJwt = require('../helpers/jwt.js').generateJwt
 const {OAuth2Client} = require('google-auth-library');
 
 class Controller {
-    // static getAllUser(req, res, next) { // not used
-    //     User.findAll({
-    //         order: [
-    //             ['id', 'ASC']
-    //         ],
-    //     })
-    //     .then(user => {
-    //         res.status(200).json(user)
-    //     })
-    //     .catch(err => {
-    //         next({ code: 500, message: err.message })
-    //     })
-    // }
-
     static getUser(req, res, next) {
         let userId = req.params.id
         User.findOne({
@@ -50,7 +36,7 @@ class Controller {
 
     static register(req, res, next) {
         let newUser = req.body
-        newUser.role = 'admin'
+        newUser.admin_status = false
 
         if (req.body.username == '' || req.body.username == null) {
             newUser.username = req.body.email              

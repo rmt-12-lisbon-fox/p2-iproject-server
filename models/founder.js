@@ -60,14 +60,14 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     },
-    phoneNumber: DataTypes.INTEGER,
+    phoneNumber: DataTypes.STRING,
     profilePic: DataTypes.STRING,
     region: DataTypes.STRING,
     company_name: DataTypes.STRING,
     role: DataTypes.STRING,
     company_website: DataTypes.STRING,
     company_industry: DataTypes.STRING,
-    team_size: DataTypes.INTEGER,
+    team_size: DataTypes.STRING,
     linkedin_url: DataTypes.STRING,
     admin_status: DataTypes.BOOLEAN,
     active_status: DataTypes.BOOLEAN
