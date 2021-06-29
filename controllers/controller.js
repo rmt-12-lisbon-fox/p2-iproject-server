@@ -27,11 +27,11 @@ class Controller {
     })
     .then(({data}) => {
       res.status(200).json({
-        btc: data.tickers.btc_idr.last,
-        eth: data.tickers.eth_idr.last,
-        doge: data.tickers.doge_idr.last,
-        ltc: data.tickers.ltc_idr.last,
-        xrp: data.tickers.xrp_idr.last
+        btc: data.tickers.btc_idr,
+        eth: data.tickers.eth_idr,
+        doge: data.tickers.doge_idr,
+        ltc: data.tickers.ltc_idr,
+        xrp: data.tickers.xrp_idr
       })
     })
     .catch(_ => { next({code:500}) })
