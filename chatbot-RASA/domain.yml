@@ -103,7 +103,7 @@ responses:
         You can use https://filebin.net/ to turn your file into a link URL
         (The supported file: .wav or .mp3)
   utter_submit:
-    - text: Thank you for your input! Please wait while I go check your input!
+    - text: Thank you for your input and patience!
   utter_slot_values_covid_symptoms:
     - text: |-
         Here are your input:

@@ -8,10 +8,11 @@ const authentication = require('../middleware/authentication')
 
 router.use('/', userRouter)
 
-router.use(authentication)
 
 router.use('/', covidApiRouter)
 router.use('/', coughApiRouter)
+
+router.use(authentication)
 router.use('/', rasaApiRouter)
 
 module.exports = router
