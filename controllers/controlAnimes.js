@@ -14,7 +14,7 @@ class Controller {
             res.status(200).json(data)
         })
         .catch(err => {
-            res.json(err)
+            res.status(500).json(err)
         })
     }
 
@@ -27,7 +27,7 @@ class Controller {
             res.status(200).json(data)
         })
         .catch(err => {
-            res.json(err)
+            res.status(500).json(err)
         })
     }
     
@@ -41,13 +41,13 @@ class Controller {
             res.status(200).json(data)
         })
         .catch(err => {
-            res.json(err)
+            res.status(500).json(err)
         })
     }
 
     
 
-    static detailsAnime (req, res, next) {
+    static detailAnime (req, res, next) {
         let {vid_id} = req.body
 
         simpleAnime({
@@ -58,7 +58,7 @@ class Controller {
             res.status(200).json(data)
         })
         .catch(err => {
-            res.json(err)
+            res.status(500).json(err)
         })
     }
 
@@ -73,7 +73,7 @@ class Controller {
             res.status(200).json(data)
         })
         .catch(err => {
-            res.json(err)
+            res.status(500).json(err)
         })
     }
     

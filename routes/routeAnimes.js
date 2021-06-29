@@ -14,6 +14,6 @@ routes.get('/upcoming', Controller.upcomingAnime )
 
 routes.get('/latest', Controller.latestAnime )
 routes.get('/search/videos', Controller.searchAnimeVideos )
-routes.get('/details', Controller.detailsAnime )
+routes.get('/detail', Controller.detailAnime )
 
 module.exports = routes
