@@ -2,6 +2,7 @@
 const {
   Model
 } = require('sequelize');
+const { encrypt } = require('../Helper/bcrypt');
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     /**
@@ -45,11 +46,17 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     },
+    imageUrl: DataTypes.STRING,
     phoneNumber: DataTypes.STRING,
     address: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'User',
+    hooks: {
+      beforeCreate: (obj, option) => {
+        obj.password = encrypt(obj.password);
+      }
+    }
   });
   return User;
 };
