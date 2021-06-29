@@ -59,7 +59,6 @@ class UserController{
     // })
   }
   static getVideo(req,res,next){
-    // console.log('masukk','<<<<<<<<<<<<<<<<<<<<<');
     console.log(req.body);
     let { title } = req.body
     videoGrab(title)
@@ -82,7 +81,7 @@ class UserController{
   }
   static getHistory (req,res,next) {
     let matchId = req.body.matchId
-    console.log(matchId,'<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
+    console.log(matchId,  '<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
     instanceDota({
       method:'GET',
       url:'/GetMatchDetails/V001/',
