@@ -10,6 +10,7 @@ let founderRoute = require('./founderRoute.js')
 let investorRoute = require('./investorRoute.js')
 
 router.use('/', homeRoute);
+
 router.post('/register', ControllerFounder.register)
 router.post('/googlelogin', ControllerFounder.googleLogin)
 router.post('/login', ControllerFounder.login)
