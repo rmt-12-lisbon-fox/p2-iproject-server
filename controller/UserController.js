@@ -7,7 +7,7 @@ let payload
 class Controller {
     static register(req,res,next) {
         User.create({
-            firtsName: req.body.firtsName,
+            firstName: req.body.firstName,
             lastName: req.body.lastName,
             email: req.body.email,
             password: req.body.password,
@@ -61,7 +61,8 @@ class Controller {
             }
         })
         .catch(err => {
-            res.status(500).json({ meesage: err.message})
+            console.log(err);
+            res.status(500).json({ message: err.message})
         })
     }
 
