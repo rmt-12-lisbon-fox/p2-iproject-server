@@ -1,29 +1,14 @@
 const express = require ('express')
 const router = express.Router()
 const Controller = require('../controllers/controllerReview.js')
-const movieAuth = require ('../middlewares/authorizationMovie.js')
-const movieAuthAdmin = require ('../middlewares/authorizationMovieAdmin.js')
+const authFounder = require ('../middlewares/authorizationFounder.js')
 const multer = require('multer')
 var upload = multer();
 
-router.get('/', Controller.getMovies)
+router.get('/', Controller.getReviews)
 
-router.post('/', upload.single('poster'), Controller.createMovies) // no middleware, imageKit API langsung di controller
+router.post('/', authFounder, upload.single('profilePic'), Controller.createReview) // no middleware, imageKit API langsung di controller
 
-router.get('/image', Controller.seeAllImages) // see all uploaded images
-
-router.get('/history', Controller.getHistory)
-
-router.get('/:id', Controller.getMoviesById)
-
-router.use('/:id', movieAuth) // authorization
-
-router.put('/:id', upload.single('poster'), Controller.updateMovies)  // no middleware, imageKit API langsung di controller
-
-router.delete('/:id', Controller.deleteMovie)
-
-router.use('/:id', movieAuthAdmin) // authorization
-
-router.patch('/:id', Controller.updateStatus)
+router.get('/:id', Controller.getReviewsById)
 
 module.exports = router
