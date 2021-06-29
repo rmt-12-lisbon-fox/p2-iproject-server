@@ -1,79 +1,149 @@
 const { Founder, Review } = require('../models')
+const axios = require('axios')
+const FormData = require('form-data')
 let bcrypt = require('bcryptjs');
 let generateJwt = require('../helpers/jwt.js').generateJwt
 const {OAuth2Client} = require('google-auth-library');
 
 class Controller {
-    static getUser(req, res, next) {
-        let userId = req.params.id
-        User.findOne({
-            where: {
-                id: userId
-            },
-            include: Movie
-        })
-        .then(user => {
-            if (user) {
-                let selectedUser = {
-                    id: user.id,
-                    name: user.name,
-                    username: user.username,
-                    email: user.email,
-                    role: user.role,
-                    phoneNumber: user.phoneNumber,
-                    address: user.address,
-                    Movies: user.Movies
-                }
-                res.status(200).json(selectedUser)
+    static register(req, res, next) { // OK
+        let newUser = {}
+
+        if (!req.file) {
+            console.log('GA ADA REQ FILE')
+            newUser.first_name = req.body.first_name
+            newUser.last_name = req.body.last_name
+            if (req.body.username == '' || req.body.username == null) {
+                newUser.username = req.body.email              
             } else {
-                res.status(404).json({ message: 'error: user not found'} )
+                newUser.username = req.body.username
             }
-        })
-        .catch(err => {
-            next({ code: 500, message: err.message })
-        })
+            newUser.email = req.body.email
+            newUser.password = req.body.password
+            newUser.role = req.body.role
+            newUser.phoneNumber = req.body.phoneNumber
+            newUser.region = req.body.region
+            newUser.company_name = req.body.company_name
+            newUser.company_website = req.body.company_website
+            newUser.company_industry = req.body.company_industry
+            newUser.team_size = req.body.team_size
+            newUser.linkedin_url = req.body.linkedin_url
+            newUser.admin_status = false
+            newUser.active_status = false   
+            
+            Founder.create(newUser)
+            .then(user => {
+                let data = {}
+                data.message = 'Success registering a new founder'
+                data.id = user.id
+                data.first_name = user.first_name
+                data.last_name = user.last_name
+                data.username = user.username
+                data.email = user.email
+                data.role = user.role
+                data.phoneNumber = user.phoneNumber
+                data.profilePic = null
+                data.region = user.region
+                data.company_name = user.company_name
+                data.company_website = user.company_website
+                data.company_industry = user.company_industry
+                data.team_size = user.team_size
+                data.linkedin_url = user.linkedin_url
+                data.admin_status = user.admin_status
+                data.active_status = user.active_status
+    
+                res.status(201).json(data)
+            })
+            .catch(err => {
+                next({ name: err.name, validation: err.errors, code: 500, message: err.message })
+            })
+        } else {
+            console.log('ADA REQ FILE')
+
+            let image = new FormData()
+
+            let fileType = false
+            let fileSize = false
+
+            if (req.file.mimetype == 'image/jpeg' || req.file.mimetype == 'image/jpg' || req.file.mimetype == 'image/png' || req.file.mimetype == 'image/gif') {
+                fileType = true
+            }
+
+            if (req.file.size <= 230400) { // 1 kB = 1024 bytes; 225 kB = 230,400 bytes (according to google & my laptop)
+                fileSize = true
+            }
+            if (fileType == true && fileSize == true) {
+                image.append('file', req.file.buffer.toString("base64"))
+                image.append('fileName', req.file.originalname)
+                image.append('useUniqueFileName', 'false')
+    
+                // console.log(req.file)
+        
+                axios({
+                    url: 'https://upload.imagekit.io/api/v1/files/upload',
+                    method: 'post',
+                    auth: {
+                        username: process.env.IMAGEKIT_KEY
+                    },  
+                    headers: {
+                        ...image.getHeaders()
+                    },
+                    data: image
+                })
+                .then(newImage => {
+                    newUser.first_name = req.body.first_name
+                    newUser.last_name = req.body.last_name
+                    newUser.username = req.body.username
+                    newUser.email = req.body.email
+                    newUser.password = req.body.password
+                    newUser.role = req.body.role
+                    newUser.phoneNumber = req.body.phoneNumber
+                    newUser.region = req.body.region
+                    newUser.company_name = req.body.company_name
+                    newUser.company_website = req.body.company_website
+                    newUser.profilePic = newImage.data.url                  
+                    newUser.company_industry = req.body.company_industry
+                    newUser.team_size = req.body.team_size
+                    newUser.linkedin_url = req.body.linkedin_url
+                    newUser.admin_status = false
+                    newUser.active_status = false  
+        
+                    return Founder.create(newUser)
+                })
+                .then(user => {
+                    let data = {}
+                    data.message = 'Success registering a new founder'
+                    data.id = user.id
+                    data.first_name = user.first_name
+                    data.last_name = user.last_name
+                    data.username = user.username
+                    data.email = user.email
+                    data.role = user.role
+                    data.phoneNumber = user.phoneNumber
+                    data.profilePic = user.profilePic
+                    data.region = user.region
+                    data.company_name = user.company_name
+                    data.company_website = user.company_website
+                    data.company_industry = user.company_industry
+                    data.team_size = user.team_size
+                    data.linkedin_url = user.linkedin_url
+                    data.admin_status = user.admin_status
+                    data.active_status = user.active_status
+        
+                    res.status(201).json(data)
+                })
+                .catch(err => {
+                    next({ name: err.name, validation: err.errors, code: 500, message: err.message })
+                })    
+            }
+        }
     }
 
-    static register(req, res, next) {
-        let newUser = req.body
-        newUser.admin_status = false
-
-        if (req.body.username == '' || req.body.username == null) {
-            newUser.username = req.body.email              
-        } else {
-            newUser.username = req.body.username
-        }
-
-        if (req.body.name == '' || req.body.name == null) {
-            newUser.name = req.body.username          
-        } else {
-            newUser.name = req.body.name
-        }
-
-        User.create(newUser)
-        .then(user => {
-            let data = {}
-            data.message = 'Success creating new user'
-            data.id = user.id
-            data.name = user.name
-            data.username = user.username
-            data.email = user.email
-            data.role = user.role
-            data.phoneNumber = user.phoneNumber
-            data.address = user.address
-
-            res.status(201).json(data)
-        })
-        .catch(err => {
-            next({ name: err.name, validation: err.errors, code: 500, message: err.message })
-        })
-    }
-
-    static login(req, res, next) {
+    static login(req, res, next) { // OK
         let userEmail = req.body.email
         let userPassword = req.body.password
 
-        User.findOne({
+        Founder.findOne({
             where: {email: userEmail}
         })
         .then(user => {
@@ -81,14 +151,25 @@ class Controller {
                 if (bcrypt.compareSync(userPassword, user.password) === true) {
                     let payload = {}
                     payload.id = user.id
-                    payload.name = user.name
+                    payload.first_name = user.first_name
+                    payload.last_name = user.last_name
                     payload.username = user.username
                     payload.email = user.email
                     payload.role = user.role
+                    payload.phoneNumber = user.phoneNumber
+                    payload.profilePic = user.profilePic
+                    payload.region = user.region
+                    payload.company_name = user.company_name
+                    payload.company_website = user.company_website
+                    payload.company_industry = user.company_industry
+                    payload.team_size = user.team_size
+                    payload.linkedin_url = user.linkedin_url
+                    payload.admin_status = user.admin_status
+                    payload.active_status = user.active_status
 
                     let accessToken = generateJwt(payload)
 
-                    res.status(200).json({accessToken:accessToken, name:payload.name, role:payload.role, id:payload.id})
+                    res.status(200).json({accessToken:accessToken, user: payload})
                 } else {
                     next({ code: 401, message: 'Invalid username/password' })
                 }
@@ -131,71 +212,111 @@ class Controller {
         })
         .then(loggedUser => {
             // console.log(loggedUser, '<<< LOGGED USER')
-            if (loggedUser) {
+            if (loggedUser) { // if user is already registered
               return loggedUser
-            } else {
-                let newUser = {}
-                newUser.email = payload.email
-                newUser.role = 'staff'
-                newUser.name = payload.name
-                newUser.username = payload.email
-                newUser.password = process.env.GOOGLE_PASSWORD
-        
-                return User.create(newUser)
+            } else { // if user is not registered yet
+                next({ code: 401, message: "You Don't Have an Account Yet. Please Register First"})
             }
         })
         .then(user => {
             let googleUser = {}
             googleUser.id = user.id
-            googleUser.name = user.name
+            googleUser.first_name = user.first_name
+            googleUser.last_name = user.last_name
             googleUser.username = user.username
             googleUser.email = user.email
             googleUser.role = user.role
+            googleUser.phoneNumber = user.phoneNumber
+            googleUser.profilePic = user.profilePic
+            googleUser.region = user.region
+            googleUser.company_name = user.company_name
+            googleUser.company_website = user.company_website
+            googleUser.company_industry = user.company_industry
+            googleUser.team_size = user.team_size
+            googleUser.linkedin_url = user.linkedin_url
+            googleUser.admin_status = user.admin_status
+            googleUser.active_status = user.active_status
             
             let accessToken = generateJwt(googleUser)
-            res.status(200).json({accessToken:accessToken, name:googleUser.name, role:googleUser.role, id:googleUser.id})
+            res.status(200).json({accessToken:accessToken, user: googleUser})
         })
         .catch(err => {
             next({ name: err.name, validation: err.errors, code: 500, message: err.message })
         })
     }
 
-    static editUser(req, res, next) {
-        let userId = +req.params.id
-        let sentData;
-        let foundUser;
-
-        User.findByPk(userId)
-        .then(user => {
-            foundUser = user
-            if (user) {
-                sentData = {
-                    name: req.body.name,
-                    username: req.body.username,
-                    phoneNumber: req.body.phoneNumber,
-                    address: req.body.address
-                }
-
-                if (!req.body.username) {
-                    sentData.username = foundUser.email
-                }
-                if (!req.body.name) {
-                    sentData.name = sentData.username
-                }
-                return User.update(sentData, {
-                    where: {id: userId}
-                })
-            } else {
-                res.status(404).json({ message: 'error: user not found'} )
-            }                
+    static fetchFounders(req, res, next) { // OK
+        Founder.findAll({
+            where: {admin_status: false}
         })
-        .then(() => {
-            delete foundUser.dataValues.password
-            res.status(200).json(foundUser)
+        .then(founders => {
+            let allFounders = []
+            let founder;
+            for (let i = 0; i < founders.length; i++) {
+                founder = {}
+                founder.id = founders[i].id
+                founder.first_name = founders[i].first_name
+                founder.last_name = founders[i].last_name
+                founder.username = founders[i].username
+                founder.email = founders[i].email
+                founder.role = founders[i].role
+                founder.phoneNumber = founders[i].phoneNumber
+                founder.profilePic = founders[i].profilePic
+                founder.region = founders[i].region
+                founder.company_name = founders[i].company_name
+                founder.company_website = founders[i].company_website
+                founder.company_industry = founders[i].company_industry
+                founder.team_size = founders[i].team_size
+                founder.linkedin_url = founders[i].linkedin_url
+                founder.admin_status = founders[i].admin_status
+                founder.active_status = founders[i].active_status
+
+                allFounders.push(founder)
+            }
+            res.status(200).json(allFounders)
         })
         .catch(err => {
-            next({ name: err.name, validation: err.errors, code: 500, message: err.message })
-        })         
+            next({ code: 500, message: err.message })
+        })
+    }
+
+    static fetchFounderProfile(req, res, next) { // OK
+        let founderId = req.params.id
+        Founder.findOne({
+            where: {
+                id: founderId
+            },
+            include: Review
+        })
+        .then(user => {
+            if (user) {
+                let founder = {}
+                founder.id = user.id
+                founder.first_name = user.first_name
+                founder.last_name = user.last_name
+                founder.username = user.username
+                founder.email = user.email
+                founder.role = user.role
+                founder.phoneNumber = user.phoneNumber
+                founder.profilePic = user.profilePic
+                founder.region = user.region
+                founder.company_name = user.company_name
+                founder.company_website = user.company_website
+                founder.company_industry = user.company_industry
+                founder.team_size = user.team_size
+                founder.linkedin_url = user.linkedin_url
+                founder.admin_status = user.admin_status
+                founder.active_status = user.active_status
+                founder.reviews = user.Review
+
+                res.status(200).json(founder)
+            } else {
+                res.status(404).json({ message: 'error: user not found'} )
+            }
+        })
+        .catch(err => {
+            next({ code: 500, message: err.message })
+        })
     }
 }
 
