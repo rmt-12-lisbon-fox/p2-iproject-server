@@ -129,9 +129,10 @@ _Response (200)_
     ]
 }
 ```
+
 ---
 
-### Post /email
+### POST /email
 
 _Request Header_
 ```
@@ -146,7 +147,9 @@ not needed
 _Request Body_
 ```
 {
-  email: <email>
+  email: <email>,
+  city: <string>,
+  data: <array>
 }
 ```
 

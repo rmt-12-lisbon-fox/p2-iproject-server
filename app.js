@@ -71,6 +71,89 @@ app.get('/predictions', (req, res) => {
 
 app.post('/email', (req, res) => {
   const email = req.body.email
+  const city = req.body.city
+  const data = req.body.data
+
+  let tableData = ''
+  data.forEach(e => {
+    let date = new Date(e.rise.utc_datetime).toLocaleDateString('id')
+    let riseTime = new Date(e.rise.utc_datetime).toLocaleTimeString('en-GB')
+    let culminationTime = new Date(e.culmination.utc_datetime).toLocaleTimeString('en-GB')
+    let setTime = new Date(e.set.utc_datetime).toLocaleTimeString('en-GB')
+
+    let riseVisibility
+    let culminationVisibility
+    let setVisibility
+    if (e.rise.visible) {
+      riseVisibility = 'Yes'
+    } else {
+      riseVisibility = 'No'
+    }
+    if (e.culmination.visible) {
+      culminationVisibility = 'Yes'
+    } else {
+      culminationVisibility = 'No'
+    }
+    if (e.set.visible) {
+      setVisibility = 'Yes'
+    } else {
+      setVisibility = 'No'
+    }
+
+    tableData += `
+    <tr>
+      <td>${date}</td>
+      <td>${e.rise.alt}°</td>
+      <td>${e.rise.az}°</td>
+      <td>${riseTime}</td>
+      <td>${riseVisibility}</td>
+      <td>${e.culmination.alt}°</td>
+      <td>${e.culmination.az}°</td>
+      <td>${culminationTime}</td>
+      <td>${culminationVisibility}</td>
+      <td>${e.set.alt}°</td>
+      <td>${e.set.az}°</td>
+      <td>${setTime}</td>
+      <td>${setVisibility}</td>
+    </tr>
+    `
+  })
+
+  let html = `
+  <h5>Thank you for using findISS! This is the prediction result you requested.</h5>
+  <h6>City: ${city}</h6>
+  <table border="1">
+    <col>
+    <colgroup span="3"></colgroup>
+    <colgroup span="3"></colgroup>
+    <tr>
+      <th rowspan="2">Date</th>
+      <th colspan="4" scope="colgroup">Rise</th>
+      <th colspan="4" scope="colgroup">Culmination</th>
+      <th colspan="4" scope="colgroup">Set</th>
+    </tr>
+    <tr>
+      <th scope="col">Alt</th>
+      <th scope="col">Azimuth</th>
+      <th scope="col">Time</th>
+      <th scope="col">Visible</th>
+      <th scope="col">Alt</th>
+      <th scope="col">Azimuth</th>
+      <th scope="col">Time</th>
+      <th scope="col">Visible</th>
+      <th scope="col">Alt</th>
+      <th scope="col">Azimuth</th>
+      <th scope="col">Time</th>
+      <th scope="col">Visible</th>
+    </tr>
+    ${tableData}
+  </table>
+
+  regards,
+
+  findIss
+  `
+
   let transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
@@ -83,7 +166,7 @@ app.post('/email', (req, res) => {
     from: '',
     to: email,
     subject: 'Your findISS prediction results',
-    text: 'testing testing 222222'
+    html
   }
 
   transporter.sendMail(mailOptions, (err, data) => {
