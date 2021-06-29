@@ -26,6 +26,9 @@ module.exports = {
       phoneNumber: {
         type: Sequelize.INTEGER
       },
+      profilePic: {
+        type: Sequelize.STRING
+      },
       region: {
         type: Sequelize.STRING
       },
@@ -35,14 +38,11 @@ module.exports = {
       company_website: {
         type: Sequelize.STRING
       },
+      role: {
+        type: Sequelize.STRING
+      },
       company_industry: {
         type: Sequelize.STRING
-      },
-      company_type: {
-        type: Sequelize.STRING
-      },
-      founded: {
-        type: Sequelize.INTEGER
       },
       team_size: {
         type: Sequelize.INTEGER
@@ -51,6 +51,9 @@ module.exports = {
         type: Sequelize.STRING
       },
       admin_status: {
+        type: Sequelize.BOOLEAN
+      },
+      active_status: {
         type: Sequelize.BOOLEAN
       },
       createdAt: {

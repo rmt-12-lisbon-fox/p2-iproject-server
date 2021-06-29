@@ -11,17 +11,58 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Review.belongsTo(models.Founder, {foreignKey: 'FounderId'})
+      Review.belongsTo(models.Investor, {foreignKey: 'FounderId'})
     }
   };
   Review.init({
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+      allowNull: false
+    },
     FounderId: DataTypes.INTEGER,
     InvestorId: DataTypes.INTEGER,
     reviewer: DataTypes.STRING,
-    title: DataTypes.STRING,
+    title: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: "Title can not be empty"
+        },
+        notEmpty: {
+          msg: "Title can not be empty"
+        }
+      }
+    },
     investor_role: DataTypes.STRING,
     investment_stage: DataTypes.STRING,
-    review: DataTypes.TEXT,
-    rating_overall: DataTypes.INTEGER,
+    review: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: "Review can not be empty"
+        },
+        notEmpty: {
+          msg: "Review can not be empty"
+        }
+      }
+    },
+    rating_overall: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: "Rating can not be empty"
+        },
+        notEmpty: {
+          msg: "Rating can not be empty"
+        }
+      }
+    },
     rating_professionalism: DataTypes.INTEGER,
     rating_speed: DataTypes.INTEGER,
     rating_dd_complexity: DataTypes.INTEGER,

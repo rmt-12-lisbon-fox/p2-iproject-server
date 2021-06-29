@@ -11,10 +11,22 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Investor.hasMany(models.Review, {foreignKey: 'InvestorId'})
     }
   };
   Investor.init({
-    name: DataTypes.STRING,
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: "Name can not be empty"
+        },
+        notEmpty: {
+          msg: "Name can not be empty"
+        }
+      }
+    },
     company_name: DataTypes.STRING,
     region: DataTypes.STRING,
     industry: DataTypes.STRING,
