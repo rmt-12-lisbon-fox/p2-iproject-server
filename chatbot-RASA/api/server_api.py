@@ -3,7 +3,6 @@ import requests
 baseURL = 'http://localhost:3000'
 def covidSymptoms(userInput):
   url = f'{baseURL}/checkCovidSymptoms'
-  print(f"{url} <<<< URL")
   # print(f"{userInput} <<<<< USER INPUT")
   response = requests.get(url, data = userInput)
   json_data = response.json()

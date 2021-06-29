@@ -89,3 +89,6 @@ policies:
 #     max_history: 5
 #     epochs: 100
 #     constrain_similarities: true
+rest:
+  # you don't need to provide anything here - this channel doesn't
+  # require any credentials

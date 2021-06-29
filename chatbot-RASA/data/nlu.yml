@@ -75,6 +75,9 @@ nlu:
     - help me
     - what can you do?
     - what can i ask you?
+    - what can you do
+    - can i ask you something
+    - what can i ask you
 - intent: thankyou_compliment
   examples: |
     - thank you

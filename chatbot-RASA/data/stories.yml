@@ -52,6 +52,7 @@ stories:
   - action: utter_submit
   - action: utter_slot_values_covid_symptoms
   - action: action_check_covid
+  - action: action_restart
   - intent: check_cough_type
   - action: cough_type_form
   - active_loop: cough_type_form
@@ -65,6 +66,7 @@ stories:
   - action: utter_submit
   - action: utter_slot_values_cough_type
   - action: action_check_cough
+  - action: action_restart
   - intent: ask_covid_info
   - action: utter_infocovid
   - intent: thankyou_compliment
