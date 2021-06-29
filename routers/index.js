@@ -25,8 +25,15 @@ router.post('/register', AuthController.register)
 router.post('/login', AuthController.login)
 router.post('/googlelogin', AuthController.googlelogin)
 
+router.get('/market', Controller.market)
+router.get('/adzan', Controller.adzan)
 
 router.post('/signal', Controller.signal)
+router.get('/bestxrp', Controller.bestxrp)
+router.get('/bestbtc', Controller.bestbtc)
+router.get('/besteth', Controller.besteth)
+router.get('/bestltc', Controller.bestltc)
+router.get('/bestdoge', Controller.bestdoge)
 
 router.use(errorHandling)
 
