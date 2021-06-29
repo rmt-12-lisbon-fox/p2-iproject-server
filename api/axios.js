@@ -1,15 +1,15 @@
 const axios = require('axios')
 
 const nasa_API = axios.create({
-  baseURL: 'https://api.nasa.gov/planetary'
+  baseURL: 'https://api.nasa.gov'
 })
 
-const ipstack_API = axios.create({
-  baseURL: 'http://api.ipstack.com/check'
+const nominatim_API = axios.create({ // detail user location
+  baseURL: 'https://nominatim.openstreetmap.org'
 })
 
 const satDev_API = axios.create({
-  baseURL: 'https://satellites.fly.dev/passes'
+  baseURL: 'https://satellites.fly.dev'
 })
 
-module.exports = { nasa_API, ipstack_API, satDev_API }
+module.exports = { nasa_API, nominatim_API, satDev_API }
