@@ -1,4 +1,4 @@
-const { Founder, Review } = require('../models')
+const { Founder, Review, Investor } = require('../models')
 const axios = require('axios')
 const FormData = require('form-data')
 let bcrypt = require('bcryptjs');
@@ -24,10 +24,25 @@ class Controller {
             newUser.phoneNumber = req.body.phoneNumber
             newUser.region = req.body.region
             newUser.company_name = req.body.company_name
-            newUser.company_website = req.body.company_website
+            
+            if (req.body.company_website.includes("https://www") || req.body.company_website.includes("http://www")) {
+                newUser.company_website = req.body.company_website
+            } else if (req.body.company_website.includes("www")) {
+                newUser.company_website = `https://${req.body.company_website}`
+            } else {
+                newUser.company_website = `https://www.${req.body.company_website}`
+            }
+
+            if (req.body.linkedin_url.includes("https://www") || req.body.linkedin_url.includes("http://www")) {
+                newUser.linkedin_url = req.body.linkedin_url
+            } else if (req.body.linkedin_url.includes("www")) {
+                newUser.linkedin_url = `https://${req.body.linkedin_url}`
+            } else {
+                newUser.linkedin_url = `https://www.${req.body.linkedin_url}`
+            }
+
             newUser.company_industry = req.body.company_industry
             newUser.team_size = req.body.team_size
-            newUser.linkedin_url = req.body.linkedin_url
             newUser.admin_status = false
             newUser.active_status = false   
             
@@ -286,7 +301,10 @@ class Controller {
             where: {
                 id: founderId
             },
-            include: Review
+            include: {
+                model: Review,
+                include: Investor
+            }
         })
         .then(user => {
             if (user) {
@@ -313,6 +331,34 @@ class Controller {
             } else {
                 res.status(404).json({ message: 'error: user not found'} )
             }
+        })
+        .catch(err => {
+            next({ code: 500, message: err.message })
+        })
+    }
+
+    static verifyFounder(req, res, next) {
+        // console.log('MASUKKKK')
+        let founderId = req.params.id
+        let founder;
+        Founder.findByPk(founderId)
+        .then(user => {
+            if (user) {
+                founder = user
+                // console.log('KETEMUUUU')
+                return Founder.update({active_status: true}, {
+                    where: {
+                        id: founderId
+                    }
+                })
+            } else {
+                res.status(404).json({ message: 'error: user not found'})
+            }
+        })
+        .then(() => {
+            console.log('UPDATED')
+            console.log(founder.id, founder.first_name)
+            res.status(200).json({message: `Thanks ${founder.first_name} for verifying! Your account is active, you can now write a new review`})
         })
         .catch(err => {
             next({ code: 500, message: err.message })
