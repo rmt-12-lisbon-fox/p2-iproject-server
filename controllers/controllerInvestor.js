@@ -93,7 +93,7 @@ class Controller {
         })
         .then(user => {
             if (user) {
-                console.log(user)
+                // console.log(user)
                 let investor = {} 
                 investor.id = user.id
                 investor.name = user.name

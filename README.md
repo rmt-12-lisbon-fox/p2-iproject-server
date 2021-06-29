@@ -1,6 +1,6 @@
 # p2-cms-customer-server
 API for cms and customer websites. This app has : 
-* RESTful endpoint for asset's CRUD operation
+* RESTful endpoint for CRU operation
 * JSON formatted response
 
 &nbsp;
@@ -327,164 +327,11 @@ _Response (401 - Unauthorized)_
 }
 ```
 
-_Response (500 - Internal Server Error)_
-```
-{
-    "error": "Internal Server Error",
-    "message": "<error message>"
-}
-```
----
-
-
-> Update movie data
-
-_Request Header_
-```
-{
-    "accessToken": "<accesstoken>"
-}
-```
-
-_Request Params_
-```
-{
-    "id": integer (required)
-}
-```
-
-_Request Body_
-```
-{
-    "title": "Love Story",
-    "synopsis": "Love Story is a 1970 American romantic drama written by Erich Segal, who was also the author of the best-selling 1970 novel of the same name.",
-    "trailerUrl": "https://www.youtube.com/watch?v=JASEIR8hjzk",
-    "imgUrl": "https://ik.imagekit.io/77pzczg37zw/love-story-1970-poster.jfif",
-    "rating": 2
-}
-```
-
-_Response (200)_
-```
-{
-    "title": "Love Story",
-    "synopsis": "Love Story is a 1970 American romantic drama written by Erich Segal, who was also the author of the best-selling 1970 novel of the same name.",
-    "trailerUrl": "https://www.youtube.com/watch?v=JASEIR8hjzk",
-    "imgUrl": "https://ik.imagekit.io/77pzczg37zw/love-story-1970-poster.jfif",
-    "rating": "2",
-    "updatedAt": "2021-06-07T13:25:08.785Z"
-}
-```
-
-_Response (400 - Bad Request)_
-```
-{
-    "error": "Input Error",
-    "message": [
-        "<validation error message>"
-    ]
-}
-```
-```
-{
-    "error": "Input Error",
-    "message": "Only formats .jpg, .jpeg, .png, are allowed, with max. size of 225kB"
-}
-```
-
-_Response (401 - Unauthorized)_
-```
-{
-    "error": "Unauthorized",
-    "message": "Please login first"
-}
-```
-```
-{
-    "error": "Unauthorized",
-    "message": "Invalid User / Login Credentials"
-}
-```
-
 _Response (403 - Forbidden)_
 ```
 {
-    "error": "Forbidden Access",
-    "message": "User not authorized to access the page / perform action"
-}
-```
-
-_Response (404 - Not Found)_
-```
-{
-    "message": "error: movie not found"
-}
-```
-
-_Response (500 - Internal Server Error)_
-```
-{
-    "error": "Internal Server Error",
-    "message": "<error message>"
-}
-```
----
-
-
-> Delete movie
-
-_Request Header_
-```
-{
-    "accessToken": "<accesstoken>"
-}
-```
-
-_Request Params_
-```
-{
-    "id": integer (required)
-}
-```
-
-_Request Body_
-```
-not needed
-```
-
-_Response (200)_
-```
-{
-    "message": "Titanic (1997) successfully deleted"
-}
-```
-
-_Response (401 - Unauthorized)_
-```
-{
     "error": "Unauthorized",
-    "message": "Please login first"
-}
-```
-```
-{
-    "error": "Unauthorized",
-    "message": "Invalid User / Login Credentials"
-}
-```
-
-_Response (403 - Forbidden)_
-```
-{
-    "error": "Forbidden Access",
-    "message": "User not authorized to access the page / perform action"
-}
-```
-
-_Response (404 - Not Found)_
-```
-{
-    "message": "error: movie not found"
+    "message": "Please verify your account (email address) first"
 }
 ```
 
@@ -769,7 +616,81 @@ _Response (200)_
     "team_size": "21-50",
     "linkedin_url": "https://www.linkedin.com/in/ilya-kravtsov-0108124/",
     "admin_status": false,
-    "active_status": true
+    "active_status": true,
+    "reviews": [
+        {
+            "id": 1,
+            "FounderId": 2,
+            "InvestorId": 1,
+            "reviewer": "Anonymous",
+            "title": "Slow Response",
+            "investor_role": "Lead",
+            "investment_stage": "Seed",
+            "review": "Very slow response. I did a few meetings with the VC however the processes was not transparent and extremely slow. At the end, the deal went through, but we needed to wait more than 10 months for the entire process to pass through, since every single meeting, the subject from last meetings were repeated",
+            "rating_overall": 2,
+            "rating_professionalism": 3,
+            "rating_speed": 1,
+            "rating_dd_complexity": 3,
+            "rating_post_inv_support": 0,
+            "rating_founder_friendly": 2,
+            "likes": 1,
+            "likes_id": [
+                2
+            ],
+            "status": "Unverified",
+            "createdAt": "2021-06-29T10:38:55.495Z",
+            "updatedAt": "2021-06-29T10:41:31.530Z",
+            "Investor": {
+                "id": 1,
+                "name": "Jump VC",
+                "company_name": "Jump VC",
+                "region": "China & Hong-Kong",
+                "industry": "Media & Entertainment",
+                "website_url": "https://www.jumpvc.com",
+                "linkedin_url": "https://www.linkedin.com/company/jump-informatique/",
+                "investor_type": "Venture Capital",
+                "status": "Verified",
+                "createdAt": "2021-06-29T09:20:57.032Z",
+                "updatedAt": "2021-06-29T12:22:11.075Z"
+            }
+        },
+        {
+            "id": 2,
+            "FounderId": 2,
+            "InvestorId": 2,
+            "reviewer": "Anonymous",
+            "title": "Great Support post investment",
+            "investor_role": "Lead",
+            "investment_stage": "Series A",
+            "review": "The VC was very helpful after the investment with the advises and introductions. They even helped me to raise the next round.",
+            "rating_overall": 5,
+            "rating_professionalism": 5,
+            "rating_speed": 3,
+            "rating_dd_complexity": 4,
+            "rating_post_inv_support": 5,
+            "rating_founder_friendly": 5,
+            "likes": 1,
+            "likes_id": [
+                2
+            ],
+            "status": "Verified",
+            "createdAt": "2021-06-29T12:01:41.905Z",
+            "updatedAt": "2021-06-29T12:06:33.879Z",
+            "Investor": {
+                "id": 2,
+                "name": "BigMoney VC",
+                "company_name": "BigMoney VC",
+                "region": "Southeast Asia",
+                "industry": "Multi-Industry",
+                "website_url": "https://www.bigmoneyvc.com",
+                "linkedin_url": "https://www.linkedin.com/company/jump-informatique/",
+                "investor_type": "Venture Capital",
+                "status": "Verified",
+                "createdAt": "2021-06-29T11:59:56.532Z",
+                "updatedAt": "2021-06-29T12:00:42.600Z"
+            }
+        }
+    ]
 }
 ```
 
@@ -996,21 +917,60 @@ _Response (200)_
 ```
 {
     "id": 2,
-    "first_name": "Ilya",
-    "last_name": "Kravtsov",
-    "username": "Ilya85",
-    "email": "ik@pouchnation.com",
-    "role": "CEO & Founder",
-    "phoneNumber": "6287875343066",
-    "profilePic": "https://ik.imagekit.io/77pzczg37zw/IK.jpg",
+    "name": "BigMoney VC",
+    "company_name": "BigMoney VC",
     "region": "Southeast Asia",
-    "company_name": "PouchNation",
-    "company_website": "https://www.pouchnation.com",
-    "company_industry": "Media & Entertainment",
-    "team_size": "21-50",
-    "linkedin_url": "https://www.linkedin.com/in/ilya-kravtsov-0108124/",
-    "admin_status": false,
-    "active_status": true
+    "industry": "Multi-Industry",
+    "website_url": "https://www.bigmoneyvc.com",
+    "linkedin_url": "https://www.linkedin.com/company/jump-informatique/",
+    "investor_type": "Venture Capital",
+    "status": "Verified",
+    "reviews": [
+        {
+            "id": 3,
+            "FounderId": 2,
+            "InvestorId": 2,
+            "reviewer": "Anonymous",
+            "title": "Great Support post investment",
+            "investor_role": "Lead",
+            "investment_stage": "Series A",
+            "review": "The VC was very helpful after the investment with the advises and introductions. They even helped me to raise the next round.",
+            "rating_overall": 5,
+            "rating_professionalism": 5,
+            "rating_speed": 3,
+            "rating_dd_complexity": 4,
+            "rating_post_inv_support": 5,
+            "rating_founder_friendly": 5,
+            "likes": 1,
+            "likes_id": [
+                2
+            ],
+            "status": "Verified",
+            "createdAt": "2021-06-29T12:01:41.905Z",
+            "updatedAt": "2021-06-29T12:06:33.879Z",
+            "Founder": {
+                "id": 2,
+                "first_name": "Ilya",
+                "last_name": "Kravtsov",
+                "username": "Ilya85",
+                "password": "$2a$05$MXiruX7TifzZER5W3IKsxO744s/JMKHG.rh2MBBlCBgtILedhzjF6",
+                "email": "ik@pouchnation.com",
+                "phoneNumber": "6287875343066",
+                "profilePic": "https://ik.imagekit.io/77pzczg37zw/IK.jpg",
+                "region": "Southeast Asia",
+                "company_name": "PouchNation",
+                "role": "CEO & Founder",
+                "company_website": "https://www.pouchnation.com",
+                "company_industry": "Media & Entertainment",
+                "team_size": "21-50",
+                "linkedin_url": "https://www.linkedin.com/in/ilya-kravtsov-0108124/",
+                "admin_status": false,
+                "active_status": true,
+                "createdAt": "2021-06-29T08:34:59.661Z",
+                "updatedAt": "2021-06-29T09:18:50.446Z"
+            }
+        }
+    ]
 }
 ```
 

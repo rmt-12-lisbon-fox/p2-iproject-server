@@ -308,7 +308,7 @@ class Controller {
         })
         .then(user => {
             if (user) {
-                console.log(user)
+                // console.log(user)
                 let founder = {}
                 founder.id = user.id
                 founder.first_name = user.first_name
