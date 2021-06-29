@@ -32,7 +32,7 @@ beforeAll((done) => {
 
 describe('B - LOGIN CUSTOMER', () => {
   test('B1 - berhasil login', (done) => {
-    request(app).post('/pub/login')
+    request(app).post('/login')
     .send(login)
     .end((err, res) => {
       if (err) done(err)
@@ -46,7 +46,7 @@ describe('B - LOGIN CUSTOMER', () => {
     })
   })
   test('B2 - memberikan password yang salah', (done) => {
-    request(app).post('/pub/login')
+    request(app).post('/login')
     .send({...login, password: "passworddisalahin"})
     .end((err, res) => {
       if (err) done(err)
@@ -60,7 +60,7 @@ describe('B - LOGIN CUSTOMER', () => {
     })
   })
   test('B3 - Email yang diinput tidak terdaftar di database', (done) => {
-    request(app).post('/pub/login')
+    request(app).post('/login')
     .send({...login, email: "emailtidakterdaftar@didatabase.com"})
     .end((err, res) => {
       if (err) done(err)
