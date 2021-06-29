@@ -1,11 +1,11 @@
 const routes = require('express').Router()
-const anime = require('./routeAnimes')
+const animes = require('./routeAnimes')
 
 routes.get('/', (req, res) => {
   res.send('Welcome to Aniplay')
 })
 
-routes.use('/anime', anime)
+routes.use('/anime', animes)
 
 
 module.exports = routes
