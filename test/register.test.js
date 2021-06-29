@@ -10,7 +10,7 @@ const user = {
 
 describe('A - REGISTER CUSTOMER', () => {
   test('A1 - berhasil register', (done) => {
-    request(app).post('/pub/register')
+    request(app).post('/register')
     .send(user)
     .end((err, res) => {
       if (err) done(err)

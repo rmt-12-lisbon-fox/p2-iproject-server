@@ -6,8 +6,11 @@
   "scripts": {
     "test": "jest --detectOpenHandles --forceExit --runInBand",
     "seeding": "SET NODE_ENV=development&&sequelize db:seed --seed",
+    "c1": "SET NODE_ENV=test&&sequelize db:create --env=test",
     "migrate": "SET NODE_ENV=development&&sequelize db:migrate",
+    "m1": "SET NODE_ENV=test&&sequelize db:migrate --env=test",
     "seedall": "SET NODE_ENV=development&&sequelize db:seed:all",
+    "s1": "SET NODE_ENV=test&&sequelize db:seed:all --env=test",
     "dev1": "nodemon ./bin/http",
     "dev": "SET NODE_ENV=development&&nodemon bin/http",
     "start": "node app.js"
