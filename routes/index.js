@@ -4,13 +4,16 @@ const AuthController = require('../controllers/authController')
 const decksRoute = require('./decksRoute')
 const wikiRoute = require('./wikiRoute')
 const errorHandler = require('../middlewares/errorHandler')
+const {authentication, authorization} = require('../middlewares/auth')
 
 router.post('/register', AuthController.postRegister)
 router.post('/login', AuthController.postLogin)
-router.post('/profile', AuthController.getProfile)
+// router.get('/profile', authentication, AuthController.getProfile)
+router.use('/profile', authentication, profileRoute)
 
-router.use('/decks', decksRoute)
 router.use('/wiki', wikiRoute)
+router.use(authentication)
+router.use('/decks', decksRoute)
 
 router.use(errorHandler)
 

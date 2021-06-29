@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Card.belongsToMany(models.Deck, {through: 'DeckCards'})
+      Card.belongsToMany(models.Deck, {through: 'DeckCards', onDelete: 'cascade', onUpdate: 'cascade'})
     }
   };
   Card.init({

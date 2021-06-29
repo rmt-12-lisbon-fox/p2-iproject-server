@@ -4,10 +4,11 @@ const DecksController = require('../controllers/decksController')
 const {authorization} = require('../middlewares/auth')
 
 router.get('/', DecksController.getAllDecks)
+router.post('/', DecksController.postDeck)
 router.get('/:deckId', DecksController.getDeck)
 
-router.use(authorization)
-router.put('/:deckId/edit', DecksController.putDeck)
-router.delete('/:deckId/delete', DecksController.deleteDeck)
+router.use('/:deckId', authorization)
+router.put('/:deckId', DecksController.putDeck)
+router.delete('/:deckId', DecksController.deleteDeck)
 
 module.exports = router

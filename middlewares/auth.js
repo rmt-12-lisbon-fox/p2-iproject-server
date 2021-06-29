@@ -1,25 +1,39 @@
-const {jwtCreate, jwtCheck} = require('../helpers/jwt')
-const {User} = require('../models')
+const { jwtCheck } = require('../helpers/jwt')
+const { User, Deck } = require('../models')
 
-function authentication(req, res, next) {
-    if(req.headers.access_token) {
+async function authentication(req, res, next) {
+    const token = req.headers.access_token
+    if (token) {
         try {
-            const {id, username} = jwtCheck(req.headers.access_token)
-            User.findByPk(id)
-        } catch (error) {
-            next({code: 401, msg: 'Invalid JWT token'})
+            const { id } = jwtCheck(token)
+            const foundUser = await User.findByPk(id)
+            req.user = {
+                id: foundUser.id,
+                username: foundUser.username
+            }
+            next()
+        } catch {
+            next({ code: 401, msg: 'Invalid access token' })
         }
     } else {
-        next({code:401, msg:'Access token not found'})
+        next({ code: 401, msg: 'Please login first' })
     }
 }
 
 // buat profile, edit delete deck
-function authorization(req, res, next) {
-
+async function authorization(req, res, next) {
+    const deckId = +req.params.deckId
+    const UserId = +req.user.id
+    const foundDeck = await Deck.findByPk(deckId)
+    if (UserId === foundDeck.UserId) {
+        req.user.deckName = foundDeck.name
+        next()
+    } else {
+        next({code:401})
+    }
 }
 
 module.exports = {
-    authentication, 
+    authentication,
     authorization
 }

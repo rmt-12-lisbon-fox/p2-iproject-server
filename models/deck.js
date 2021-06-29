@@ -11,8 +11,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Deck.belongsTo(models.User)
-      Deck.belongsToMany(models.Card, {through: 'DeckCards'})
+      Deck.belongsTo(models.User, {onDelete: 'cascade', onUpdate: 'cascade'})
+      Deck.belongsToMany(models.Card, {through: 'DeckCards', onDelete: 'cascade', onUpdate:'cascade'})
     }
   };
   Deck.init({
@@ -26,5 +26,8 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Deck',
   });
+  Deck.beforeCreate(ins => {
+    if (!ins.name) ins.name = 'Untitled Deck'
+  })
   return Deck;
 };
