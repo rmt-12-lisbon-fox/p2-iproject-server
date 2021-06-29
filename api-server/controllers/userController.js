@@ -37,14 +37,15 @@ class Controller {
   static loginGoogle (req, res, next) {
     const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID)
     let payload = null
+    let profilePic = null
     console.log(process.env.GOOGLE_CLIENT_ID)
     client.verifyIdToken({
         idToken: req.body.id_token,
         audience: process.env.GOOGLE_CLIENT_ID
     }).then(ticket => {
-        payload = ticket.getPayload();
+        payload = ticket.getPayload()
         console.log(payload)
-
+        profilePic = payload.picture
         return User.findOne( {
             where : {
                 email: payload.email
@@ -63,13 +64,13 @@ class Controller {
         }
     })
     .then(dataUser => {
-        const access_token = createToken({
+        const access_token = generateToken({
             id: dataUser.id,
             email: dataUser.email,
             role: dataUser.role
         })
         console.log(access_token)
-        res.status(200).json({access_token})
+        res.status(200).json({ access_token, profilePic })
     })
     .catch(err => {
         console.log(err);
