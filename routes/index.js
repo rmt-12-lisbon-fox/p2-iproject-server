@@ -17,12 +17,12 @@ router.post('/register', upload.single('profilePic'), ControllerFounder.register
 router.post('/googlelogin', ControllerFounder.googleLogin) // OK
 router.post('/login', ControllerFounder.login) // OK
 
-router.use(authentication)
-
-router.get('/logout', ControllerFounder.logout)
 router.use('/reviews', reviewRoute);
 router.use('/founders', founderRoute);
 router.use('/investors', investorRoute);
+
+router.use(authentication)
+router.get('/logout', ControllerFounder.logout)
 
 router.use(errorHandler)
 
