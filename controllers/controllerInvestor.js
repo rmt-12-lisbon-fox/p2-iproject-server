@@ -55,8 +55,7 @@ class Controller {
     }
 
     static fetchInvestors(req, res, next) { // OK
-        Investor.findAll({
-        })
+        Investor.findAll()
         .then(investors => {
             let allInvestors = []
             let investor;
@@ -94,6 +93,7 @@ class Controller {
         })
         .then(user => {
             if (user) {
+                console.log(user)
                 let investor = {} 
                 investor.id = user.id
                 investor.name = user.name
@@ -103,7 +103,8 @@ class Controller {
                 investor.website_url = user.website_url
                 investor.linkedin_url = user.linkedin_url
                 investor.investor_type = user.investor_type
-                investor.status = user.status     
+                investor.status = user.status  
+                investor.reviews = user.Reviews  
 
                 res.status(200).json(investor)
             } else {
