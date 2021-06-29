@@ -1,6 +1,27 @@
 const {Community, MyCommunity, User} = require('../models');
 
 class Controller {
+
+    static allNews(req,res) {
+        const NewsAPI = require('newsapi');
+        const newsapi = new NewsAPI(process.env.NEWS_API);
+
+        newsapi.v2.everything({
+            q: 'ways OR guided OR meditation OR tips -Terms',
+            language: 'en',
+            sortBy: 'relevancy',
+            domains: 'mindful.org'
+          }).then(response => {
+           res.status(201).json(response)
+            /*
+              {
+                status: "ok",
+                articles: [...]
+              }
+            */
+          });
+    }
+
     static allCommunity(req,res) {
         Community.findAll()
         .then(data => {
