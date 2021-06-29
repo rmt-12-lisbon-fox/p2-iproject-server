@@ -1,5 +1,5 @@
 const { jwtVerify } = require('../Helper/jwt');
-const { User } = require('../models');
+const { Review } = require('../models');
 
 
 async function authN(req, res, next) {
@@ -18,6 +18,33 @@ async function authN(req, res, next) {
     }
 }
 
+async function authZ(req, res, next) {
+    let id = req.params.id;
+    try {
+        let result = await Review.findOne({
+            where: {
+                id
+            }
+        });
+        if (result) {
+            if (result.UserId === req.user.id){
+                next();
+            }else {
+                throw 403;
+            }
+        }else {
+            throw 403
+        }
+    } catch (err) {
+        if (err === 403) {
+            res.status(err).json({ message: 'Unauthorized' })
+        }else {
+            res.status(500).json({ message: err });
+        }
+    }
+}
+
 module.exports = {
-    authN
+    authN,
+    authZ
 }

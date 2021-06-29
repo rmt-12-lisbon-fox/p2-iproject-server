@@ -105,7 +105,10 @@ class UserController {
         } catch (err) {
             if (err === 404) {
                 res.status(err).json({ message: 'not found' });
-            }else {
+            }else if (err.errors) {
+                let listErr = err.errors.map( el => el.message ).join(", ");
+                res.status(400).json({ message: listErr });
+            }else{
                 res.status(500).json({ message: err });
             }
         }

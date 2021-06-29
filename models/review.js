@@ -17,7 +17,14 @@ module.exports = (sequelize, DataTypes) => {
   Review.init({
     UserId: DataTypes.INTEGER,
     title: DataTypes.STRING,
-    comment: DataTypes.STRING
+    comment: {
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: {
+          msg: 'Comment should not be empty'
+        }
+      }
+    }
   }, {
     sequelize,
     modelName: 'Review',
