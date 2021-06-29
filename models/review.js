@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
   };
   Review.init({
     UserId: DataTypes.INTEGER,
-    NetflixId: DataTypes.INTEGER,
+    title: DataTypes.STRING,
     comment: DataTypes.STRING
   }, {
     sequelize,

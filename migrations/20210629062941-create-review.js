@@ -18,8 +18,8 @@ module.exports = {
         onUpdate: 'cascade',
         onDelete: 'cascade'
       },
-      NetflixId: {
-        type: Sequelize.INTEGER,
+      title: {
+        type: Sequelize.STRING,
         allowNull: false
       },
       comment: {
