@@ -75,7 +75,7 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Founder',
   });
-  User.beforeCreate(instance => {
+  Founder.beforeCreate(instance => {
     let bcrypt = require('bcryptjs');
     let salt = bcrypt.genSaltSync(5);
     let hash = bcrypt.hashSync(instance.password, salt);

@@ -5,10 +5,10 @@ const authFounder = require ('../middlewares/authorizationFounder.js')
 const multer = require('multer')
 var upload = multer();
 
-router.get('/', Controller.getReviews)
+// router.get('/', Controller.getReviews)
 
-router.post('/', authFounder, upload.single('profilePic'), Controller.createReview) // no middleware, imageKit API langsung di controller
+// router.post('/', authFounder, upload.single('profilePic'), Controller.createReview) // no middleware, imageKit API langsung di controller
 
-router.get('/:id', Controller.getReviewsById)
+// router.get('/:id', Controller.getReviewsById)
 
 module.exports = router
