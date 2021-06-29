@@ -308,6 +308,7 @@ class Controller {
         })
         .then(user => {
             if (user) {
+                console.log(user)
                 let founder = {}
                 founder.id = user.id
                 founder.first_name = user.first_name
@@ -325,7 +326,7 @@ class Controller {
                 founder.linkedin_url = user.linkedin_url
                 founder.admin_status = user.admin_status
                 founder.active_status = user.active_status
-                founder.reviews = user.Review
+                founder.reviews = user.Reviews
 
                 res.status(200).json(founder)
             } else {

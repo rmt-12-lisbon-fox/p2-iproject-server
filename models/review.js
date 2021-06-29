@@ -11,8 +11,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Review.belongsTo(models.Investor, {foreignKey: 'InvestorId'})
       Review.belongsTo(models.Founder, {foreignKey: 'FounderId'})
-      Review.belongsTo(models.Investor, {foreignKey: 'FounderId'})
     }
   };
   Review.init({
