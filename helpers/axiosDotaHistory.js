@@ -7,7 +7,8 @@ const instanceAxios = axios.create({
     'x-rapidapi-host': 'community-dota-2.p.rapidapi.com'
   },
   params:{
-    key:'9D8345D36DB3BF8E9FB1A5F2E03D547D'
+    key:process.env.DOTA_API
+    // key:'9D8345D36DB3BF8E9FB1A5F2E03D547D'
   }
 })
 

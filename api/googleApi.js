@@ -3,8 +3,10 @@ const {google} = require('googleapis')
 const youtube = google.youtube('v3')
 
 function videoGrab (title){
-  youtube.search.list({
-    key:'AIzaSyCECZpUw1kmC4PuY4JHNTCAMvxSeKXW188',
+  console.log(process.env.GOOGLE_KEY);
+  return youtube.search.list({
+    // key:'AIzaSyCECZpUw1kmC4PuY4JHNTCAMvxSeKXW188',
+    key:process.env.GOOGLE_KEY,
     part:'snippet',
     q:title,
     type:'video'
@@ -16,17 +18,13 @@ function videoGrab (title){
       videoId.push(el.id.videoId)
     });
     return youtube.videos.list({
-      key:'AIzaSyCECZpUw1kmC4PuY4JHNTCAMvxSeKXW188',
+      // key:'AIzaSyCECZpUw1kmC4PuY4JHNTCAMvxSeKXW188',
+      key:process.env.GOOGLE_KEY,
       part:['player','snippet'],
       id:videoId
     })
   })
-  .then((response)=>{
-    console.log(response.data.items);
-  })
-  .catch((err)=>{
-    console.log(err);
-  })
+
 }
 
 module.exports = videoGrab

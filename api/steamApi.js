@@ -1,25 +1,17 @@
-const steamApi = require('steamapi');
-const steam = new steamApi('9D8345D36DB3BF8E9FB1A5F2E03D547D')
+const steamApi = require('steamapi')
+const steam = new steamApi(process.env.STEAM_API)
 
 function getIdSteam(username){
-  // console.log(username,'<<<<<<<<<<<<<<<<user');
-  steam.resolve(username)
+  return steam.resolve(username)
     .then((id)=>{
-      // console.log(id,'<<<<<<<<<<<<<<,');
       return steam.getUserSummary(id)
-    })
-    .then((summary)=>{
-      // console.log(summary,'<<<<<<<<<<<<<');
-      return summary
-    })
-    .catch((err)=>{
-      console.log(err,'<<<<<<<<<<<<<<<<<');
     })
 }
 
 function getNewsSteam(game) {
-  steam.getGameNews(game)
+  return steam.getGameNews(game)
   .then((data)=>{
+    console.log(data);
     data.forEach(el=>{
       console.log(el.contents);
     })
@@ -28,4 +20,5 @@ function getNewsSteam(game) {
     console.log(err);
   })
 }
+
 module.exports = {getIdSteam,getNewsSteam}

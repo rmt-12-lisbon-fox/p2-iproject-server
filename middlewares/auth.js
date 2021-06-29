@@ -11,6 +11,7 @@ function authentication (req,res,next) {
       User.findOne({where:{username:checkToken.username}})
       .then((data)=>{
         if(data){
+          console.log(data);
           req.user = {id:data.id,username:data.username}
           next()
         }else{
