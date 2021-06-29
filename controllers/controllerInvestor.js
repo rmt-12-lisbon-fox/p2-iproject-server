@@ -54,7 +54,7 @@ class Controller {
         })
     }
 
-    static fetchInvestors(req, res, next) {
+    static fetchInvestors(req, res, next) { // OK
         Investor.findAll({
         })
         .then(investors => {
@@ -81,7 +81,7 @@ class Controller {
         })  
     }
 
-    static fetchInvestorProfile(req, res, next) {
+    static fetchInvestorProfile(req, res, next) { // OK
         let investorId = req.params.id
         Investor.findOne({
             where: {
@@ -115,7 +115,7 @@ class Controller {
         })  
     }
 
-    static verifyInvestor(req, res, next) {
+    static verifyInvestor(req, res, next) { // OK
         let investorId = req.params.id
         let investor;
         Investor.findByPk(investorId)
