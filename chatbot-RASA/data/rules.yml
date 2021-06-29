@@ -47,3 +47,8 @@ rules:
   - action: utter_submit
   - action: utter_slot_values_cough_type
   - action: action_check_cough
+
+- rule: Ask the user to rephrase whenever they send a message with low NLU confidence
+  steps:
+  - intent: nlu_fallback
+  - action: utter_please_rephrase

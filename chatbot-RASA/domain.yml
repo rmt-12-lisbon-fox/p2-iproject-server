@@ -3,23 +3,23 @@ session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
 intents:
-- check_cough_type
-- ask_covid_symptoms
-- check_symptoms
-- ask_bot_ability
-- thankyou_compliment
-- greet
-- ask_covid_info
-- stop
-- affirm
-- goodbye
-- deny
-- mood_great
-- mood_unhappy
-- bot_challenge
+  - check_cough_type
+  - ask_covid_symptoms
+  - check_symptoms
+  - ask_bot_ability
+  - thankyou_compliment
+  - greet
+  - ask_covid_info
+  - stop
+  - affirm
+  - goodbye
+  - deny
+  - mood_great
+  - mood_unhappy
+  - bot_challenge
 entities:
-- float
-- text
+  - float
+  - text
 slots:
   gender:
     type: text
@@ -50,117 +50,121 @@ slots:
     influence_conversation: true
 responses:
   utter_greet:
-  - text: |-
-      Hi! I'm DECO, your personal chatbot! How can I help you?
-      If you need help, type 'help'
+    - text: |-
+        Hi! I'm DECO, your personal chatbot! How can I help you?
+        If you need help, type 'help'
   utter_goodbye:
-  - text: Goodbye, stay healthy and happy!
+    - text: Goodbye, stay healthy and happy!
   utter_iamabot:
-  - text: I am a bot, powered by Rasa.
+    - text: I am a bot, powered by Rasa.
   utter_infocovid:
-  - text: |-
-      Coronavirus disease (COVID-19) is an infectious disease
-      caused by a newly discovered coronavirus.
-      Click this link to find out more
-      https://www.cdc.gov/coronavirus/2019-ncov/faq.html
+    - text: |-
+        Coronavirus disease (COVID-19) is an infectious disease
+        caused by a newly discovered coronavirus.
+        Click this link to find out more about COVID-19
+        https://www.cdc.gov/coronavirus/2019-ncov/faq.html
   utter_covidSymptoms:
-  - text: |-
-      According to WHO,
-      The most common symptoms:
-      -fever
-      -dry cough
-      -tiredness
+    - text: |-
+        According to WHO,
+        The most common symptoms:
+        -fever
+        -dry cough
+        -tiredness
 
-      Less common symptoms:
-      -aches and pains
-      -sore throat
-      -diarrhoea
-      -conjunctivitis
-      -headache
-      -loss of taste or smell
-      -a rash on skin, or discolouration of fingers or toes
+        Less common symptoms:
+        -aches and pains
+        -sore throat
+        -diarrhoea
+        -conjunctivitis
+        -headache
+        -loss of taste or smell
+        -a rash on skin, or discolouration of fingers or toes
 
-      Serious symptoms:
-      -difficulty breathing or shortness of breath
-      -chest pain or pressure
-      -loss of speech or movement
+        Serious symptoms:
+        -difficulty breathing or shortness of breath
+        -chest pain or pressure
+        -loss of speech or movement
   utter_ask_gender:
-  - text: |-
-      I will check you for COVID-19 symptoms by asking a few questions:
-        What is your gender? (male/female)
+    - text: |-
+        I will check you for COVID-19 symptoms by asking a few questions:
+          What is your gender? (male/female)
   utter_ask_age:
-  - text: How old are you? (ex. 22)
+    - text: How old are you? (ex. 22)
   utter_ask_headAche:
-  - text: Do you have a headache? (yes/no)
+    - text: Do you have a headache? (yes/no)
   utter_ask_contact:
-  - text: Have you contacted with covid-19 patients lately? (yes/no)
+    - text: Have you contacted with covid-19 patients lately? (yes/no)
   utter_ask_abroad:
-  - text: Have you been abroad? (yes/no)
+    - text: Have you been abroad? (yes/no)
   utter_ask_fever:
-  - text: Do you have a fever? (yes/no)
+    - text: Do you have a fever? (yes/no)
   utter_ask_cough:
-  - text: Do you have a cough? (yes/no)
+    - text: Do you have a cough? (yes/no)
   utter_ask_shortBreath:
-  - text: Are you having shortness of breath? (yes/no)
+    - text: Are you having shortness of breath? (yes/no)
   utter_ask_url:
-  - text: |-
-      Please send the link URL of your cough recording file (5 to 10 seconds)
-      You can use https://filebin.net/ to turn your file into a link URL
-      (The supported file: .wav or .mp3)
+    - text: |-
+        Please send the link URL of your cough recording file (5 to 10 seconds)
+        You can use https://filebin.net/ to turn your file into a link URL
+        (The supported file: .wav or .mp3)
   utter_submit:
-  - text: Thank you for your input! Please wait while I go check your input!
+    - text: Thank you for your input! Please wait while I go check your input!
   utter_slot_values_covid_symptoms:
-  - text: |-
-      Here are your input:
-      -Your gender: {gender}
-      -Your age: {age}
-      -Do you have a head ache? : {headAche}
-      -Have you contact with confirmed patients? : {contact}
-      -Have you been abroad? : {abroad}
-      -Do you have a fever? : {fever}
-      -Do you cough? : {cough}
-      -Are you having shortness of breath? : {shortBreath}
+    - text: |-
+        Here are your input:
+        -Your gender: {gender}
+        -Your age: {age}
+        -Do you have a head ache? : {headAche}
+        -Have you contact with confirmed patients? : {contact}
+        -Have you been abroad? : {abroad}
+        -Do you have a fever? : {fever}
+        -Do you cough? : {cough}
+        -Are you having shortness of breath? : {shortBreath}
   utter_slot_values_cough_type:
-  - text: |-
-      Here are your input:
-      Link URL of your cough recording file: {url}
+    - text: |-
+        Here are your input:
+        Link URL of your cough recording file: {url}
   utter_ability:
-  - text: |-
-      I can give you some information about COVID-19,
-      check for COVID-19 symptoms, and check your cough type!
+    - text: |-
+        I can give you some information about COVID-19,
+        check for COVID-19 symptoms, and check your cough type!
   utter_thankyou_feedback:
-  - text: You are very welcome!
+    - text: You are very welcome!
+  utter_please_rephrase:
+    - text: I'm sorry, I didn't quite understand that. Could you rephrase?
+  utter_default:
+    - text: Sorry I didn't get that. Can you rephrase?
 actions:
-- action_check_cough
-- action_check_covid
-- utter_ability
-- utter_covidSymptoms
-- utter_greet
-- utter_infocovid
-- utter_slot_values_cough_type
-- utter_slot_values_covid_symptoms
-- utter_submit
-- utter_thankyou_feedback
+  - action_check_cough
+  - action_check_covid
+  - utter_ability
+  - utter_covidSymptoms
+  - utter_greet
+  - utter_infocovid
+  - utter_slot_values_cough_type
+  - utter_slot_values_covid_symptoms
+  - utter_submit
+  - utter_thankyou_feedback
 forms:
   covid_symptoms_form:
     required_slots:
       gender:
-      - type: from_text
+        - type: from_text
       age:
-      - type: from_text
+        - type: from_text
       headAche:
-      - type: from_text
+        - type: from_text
       contact:
-      - type: from_text
+        - type: from_text
       abroad:
-      - type: from_text
+        - type: from_text
       fever:
-      - type: from_text
+        - type: from_text
       cough:
-      - type: from_text
+        - type: from_text
       shortBreath:
-      - type: from_text
+        - type: from_text
   cough_type_form:
     required_slots:
       url:
-      - type: from_text
+        - type: from_text
