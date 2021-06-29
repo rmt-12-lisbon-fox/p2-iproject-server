@@ -87,15 +87,14 @@ class ActionCheckCough(Action):
           domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
       urlSlot = tracker.get_slot("url")
-      print(urlSlot, "<<<<< URL SLOT")
-      # try:
-      #   result = coughTypeChecker(urlSlot)
-      #   dispatcher.utter_message(result + "\n If you have a dry cough, please check for COVID-19.\nHere's the link to see a list of antigen swab test sites https://kesehatan.kontan.co.id/news/inilah-daftar-rumah-sakit-dan-klinik-penyedia-tes-pcr-swab-virus-corona?page=all")
-      # except Exception as e:
-      #   print(e)
-      #   dispatcher.utter_message("I'm sorry, there's something wrong with your input or the server. Please try again later")
-      result = coughTypeChecker(urlSlot)
-      dispatcher.utter_message(result + "\n If you have a dry cough, please check for COVID-19.\nHere's the link to see a list of antigen swab test sites https://kesehatan.kontan.co.id/news/inilah-daftar-rumah-sakit-dan-klinik-penyedia-tes-pcr-swab-virus-corona?page=all")
+      try:
+        result = coughTypeChecker(urlSlot)
+        dispatcher.utter_message(result + "\nIf you have a dry cough, please check for COVID-19.\nHere's the link to see a list of antigen swab test sites https://kesehatan.kontan.co.id/news/inilah-daftar-rumah-sakit-dan-klinik-penyedia-tes-pcr-swab-virus-corona?page=all")
+      except:
+        dispatcher.utter_message("I'm sorry, there's something wrong with your input or the server. Please try again later")
+
+      # result = coughTypeChecker(urlSlot)
+      # dispatcher.utter_message(result + "\n If you have a dry cough, please check for COVID-19.\nHere's the link to see a list of antigen swab test sites https://kesehatan.kontan.co.id/news/inilah-daftar-rumah-sakit-dan-klinik-penyedia-tes-pcr-swab-virus-corona?page=all")
 
       
 # class ActionDefaultFallback(Action):

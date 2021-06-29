@@ -12,6 +12,11 @@ rules:
   - intent: bot_challenge
   - action: utter_iamabot
 
+- rule: Say you're welcome when user says thank you
+  steps:
+  - intent: thankyou_compliment
+  - action: utter_thankyou_feedback
+
 - rule: Activate form check covid symptoms
   steps:
   - intent: check_symptoms

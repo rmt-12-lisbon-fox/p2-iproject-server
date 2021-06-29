@@ -1,7 +1,9 @@
 import requests
 
+baseURL = 'http://localhost:3000'
 def covidSymptoms(userInput):
-  url = 'http://localhost:3000/corona'
+  url = f'{baseURL}/checkCovidSymptoms'
+  print(f"{url} <<<< URL")
   # print(f"{userInput} <<<<< USER INPUT")
   response = requests.get(url, data = userInput)
   json_data = response.json()
@@ -12,12 +14,12 @@ def covidSymptoms(userInput):
     return False
 
 def coughTypeChecker(urlValue):
-  url = 'http://localhost:3000/cough'
-  response = requests.get(url, data = urlValue)
+  url = f'{baseURL}/checkCoughType'
+  response = requests.get(url, data = { "url" : urlValue })
   json_data = response.json()
   result = json_data["result"]
   result_text = ''
   for data in result:
     result_text += f"The cough type is {data['coughType']} from {data['startSeconds']} to {data['endSeconds']} seconds\n"
-  print(f"{result_text} <<<< RESULT TEXT")
-  return json_data["result"]
+  # print(f"{result_text} <<<< RESULT TEXT")
+  return result_text
