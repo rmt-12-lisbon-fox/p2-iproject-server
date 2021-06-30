@@ -15,6 +15,7 @@ class Controller {
       shortBreath: (req.body.shortBreath).toLowerCase() === 'yes' ? 1 : 0,
     }
 
+    console.log(userInput, "<<<<<user input masukk")
   coronaSymptomsApi
       .post("/", {
           "has_head_ache": userInput.headAche,
