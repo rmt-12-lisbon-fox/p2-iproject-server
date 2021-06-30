@@ -149,7 +149,9 @@ _Request Body_
 {
   email: <email>,
   city: <string>,
-  data: <array>
+  data: <array>,
+  lat: <number>,
+  long: <number>
 }
 ```
 
@@ -158,6 +160,36 @@ _Response (200)_
 ```
 {
   message: "Email successfully sent!"
+}
+```
+---
+
+### POST /subscribe
+
+_Request Header_
+```
+not needed
+```
+
+_Request Query Params_
+```
+not needed
+```
+
+_Request Body_
+```
+{
+  email: <email>,
+  city: <string>,
+  lat: <number>,
+  long: <number>
+}
+```
+
+_Response (200)_
+```
+{
+  message: "Subsciber registered successfully!"
 }
 ```
 ---
