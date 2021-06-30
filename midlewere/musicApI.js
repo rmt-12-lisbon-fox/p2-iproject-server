@@ -10,7 +10,7 @@ function musicAPI(req, res, next) {
         }
     })
         .then((data) => {
-            req.music = `${data.data.type}/${data.data.id}`
+            req.music = { title: data.data.title, musicUrl: `${data.data.type}/${data.data.id}` }
             next()
         })
         .catch((err) => {

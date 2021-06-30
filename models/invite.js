@@ -13,9 +13,15 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Invite.belongsTo(models.User)
       Invite.belongsTo(models.Tamplate)
+      Invite.belongsToMany(models.Music, { through: models.InviteMusic })
     }
   };
   Invite.init({
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true
+    },
     nameMale: {
       type: DataTypes.STRING,
       allowNull: false,
