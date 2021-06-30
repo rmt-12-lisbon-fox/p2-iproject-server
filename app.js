@@ -7,8 +7,7 @@ const userController = require('./controllers/userController')
 const cors = require('cors')
 const bodyParser = require('body-parser')
 const errorHandler = require('./middlewares/errorHandler')
-const { decodeJWt  } = require('./helpers/jwt')
-const { User  } = require('./models')
+const auth = require('./middlewares/auth')
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
@@ -21,34 +20,10 @@ app.use(cors())
 app.post('/gauth', userController.googleAuth)
 app.get('/api', controller.getAPI)
 
-// add middleware
-app.use(function(req, res, next) {
-  if (req.headers.access_token) {
-    // ada token
-    try {
-      let payload = decodeJWt(req)
-      console.log(payload)
-      User.findByPk(+payload.id)
-      .then(user => {
-        if (user) {
-          req.user = user
-          console.log(`aman cuy`)
-          next()
-        } else {
-          console.log(`user itu udah gaada`)
-          next({ code: 401, message: "authentication failed"})
-        }
-      })
-      .catch(next)
-    } catch (error) {
-      next({ code: 401, message: "gagal try catch"})
-    }
-  } else {
-    next({ code: 401, message: "you must login first"})
-  }
-})
+app.use(auth)
 
-app.get('/diet', controller.recordDiet)
+app.get('/record', controller.recordDiet)
+app.get('/diet', controller.getDietData)
 
 
 app.listen(port, () => {

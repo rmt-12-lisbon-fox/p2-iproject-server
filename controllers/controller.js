@@ -4,6 +4,20 @@ const { User, Food, Diet } = require('../models')
 
 class Controller {
 
+  static getDietData(req, res, next) {
+
+    Diet.findAll({
+      where : {
+        userId : req.user.id
+      },
+      include : [ Food ]
+    })
+    .then( data => {
+      res.json(data)
+    })
+    .catch(next)
+  }
+
   static getAPI(req, res, next) {
 
     let food = req.query.food
@@ -34,15 +48,20 @@ class Controller {
 
 
       extractTemp = extract
-      return Food.create({
-        name :  description,
-        fdcId: req.query.fdcId,
-        protein : extract[0].amount,
-        fat : extract[1].amount,
-        carbohydrate : extract[2].amount,
-        energy : extract[3].amount,
-        sugars : extract[4].amount,
-        cholesterol : extract[5].amount,
+      return Food.findOrCreate({
+        where: {
+          fdcId: req.query.fdcId
+        },
+        defaults : {
+          name :  description,
+          fdcId: req.query.fdcId,
+          protein : extract[0].amount,
+          fat : extract[1].amount,
+          carbohydrate : extract[2].amount,
+          energy : extract[3].amount,
+          sugars : extract[4].amount,
+          cholesterol : extract[5].amount,
+        }
       })
     })
     .then( _ => {
