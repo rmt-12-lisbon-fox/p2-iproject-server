@@ -2,6 +2,7 @@ const {User} = require('../models');
 const { comparePassword } = require('../helpers/bcrypt');
 const {generateJWT} = require('../helpers/jwt');
 const { OAuth2Client } = require("google-auth-library");
+const transporter = require('../helpers/nodemailer');
 let payload
 
 class Controller {
@@ -13,6 +14,19 @@ class Controller {
             password: req.body.password,
         })
         .then(user => {
+            let username = `${user.firstName} ${user.lastName}`
+            const option = {
+                from: 'untukaplikasi@outlook.com',
+                to: user.email,
+                subject: 'Healing App Register',
+                text: `Selamat Bergabung ${username}!! Healing your life` 
+              }
+              transporter.sendMail(option,(err,info)=>{
+                if(err) console.log(err);
+                else{
+                  console.log(info.response,'<<<<<<<<<<<<<<<<<<<<<<<<<'); 
+                }
+              })
             res.status(201).json({
                 id: user.id,
                 email: user.email
@@ -20,7 +34,7 @@ class Controller {
         })
         .catch(err => {
             if(err.name === "SequelizeUniqueConstraintError") {
-                res.status(400).json({message: "E-mail already registered"})
+                res.status(400).json(["E-mail already registered"])
             } else if(err.name === "SequelizeValidationError") {
                 let errMsg = []
                 err.errors.forEach(e => {
@@ -28,7 +42,8 @@ class Controller {
                 });
                 res.status(400).json(errMsg)
             } else {
-                res.status(500).json({message: err.meesage})
+                console.log(err);
+                res.status(500).json({message: err.message})
             }
         })
     }
@@ -57,7 +72,6 @@ class Controller {
                 }
             } else {
                 res.status(401).json({message: "Wrong email or password"})
-                
             }
         })
         .catch(err => {

@@ -10,6 +10,7 @@ router.post('/googleLogin', UserController.loginGoogle)
 
 router.use(authentication)
 
+router.get('/news', ContentController.allNews)
 router.get('/communities', ContentController.allCommunity)
 router.post('/mycommunity/:id', ContentController.addMyCommunity)
 router.get('/mycommunity', ContentController.allMyCommunity)
