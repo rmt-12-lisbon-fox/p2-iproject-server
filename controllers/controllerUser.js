@@ -2,7 +2,8 @@ const { User } = require('../models')
 
 class Controller {
     static showUser(req, res, next) {
-        User.findAll()
+        const id = req.params.id
+        User.findOne({ where: { id } })
             .then((data) => {
                 if (data) {
                     res.status(200).json({ data })

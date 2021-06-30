@@ -109,7 +109,7 @@ class Controller {
                     id: user.id,
                     email: user.email
                 })
-                res.status(201).json({ access_token, username: user.username })
+                res.status(201).json({ access_token, email: user.email, id: user.id, username: user.username })
             })
             .catch((err) => {
                 next({ code: 500, message: err.message })
