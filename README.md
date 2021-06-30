@@ -989,3 +989,4 @@ _Response (500 - Internal Server Error)_
 }
 ```
 ---
+### GET /founders/verify/:id

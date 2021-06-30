@@ -5,6 +5,7 @@ class Controller {
         newsapi.v2.topHeadlines({
             category: ['technology', 'business'],
             language: 'en',
+            pageSize: 6,
             // country: 'sg'
           })
           .then(response => {

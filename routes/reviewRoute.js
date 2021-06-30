@@ -7,7 +7,7 @@ const adminAuth = require ('../middlewares/authorizationAdmin.js')
 
 router.get('/', Controller.getReviews)
 router.get('/:id', Controller.getReviewsById)
-router.get('/translate/:id', Controller.translate)
+router.post('/translate/:id', Controller.translate)
 
 router.use(authentication)
 
