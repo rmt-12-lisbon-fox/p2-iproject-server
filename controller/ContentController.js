@@ -13,12 +13,6 @@ class Controller {
             domains: 'mindful.org'
           }).then(response => {
            res.status(201).json(response)
-            /*
-              {
-                status: "ok",
-                articles: [...]
-              }
-            */
           });
     }
 
