@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
   class Diet extends Model {
     static associate(models) {
       // define association here
-      Diet.belongsTo(models.Food, { foreignKey: "fdcId" })
+      Diet.belongsTo(models.Food, { foreignKey: "fdcId", constraints : false, targetKey : "fdcId" })
     }
   };
   Diet.init({

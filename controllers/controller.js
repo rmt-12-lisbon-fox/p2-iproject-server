@@ -1,8 +1,49 @@
 const { getAPIData, searchById } = require('../helpers/fetch')
 const { User, Food, Diet } = require('../models')
+const { Op } = require("sequelize");
 
 
 class Controller {
+
+  static getChart(req, res, next) {
+    let startDate = new Date(2020, 5, 30, 11, 33)
+    let endDate = new Date()
+
+    Diet.findAll({
+      where : {
+        createdAt : {
+          [Op.lt]: new Date(),
+          [Op.gt]: new Date(new Date() - 24 * 60 * 60 * 1000)
+        }
+      },
+      include : [ Food ]
+    })
+    .then( arr => {
+      arr = arr.map( obj => {
+        return obj.Food
+      })
+
+      let sum = {}
+      let proteins = arr.map( el => el.protein)
+      let energy = arr.map( el => el.energy)
+      let fat = arr.map( el => el.fat)
+      let sugars = arr.map( el => el.sugars)
+      let cholesterol = arr.map( el => el.cholesterol)
+      let carbohydrate = arr.map( el => el.carbohydrate)
+
+      const reducer = (accumulator, currentValue) => accumulator + currentValue;
+      sum.protein = proteins.reduce(reducer)
+      sum.energy = energy.reduce(reducer)
+      sum.fat = fat.reduce(reducer)
+      sum.sugars = sugars.reduce(reducer)
+      sum.cholesterol = cholesterol.reduce(reducer)
+      sum.carbohydrate = carbohydrate.reduce(reducer)
+
+
+      res.json(sum)
+    })
+    .catch(next)
+  }
 
   static getDietData(req, res, next) {
 

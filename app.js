@@ -20,6 +20,7 @@ app.use(cors())
 app.post('/gauth', userController.googleAuth)
 app.get('/api', controller.getAPI)
 
+app.get('/chart', controller.getChart)
 app.use(auth)
 
 app.get('/record', controller.recordDiet)
