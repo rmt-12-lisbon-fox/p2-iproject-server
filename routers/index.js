@@ -24,11 +24,12 @@ router.get('/', Controller.hello)
 router.post('/register', AuthController.register)
 router.post('/login', AuthController.login)
 router.post('/googlelogin', AuthController.googlelogin)
+router.post('/signal', Controller.signal)
 
 router.get('/market', Controller.market)
 router.get('/adzan', Controller.adzan)
 
-router.post('/signal', Controller.signal)
+router.use(authentification)
 router.get('/bestxrp', Controller.bestxrp)
 router.get('/bestbtc', Controller.bestbtc)
 router.get('/besteth', Controller.besteth)
