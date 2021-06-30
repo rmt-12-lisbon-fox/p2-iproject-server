@@ -52,16 +52,14 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     mal_id: {
-      {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        validate: {
-          notNull: {
-            msg: "mal_id field is required"
-          },
-          notEmpty: {
-            msg: "mal_id field is required"
-          }
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: "mal_id field is required"
+        },
+        notEmpty: {
+          msg: "mal_id field is required"
         }
       }
     }

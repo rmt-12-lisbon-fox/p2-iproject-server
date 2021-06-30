@@ -20,5 +20,3 @@ app.use('/', routes)
 app.listen(port, () => {
   console.log(`Aniplay App listening at http://localhost:${port}`)
 })
-
-sequelize model:generate --name Bookmark --attributes userId:integer,status:string,image_url:string,mal_id:integer

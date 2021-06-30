@@ -110,7 +110,7 @@ class Controller {
         })
         .catch(err => {
             next({code: 500, message: err.message})
-
+        })
     }
 }
 
