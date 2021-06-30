@@ -4,6 +4,13 @@ const { imageKitAPI } = require('../Helper/api');
 async function imageKit(req, res, next) {
     let apiKey = Buffer.from(process.env.PRIVATE_KEY, 'utf-8').toString("base64");
 
+    if (!req.file) {
+        res.status(400).json({ message: 'You should add profile picture' });
+    }
+    if (req.file.size > 255000) {
+        res.status(400).json({ message: "Your image file is larger than 255 KB" });
+    }
+
     let form = new FormData();
     let file = (req.file) ? req.file.buffer : req.body.imageUrl;
     form.append('file', file.toString("base64"));
