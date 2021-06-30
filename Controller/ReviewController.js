@@ -51,28 +51,18 @@ class ReviewController {
     }
 
     static async findAll(req, res) {
-        let page = req.query.page || 1;
-        let limit = 10;
-        let offset = (page - 1) * 10;
-
         try {
             let result = await Review.findAndCountAll({
                 include: [ { 
                         model: User,
-                        attributes: ['email', 'name']
+                        attributes: ['imageUrl', 'email']
                     } 
                 ],
-                limit: limit,
-                offset: offset
+                order: [
+                    ['createdAt', 'DESC']
+                ]
             });
-
-            let payload = {
-                totalItems: result.count,
-                data: result.rows,
-                totalPages: Math.ceil(result.count / limit),
-                currentPage: +page
-            }
-            res.status(200).json(payload);
+            res.status(200).json(result);
         } catch (er) {
             res.status(500).json({ message: err });
         }
@@ -105,7 +95,12 @@ class ReviewController {
         let UserId = req.user.id;
 
         try {
-            let result = await Review.findOne({
+            let result = await Review.findAll({
+                include: [ { 
+                        model: User,
+                        attributes: ['imageUrl', 'email']
+                    } 
+                ],
                 where: {
                     UserId
                 }
