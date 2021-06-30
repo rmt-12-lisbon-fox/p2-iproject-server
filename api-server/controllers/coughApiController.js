@@ -2,6 +2,7 @@ const coughAPI = require('../apis/coughApi')
 
 class Controller {
   static checkCoughType (req, res, next) {
+    console.log(req.body, "<<< masuk cough type")
     coughAPI
         .post('/v1/recognize/url', {
                 url: req.body.url

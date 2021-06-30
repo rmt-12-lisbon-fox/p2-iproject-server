@@ -12,7 +12,8 @@
 
 action_endpoint:
  url: "http://localhost:5055/webhook"
-  # url: "https://deco-chatbot-actions.herokuapp.com/"
+#  url: "https://deco-actions-2.herokuapp.com/webhook"
+  # url: "https://deco-actions-3.herokuapp.com/webhook"
 
 # Tracker store which is used to store the conversations.
 # By default the conversations are stored in memory.
@@ -43,4 +44,5 @@ action_endpoint:
 #  queue: queue
 
 # action endpoint:
-#   url: "http://localhost:5055/webhook"
+  # url: "http://localhost:5055/webhook"
+  # url: "https://deco-actions-2.herokuapp.com/webhook"
