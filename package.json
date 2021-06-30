@@ -4,6 +4,10 @@
   "description": "",
   "main": "app.js",
   "scripts": {
+    "dev": "SET NODE_ENV=development&&nodemon nodemon app.js",
+    "seeder": "SET NODE_ENV=development&&npx sequelize db:seed --seed",
+    "sequelize": "SET NODE_ENV=development&&npx sequelize",
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
