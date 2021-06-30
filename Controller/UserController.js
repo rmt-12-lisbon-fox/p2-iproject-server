@@ -68,7 +68,14 @@ class UserController {
                 }
             })
             if (result) {
-                res.status(200).json(result);
+                let final = {
+                    imageUrl: result.imageUrl,
+                    email: result.email,
+                    name: result.name,
+                    address: result.address,
+                    phoneNumber: result.phoneNumber
+                }
+                res.status(200).json(final);
             }else {
                 throw 404;
             }
