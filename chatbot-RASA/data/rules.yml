@@ -2,6 +2,11 @@ version: "2.0"
 
 rules:
 
+- rule: Say hi anytime the user says hi
+  steps:
+  - intent: greet
+  - action: utter_greet
+
 - rule: Say goodbye anytime the user says goodbye
   steps:
   - intent: goodbye
@@ -11,6 +16,11 @@ rules:
   steps:
   - intent: bot_challenge
   - action: utter_iamabot
+
+- rule: Say you're welcome when user says thank you
+  steps:
+  - intent: thankyou_compliment
+  - action: utter_thankyou_feedback
 
 - rule: Activate form check covid symptoms
   steps:
@@ -29,6 +39,7 @@ rules:
   - action: utter_submit
   - action: utter_slot_values_covid_symptoms
   - action: action_check_covid
+  - action: action_restart
 
 - rule: Activate form check cough type
   steps:
@@ -47,3 +58,24 @@ rules:
   - action: utter_submit
   - action: utter_slot_values_cough_type
   - action: action_check_cough
+  - action: action_restart
+
+- rule: Ask the user to rephrase whenever they send a message with low NLU confidence
+  steps:
+  - intent: nlu_fallback
+  - action: utter_please_rephrase
+
+- rule: Help user what the chatbot can do
+  steps:
+  - intent: ask_bot_ability
+  - action: utter_ability
+
+- rule: ask about covid-19 info
+  steps:
+  - intent: ask_covid_info
+  - action: utter_infocovid
+
+- rule: ask about covid-19 symptoms
+  steps:
+  - intent: ask_covid_symptoms
+  - action: utter_covidSymptoms
