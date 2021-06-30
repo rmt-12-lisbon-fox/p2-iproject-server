@@ -8,8 +8,6 @@ const port = process.env.PORT || 3000
 const cors = require('cors')
 const router = require('./routes')
 const errorsHandler = require('./middleware/errors')
-const server = require('http').Server(app)
-const io = require('socket.io')(server)
 
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
