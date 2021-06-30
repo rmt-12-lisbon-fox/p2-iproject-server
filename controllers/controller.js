@@ -1,6 +1,7 @@
 const { getAPIData, searchById } = require('../helpers/fetch')
 const { User, Food, Diet } = require('../models')
 const { Op } = require("sequelize");
+const createChart = require('../helpers/chart')
 
 
 class Controller {
@@ -39,8 +40,8 @@ class Controller {
       sum.cholesterol = cholesterol.reduce(reducer)
       sum.carbohydrate = carbohydrate.reduce(reducer)
 
-
-      res.json(sum)
+      let chartURL = createChart()
+      res.status(200).json({ chartURL: chartURL})
     })
     .catch(next)
   }
@@ -123,3 +124,4 @@ class Controller {
 }
 
 module.exports = Controller
+
