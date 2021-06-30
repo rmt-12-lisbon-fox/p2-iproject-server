@@ -16,6 +16,11 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   InviteMusic.init({
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true
+    },
     InviteId: DataTypes.INTEGER,
     MusicId: DataTypes.INTEGER
   }, {

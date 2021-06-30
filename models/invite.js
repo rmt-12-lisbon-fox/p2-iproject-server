@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       Invite.belongsTo(models.User)
       Invite.belongsTo(models.Tamplate)
       Invite.belongsToMany(models.Music, { through: models.InviteMusic })
+      Invite.hasMany(models.InviteMusic)
     }
   };
   Invite.init({

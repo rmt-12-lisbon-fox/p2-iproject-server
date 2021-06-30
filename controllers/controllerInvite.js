@@ -1,5 +1,4 @@
 const { Invite, Tamplate, User, InviteMusic, Music } = require('../models')
-const axios = require('axios')
 const BitlyClient = require('bitly').BitlyClient;
 const bitly = new BitlyClient('cee8ee8c3c98e3ed82f52f4444de6b3215141024');
 
@@ -10,7 +9,6 @@ class Controller {
         const { nameMale, nameFemale, loveStory, dateAkad, addressAkad, dateReception, addressReception, TamplateId, MusicId } = req.body
         Invite.create({ nameMale, nameFemale, loveStory, dateAkad, addressAkad, dateReception, addressReception, UserId, TamplateId })
             .then((data) => {
-                console.log(data);
                 const InviteId = data.id
                 dataInvite = data
                 return InviteMusic.create({ InviteId, MusicId })
@@ -28,11 +26,7 @@ class Controller {
         const UserId = req.user.id
         Invite.findAll({ include: [User, Tamplate], where: { UserId } })
             .then((data) => {
-                if (data) {
-                    res.status(200).json({ data })
-                } else {
-                    next({ code: 404, message: 'Not Found' })
-                }
+                res.status(200).json({ data })
             })
             .catch((err) => {
                 next({ code: 500, message: err.message })
@@ -40,7 +34,7 @@ class Controller {
     }
 
     static deleteInvite(req, res, next) {
-        const id = req.body.id
+        const id = req.params.id
         Invite.destroy({ where: { id } })
             .then((data) => {
                 if (data) {
@@ -55,15 +49,17 @@ class Controller {
     }
 
     static updateInvite(req, res, next) {
-        const id = req.body.id
-        const { nameMale, nameFemale, loveStory, dateAkad, addressAkad, dateReception, addressReception, UserId } = req.body
-        Invite.update({ nameMale, nameFemale, loveStory, dateAkad, addressAkad, dateReception, addressReception, UserId }, { where: { id } })
+        let dataInvite = {}
+        const id = req.params.id
+        const UserId = req.user.id
+        const { nameMale, nameFemale, loveStory, dateAkad, addressAkad, dateReception, addressReception, TamplateId, MusicId, InviteMusicId } = req.body
+        Invite.update({ nameMale, nameFemale, loveStory, dateAkad, addressAkad, dateReception, addressReception, UserId, TamplateId }, { where: { id } })
             .then((data) => {
-                if (data) {
-                    res.status(200).json({ data })
-                } else {
-                    next({ code: 404, message: 'Not Found' })
-                }
+                dataInvite = data
+                return InviteMusic.update({ MusicId }, { where: { id: InviteMusicId } })
+            })
+            .then((dataInviteMusic) => {
+                res.status(200).json({ dataInvite, dataInviteMusic })
             })
             .catch((err) => {
                 next({ code: 500, message: err.message })
@@ -72,7 +68,7 @@ class Controller {
 
     static findOne(req, res, next) {
         const id = req.params.id
-        Invite.findOne({ include: [User, Tamplate, Music], where: { id } })
+        Invite.findOne({ include: [User, Tamplate, Music, InviteMusic], where: { id } })
             .then((data) => {
                 if (data) {
                     res.status(200).json({ data })
@@ -87,15 +83,10 @@ class Controller {
 
     static async generateLink(req, res, next) {
         try {
-            console.log(req.body.payload);
             const response = await bitly.shorten(req.body.payload);
-            res.status(201).json(response.link)
+            res.status(201).json({ url: response.link })
         } catch (err) {
-            if (err.message) {
-                next({ code: 400, message: err.message })
-            } else {
-                next({ code: 500, message: err.message })
-            }
+            next({ code: 500, message: err.message })
         }
 
     }

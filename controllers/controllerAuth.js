@@ -2,19 +2,29 @@ const { generateJWT } = require('../helpers/jwt')
 const { comparePassword } = require('../helpers/bcrypt')
 const { OAuth2Client } = require('google-auth-library');
 const { User } = require('../models')
+const transporter = require("../helpers/nodemailer")
 
 class Controller {
     static register(req, res, next) {
         const photo = req.image
-        console.log(req.body);
         const { fullName, username, email, password, role, phoneNumber } = req.body
         User.create({ fullName, username, email, password, photo, role, phoneNumber })
             .then((data) => {
-                if (data) {
-                    res.status(201).json(data)
-                } else {
-                    next({ code: 400, message: 'Bad Request' })
+                const option = {
+                    from: 'invitekuy@outlook.co.id',
+                    to: email,
+                    subject: 'Register success',
+                    text: `Halo ${username}. Selamat ${email} telah register di invitekuy undangan digital online`
                 }
+
+                transporter.sendMail(option, function (err, info) {
+                    if (err) {
+                        console.log(err);
+                        return
+                    }
+                    console.log("Sent: " + info.response);
+                })
+                res.status(201).json(data)
             })
             .catch(err => {
                 if (err.name === "SequelizeValidationError") {
@@ -22,14 +32,15 @@ class Controller {
                     err.errors.forEach(e => {
                         errors.push(e.message)
                     });
-                    res.status(403).json(errors)
+                    res.status(403).json({ message: errors })
                 } else {
-                    res.status(500).json(err)
+                    res.status(500).json({ message: 'Internal Servet Error' })
                 }
             })
     }
 
     static login(req, res, next) {
+        console.log(req.body);
         const { email, password } = req.body
         User.findOne({ where: { email } })
             .then(user => {
@@ -44,15 +55,17 @@ class Controller {
                         next({ code: 401, message: 'Wrong Email/Password' })
                     }
                 } else {
+                    console.log('masuk');
                     next({ code: 401, message: 'Wrong Email/Password' })
                 }
             })
             .catch(err => {
-                next({ code: 500 })
+                res.status(500).json(err)
             })
     }
 
     static googleLogin(req, res, next) {
+        console.log('masuk');
         // daftar dulu ke integrating goole login
         const client = new OAuth2Client(process.env.GOOGLE_CLIENTID);
         let payload = null;
@@ -71,6 +84,7 @@ class Controller {
                 })
             })
             .then((foundUser) => {
+                console.log(payload, '>>>>>');
                 if (foundUser) {
                     // const access_token = generateJWT({
                     //     id: foundUser.id,
@@ -81,11 +95,10 @@ class Controller {
                 } else {
                     return User.create({
                         fullName: payload.name,
-                        photo: payload.img,
-                        username: payload.name,
+                        photo: payload.picture,
                         email: payload.email,
                         password: process.env.GOOGLE_PASSWORD,
-                        role: 'staff',
+                        role: 'customer',
                         phoneNumber: 'Input Your phone number',
                     })
 
@@ -96,7 +109,7 @@ class Controller {
                     id: user.id,
                     email: user.email
                 })
-                res.status(200).json({ access_token, username: user.username })
+                res.status(201).json({ access_token, username: user.username })
             })
             .catch((err) => {
                 next({ code: 500, message: err.message })

@@ -7,7 +7,7 @@ const toImageKitProfile = require('../midlewere/toImageKitProfile')
 
 router.post('/register', upload.single('photo'), toImageKitProfile, Controller.register)
 router.post('/login', Controller.login)
-router.delete('/googlelogin', Controller.googleLogin)
+router.post('/googlelogin', Controller.googleLogin)
 
 
 module.exports = router
