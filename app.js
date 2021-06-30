@@ -7,10 +7,18 @@ const routes = require('./routes')
 
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
-app.use(cors())
+app.use(cors({
+  // 'allowedHeaders': ['sessionId', 'Content-Type'],
+  // 'exposedHeaders': ['sessionId'],
+  // 'origin': '*',
+  // 'methods': 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  // 'preflightContinue': false
+}));
 
 app.use('/', routes)
 
 app.listen(port, () => {
   console.log(`Aniplay App listening at http://localhost:${port}`)
 })
+
+sequelize model:generate --name Bookmark --attributes userId:integer,status:string,image_url:string,mal_id:integer
