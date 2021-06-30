@@ -1,4 +1,6 @@
-Flexible = [ 
+const key = 'AIzaSyCfRIOM2bbQ3WItvl88P9oNL9WXHdoRiMw'
+
+videoData = [
     {
         "id" : "T9AD9JB2rWQ",
         "type" : 'flexible'
@@ -11,9 +13,6 @@ Flexible = [
         "id" : "IZ7bIRWE3Fs",
         "type" : 'flexible'
     },
-]
-
-Endurance = [
     {
         "id" : "X1TuhAn6C-g",
         "type" : 'endurance'
@@ -38,9 +37,6 @@ Endurance = [
         "id" : "R0mMyV5OtcM",
         "type" : 'endurance'
     },
-]
-
-Balance = [
     {
         "id" : "X0vawLKFzgE",
         "type" : 'balance'
@@ -49,10 +45,6 @@ Balance = [
         "id" : "6PIVgUe6z3E",
         "type" : 'balance'
     },
-    
-]
-
-Strength = [
     {
         "id" : "vKYqxI08lOU",
         "type" : 'strength'
@@ -70,3 +62,5 @@ Strength = [
         "type" : 'strength'
     },
 ]
+
+module.exports = {videoData, key }
