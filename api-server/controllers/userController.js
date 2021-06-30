@@ -70,7 +70,7 @@ class Controller {
             role: dataUser.role
         })
         console.log(access_token)
-        res.status(200).json({ access_token, profilePic })
+        res.status(200).json({ access_token, profilePic, email: dataUser.email })
     })
     .catch(err => {
         console.log(err);
