@@ -1,4 +1,8 @@
 const {User, Bookmark} = require('../models')
+const {OAuth2Client} = require('google-auth-library')
+const {signJWT} = require('../helpers/jwt')
+
+require('dotenv').config()
 
 class Controller {
     static googleLogin(req, res, next){
@@ -34,7 +38,8 @@ class Controller {
                 email: data.email,
                 id: data.id,
             })
-
+            console.log(data, access_token);
+            
             res.status(200).json({
                 access_token, id: data.id, email: data.email
             })
@@ -45,11 +50,11 @@ class Controller {
     }
 
     static addBookmark (req, res, next) {
-        let {image_url, mal_id} = req.body
+        let {image_url, mal_id, title} = req.body
 
         let userId = req.user.id
         let status = "plan to watch"
-        let input = {image_url, mal_id, userId, status}
+        let input = {image_url, mal_id, userId, status, title}
 
         Bookmark.create(input)
         .then(data => {
@@ -78,11 +83,26 @@ class Controller {
         })
     }
 
+    static findBookmarkOne (req, res, next) {
+        Bookmark.findOne({
+            where: {
+                userId: req.user.id,
+                mal_id: req.params.id
+            }
+        })
+        .then(data => {
+            res.status(200).json(data)
+        })
+        .catch(err => {
+            next({code: 500, message: err.message})
+        })
+    }
+
     static deleteBookmark (req, res, next) {
         const id = req.params.id
         
         Bookmark.destroy({
-            where: {id}
+            where: {mal_id: id}
         })
         .then(() => {
             res.status(200).json({message: 'delete bookmark success'})

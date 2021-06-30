@@ -6,13 +6,13 @@ const {authentication, authorization} = require('../middlewares/auth')
 //   res.send('Welcome to Aniplay route anime')
 // })
 
-// Information - jikan
-routes.get('/login', Controller.googleLogin)
+routes.post('/login', Controller.googleLogin)
 
 routes.use(authentication)
 
 routes.post('/bookmark', Controller.addBookmark )
 routes.get('/bookmark/', Controller.findBookmark )
+routes.get('/bookmark/:id', Controller.findBookmarkOne )
 
 routes.use('/bookmark/:id', authorization )
 

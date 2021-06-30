@@ -39,6 +39,18 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     },
+    title: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: "title field is required"
+        },
+        notEmpty: {
+          msg: "title field is required"
+        }
+      }
+    },
     image_url: {
       type: DataTypes.STRING,
       allowNull: false,

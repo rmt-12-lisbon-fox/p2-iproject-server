@@ -7,13 +7,7 @@ const routes = require('./routes')
 
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
-app.use(cors({
-  // 'allowedHeaders': ['sessionId', 'Content-Type'],
-  // 'exposedHeaders': ['sessionId'],
-  // 'origin': '*',
-  // 'methods': 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  // 'preflightContinue': false
-}));
+app.use(cors());
 
 app.use('/', routes)
 

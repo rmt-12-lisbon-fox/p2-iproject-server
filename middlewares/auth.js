@@ -34,11 +34,16 @@ function authentication(req, res, next) {
 }
 
 function authorization(req, res, next) {
-    Bookmark.findByPk(req.params.id)
+    Bookmark.findOne({
+        where: {
+            userId: req.user.id,
+            mal_id: req.params.id
+        }
+    })
     .then(data => {
         if(data){
+            next()
             if(req.user.id === data.userId) {
-                next()
             }
             else {
                 next({code: 403})
