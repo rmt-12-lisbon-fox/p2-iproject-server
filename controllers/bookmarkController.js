@@ -31,6 +31,25 @@ class Controller {
             next({ code: 400, message: 'Bad requests' })
         })
     }
+    static deleteBookmark(req, res){
+        Bookmark.destroy({
+            where: {
+                DesignId: +req.params.DesignId
+            }
+        })
+        .then((result) => {
+            if (result){
+                res.status(200).json({ message: 'Delete Success' })
+            }
+            else {
+                res.status(404).json({ message: 'Data not found' })
+            }
+        })
+        .catch((err) => {
+            // next({ code: 500, message: err.message })
+            res.status(500).json({ message: err.message })
+        })
+    }
 }
 
 module.exports = Controller

@@ -5,5 +5,6 @@ const { authentication, bookmarkAuthorization } = require('../middlewares/auth')
 
 router.get('/', authentication, bookmarkAuthorization, bookmarkController.findAllBookmark)
 router.post('/', authentication, bookmarkAuthorization, bookmarkController.addBookmark)
+router.delete('/:DesignId', authentication, bookmarkAuthorization, bookmarkController.deleteBookmark)
 
 module.exports = router

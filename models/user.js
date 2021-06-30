@@ -18,17 +18,17 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   User.init({
-    name: {
+    username: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
         notEmpty: {
           args: true,
-          msg: 'Name is a required field'
+          msg: 'Username is a required field'
         },
         notNull: {
           args: true,
-          msg: 'Name is a required field'
+          msg: 'Username is a required field'
         }
       }
     },

@@ -76,10 +76,14 @@ class Controller {
             CategoriesId: req.body.CategoriesId
         }
 
-        if (req.files.length){
-            input.image1 = res.image[0]
-            input.image2 = res.image[1]
-            input.image3 = res.image[2]
+        if (req.image[0]){
+            input.image1 = req.image[0]
+        }
+        if (req.image[1]){
+            input.image2 = req.image[1]
+        }
+        if (req.image[2]){
+            input.image3 = req.image[2]
         }
 
         Design.create(input)
@@ -132,10 +136,14 @@ class Controller {
             CategoriesId: req.body.CategoriesId
         }
 
-        if (req.files.length){
-            input.image1 = res.image[0]
-            input.image2 = res.image[1]
-            input.image3 = res.image[2]
+        if (req.image[0]){
+            input.image1 = req.image[0]
+        }
+        if (req.image[1]){
+            input.image2 = req.image[1]
+        }
+        if (req.image[2]){
+            input.image3 = req.image[2]
         }
         
         Design.update(input, {
