@@ -21,6 +21,13 @@ app.get('/background', (req, res) => {
       }
     })
     .then(({ data }) => {
+      if (data.url.includes('youtube')) {
+        data = {
+          url: 'https://apod.nasa.gov/apod/image/2106/OrionNebula_HubbleSerrano_2362.jpg',
+          explanation: "Few cosmic vistas excite the imagination like the Orion Nebula. Also known as M42, the nebula's glowing gas surrounds hot young stars at the edge of an immense interstellar molecular cloud only 1,500 light-years away. The Orion Nebula offers one of the best opportunities to study how stars are born partly because it is the nearest large star-forming region, but also because the nebula's energetic stars have blown away obscuring gas and dust clouds that would otherwise block our view - providing an intimate look at a range of ongoing stages of starbirth and evolution. The featured image of the Orion Nebula is among the sharpest ever, constructed using data from the Hubble Space Telescope. The entire Orion Nebula spans about 40 light years and is located in the same spiral arm of our Galaxy as the Sun.",
+          title: "Orion Nebula: The Hubble View"
+        }
+      }
       res.status(200).json(data)
     })
     .catch(err => {
