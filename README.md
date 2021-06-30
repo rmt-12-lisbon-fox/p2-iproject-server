@@ -149,7 +149,9 @@ _Request Body_
 {
   email: <email>,
   city: <string>,
-  data: <array>
+  data: <array>,
+  lat: <number>,
+  long: <number>
 }
 ```
 
