@@ -9,16 +9,17 @@ function getIdSteam(username){
 }
 
 function getNewsSteam(game) {
+  console.log(game,'<<<<<<<<<<<<<<<<<<<');
   return steam.getGameNews(game)
-  .then((data)=>{
-    console.log(data);
-    data.forEach(el=>{
-      console.log(el.contents);
-    })
-  })
-  .catch((err)=>{
-    console.log(err);
-  })
+  // .then((data)=>{
+  //   console.log(data);
+  //   data.forEach(el=>{
+  //     console.log(el.contents);
+  //   })
+  // })
+  // .catch((err)=>{
+  //   console.log(err);
+  // })
 }
 
 module.exports = {getIdSteam,getNewsSteam}
