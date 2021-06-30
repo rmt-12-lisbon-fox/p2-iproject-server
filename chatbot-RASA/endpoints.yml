@@ -11,7 +11,8 @@
 # https://rasa.com/docs/rasa/custom-actions
 
 action_endpoint:
- url: "http://localhost:5055/webhook"
+  url: "https://action-server-1.herokuapp.com/webhook"
+#  url: "http://localhost:5055/webhook"
 #  url: "https://deco-actions-2.herokuapp.com/webhook"
   # url: "https://deco-actions-3.herokuapp.com/webhook"
 
@@ -44,5 +45,6 @@ action_endpoint:
 #  queue: queue
 
 # action endpoint:
+#   url: "https://action-server-1.herokuapp.com/webhook"
   # url: "http://localhost:5055/webhook"
   # url: "https://deco-actions-2.herokuapp.com/webhook"
