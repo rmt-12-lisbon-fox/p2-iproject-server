@@ -33,9 +33,9 @@ class Controller {
     transporter.sendMail(mailOptions, function(error, info){
       if (error) {
         console.log(error)
-        res.status(500).json({ messages: error })
+        next({ code: 500 })
       } else {
-        res.status(200).json({ messages: 'Message sucess' })
+        res.status(200).json({ messages: 'Success Send Email' })
       }
     }); 
       

@@ -68,7 +68,7 @@ Get cough type  from CoughAPI. Returning JSON (object) cough type.
         ```
 
 ### 2. GET /checkCovidSymptoms (Get prediction about the user have COVID-19 or not)
-Get prediction about the user have COVID-19 or not with Coronavirus Symptoms Predictor API. Returning JSON (object) prediction.
+Get prediction about the user have COVID-19 or not with Coronavirus Symptoms Predictor API. Returning JSON (object) prediction whether the user has COVID-19 symptoms or not.
 * Method
 
     `GET`
@@ -219,5 +219,119 @@ Login to web application with google login. Returning JSON (object) access token
         ```
         {
             "message": "Internal Server Error"
+        }
+        ```
+
+### 5. POST /sendLog (Send Chat Log)
+Send chat log to user email with nodemailer. Returning JSON (object) message.
+* Method
+
+    `POST`
+
+* URL
+    
+    `/sendLog`
+
+* Request Params
+
+    `None`
+
+* Request Headers 
+
+    `
+    {
+        "access_token": your_access_token
+    }
+    `
+
+* Request Body
+
+    ```
+    Required :
+    messages=[text]
+    email=[text]
+    ```
+
+* Request Query
+
+    `None`
+
+* Success Response :
+    * Status Code : 200 (OK)
+    * Body
+        ```
+        {
+            "message": "Success Send Email"
+        }
+        ```
+    ----
+* Error Response :
+    * Status Code : 500 (INTERNAL SERVER ERROR)
+    * Body
+        ```
+        {
+            "message": "Internal Server Error"
+        }
+        ```
+
+### 6. POST /loginDoctor (Login as a doctor)
+Login as a doctor to a databse. Returning JSON (object) access_token.
+* Method
+
+    `POST`
+
+* URL
+    
+    `/loginDoctor`
+
+* Request Params
+
+    `None`
+
+* Request Headers 
+
+    `None`
+
+* Request Body
+
+    ```
+    Required :
+    email=[text]
+    password=[text]
+    ```
+
+* Request Query
+
+    `None`
+
+* Success Response :
+    * Status Code : 200 (OK)
+    * Body
+        ```
+        {
+            "access_token": your_access_token
+        }
+        ```
+    ----
+* Error Response :
+    * Status Code : 500 (INTERNAL SERVER ERROR)
+    * Body
+        ```
+        {
+            "message": "Internal Server Error"
+        }
+        ```
+    * Status Code : 401 (UNAUTHORIZED)
+    * Body
+        ```
+        {
+            "message": "Invalid email or password"
+        }
+        ```
+    * Status Code : 400 (BAD REQUEST)
+    * Body
+        ```
+        {
+            "message": "Email is required!"
         }
         ```
