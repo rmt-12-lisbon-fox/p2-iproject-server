@@ -1,6 +1,8 @@
 # iproject-server
 API server for Individual Project
 
+deploy: https://nreview.herokuapp.com/
+
 # API-DOC
 
 ## POST /register
