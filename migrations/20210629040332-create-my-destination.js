@@ -16,14 +16,6 @@ module.exports = {
           key: 'id'
         }
       },
-      DestinationId: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {
-          model: 'Destinations',  
-          key: 'id'
-        }
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
