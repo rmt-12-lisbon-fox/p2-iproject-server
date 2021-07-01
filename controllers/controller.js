@@ -89,7 +89,7 @@ class Controller {
       res.status(200).json({doge: instance.signal})
     }).catch(_ => { next({code:500}) })
   }
-  static portofolio(req, res, next) {
+  static portofolioPOST(req, res, next) {
     const {title, quantity, price, status, UserId} = req.body
     const input = {title, quantity, price, status, UserId}
     Portofolio.create(input)
@@ -112,13 +112,19 @@ class Controller {
     .then(array => {
       if (array[0]) res.status(200).json(array[1][0])
       else next({code:404})
-
     })
     .catch(err => {
       let errors
       if (err.errors) errors = err.errors.flatMap(m => m.message)
       err.errors ? next({code:400, message: errors}) : next({code:500})
     })
+  }
+  static portofolio(req, res, next) {
+    Portofolio.findAll({
+      order: [['updatedAt', 'desc']]
+    })
+    .then(instance => res.status(200).json(instance))
+    .catch(_ => next({code:500}))
   }
 }
 
