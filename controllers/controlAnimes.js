@@ -49,18 +49,18 @@ class Controller {
     }
     
     
-    static latestAnime (req, res, next) {
-        simpleAnime({
-            url: '/list/recent',
-            method: 'get'
-        })
-        .then(({data}) => {
-            res.status(200).json(data.data)
-        })
-        .catch(err => {
-            res.status(500).json(err)
-        })
-    }
+    // static latestAnime (req, res, next) {
+    //     simpleAnime({
+    //         url: '/list/recent',
+    //         method: 'get'
+    //     })
+    //     .then(({data}) => {
+    //         res.status(200).json(data.data)
+    //     })
+    //     .catch(err => {
+    //         res.status(500).json(err)
+    //     })
+    // }
 
     
 

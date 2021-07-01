@@ -15,6 +15,6 @@ routes.get('/info/:mal_id', Controller.infoAnime )
 
 routes.get('/videos', Controller.searchAnimeVideos )
 routes.get('/detail', Controller.detailAnime )
-routes.get('/latest', Controller.latestAnime )
+// routes.get('/latest', Controller.latestAnime )
 
 module.exports = routes
