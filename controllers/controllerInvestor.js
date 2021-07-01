@@ -56,6 +56,35 @@ class Controller {
     }
 
     static fetchInvestors(req, res, next) { // OK
+        Investor.findAll({
+            where: {status: 'Verified'}
+        })
+        .then(investors => {
+            let allInvestors = []
+            let investor;
+            for (let i = 0; i < investors.length; i++) {
+                investor = {}
+                investor.id = investors[i].id
+                investor.name = investors[i].name
+                investor.company_name = investors[i].company_name
+                investor.region = investors[i].region
+                investor.industry = investors[i].industry
+                investor.website_url = investors[i].website_url
+                investor.linkedin_url = investors[i].linkedin_url
+                investor.investor_type = investors[i].investor_type
+                investor.status = investors[i].status     
+                investor.requesterId = investors[i].requesterId     
+
+                allInvestors.push(investor)
+            }
+            res.status(200).json(allInvestors)
+        })
+        .catch(err => {
+            next({ code: 500, message: err.message })
+        })  
+    }
+
+    static fetchAllInvestors(req, res, next) { // OK
         Investor.findAll()
         .then(investors => {
             let allInvestors = []

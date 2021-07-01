@@ -145,6 +145,9 @@ class Controller {
     static translate(req, res, next) {
         let reviewId = req.params.id
 
+        console.log(reviewId)
+        console.log(req.body)
+        
         Review.findByPk(reviewId)
         .then(review => {
             if (!req.body.language) {
