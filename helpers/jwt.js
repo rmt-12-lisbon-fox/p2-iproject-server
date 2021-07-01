@@ -6,7 +6,6 @@ function generateJWT(payload){
 }
 
 function decodeJWt(req){
-  console.log(req.headers, `<< ini req`)
   let data = jwt.verify(req.headers.access_token, 'rahasia');
   return data
 }

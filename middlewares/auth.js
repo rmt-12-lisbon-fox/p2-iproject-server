@@ -7,7 +7,6 @@ function auth (req, res, next) {
     // ada token
     try {
       let payload = decodeJWt(req)
-      console.log(payload)
       User.findByPk(+payload.id)
       .then(user => {
         if (user) {
