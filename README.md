@@ -15,9 +15,7 @@ This app has :
 
 _Request Header_
 ```
-{
-    "accessToken": "<accesstoken>"
-}
+not needed
 ```
 
 _Request Body_
@@ -159,9 +157,7 @@ _Response (500 - Internal Server Error)_
 
 _Request Header_
 ```
-{
-    "accessToken": "<accesstoken>"
-}
+not needed
 ```
 
 _Request Params_
@@ -523,9 +519,7 @@ _Response (500 - Internal Server Error)_
 
 _Request Header_
 ```
-{
-    "accessToken": "<accesstoken>"
-}
+not needed
 ```
 
 _Request Body_
@@ -578,9 +572,7 @@ _Response (500 - Internal Server Error)_
 
 _Request Header_
 ```
-{
-    "accessToken": "<accesstoken>"
-}
+not needed
 ```
 
 _Request Params_

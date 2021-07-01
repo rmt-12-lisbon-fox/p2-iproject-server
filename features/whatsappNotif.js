@@ -15,7 +15,7 @@ function whatsappNotif(req, res, next) {
             method: "POST",
             data: data
         })
-        .then(data => {
+        .then(() => {
             remark = `Whatsapp Notification Sent to ${req.notifPhone}`
             console.log(remark)
         })

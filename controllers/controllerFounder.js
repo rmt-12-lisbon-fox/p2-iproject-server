@@ -108,6 +108,7 @@ class Controller {
                     data: image
                 })
                 .then(newImage => {
+                    console.log(newImage, )
                     newUser.first_name = req.body.first_name
                     newUser.last_name = req.body.last_name
                     newUser.username = req.body.username
