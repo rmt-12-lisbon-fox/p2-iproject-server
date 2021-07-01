@@ -257,3 +257,96 @@ _Response (500 - Internal Server Error)_
 ```
 
 ---
+
+## Endpoint: /games
+
+### GET /games
+
+> Get all games
+
+_Request Header_
+
+```
+needed
+```
+
+_Request Body_
+
+```
+not needed
+```
+
+_Response (200)_
+
+```
+[
+  {
+    "UserId": 3,
+    "ChallengeId": 1,
+    "score": 7,
+    "createdAt": "2021-06-30T23:51:44.086Z",
+    "updatedAt": "2021-06-30T23:51:44.086Z"
+  },
+  {
+    "UserId": 3,
+    "ChallengeId": 1,
+    "score": 0,
+    "createdAt": "2021-06-30T23:51:59.250Z",
+    "updatedAt": "2021-06-30T23:51:59.250Z"
+  }
+  ]
+}
+
+```
+
+_Response (500 - Internal Server Error)_
+
+```
+{
+  "message": "Internal Server Error"
+}
+```
+
+---
+
+### POST /games
+
+> to post game
+
+_Request Header_
+
+```
+needed
+```
+
+_Request Body_
+
+```
+{
+  ChallengeId: 1,
+  wordInput: ["fun", "bad"],
+  wordBase: ["LBPPYRIGQFNY", "JPISMCFAJJBD"],
+}
+```
+
+_Response (200)_
+
+```
+{
+  "UserId": 5,
+  "ChallengeId": 1,
+  "score": 6,
+  "updatedAt": "2021-07-01T07:04:39.830Z",
+  "createdAt": "2021-07-01T07:04:39.830Z"
+}
+```
+
+_Response (500 - Internal Server Error)_
+
+```
+{
+  "message": "Internal Server Error"
+}
+```
+
+---
