@@ -150,8 +150,8 @@ function wordValue(wordResult) {
   }
 
   let score = 0;
-  for (let i = 0; i < wordResult.length; i++) {
-    score = resultValue1[i] + resultValue2[i] + resultValue3[i] + resultValue4[i] + resultValue5[i] + resultValue8[i] + resultValue10[i];
+  for (let i = 0; i < totalWordValue.length; i++) {
+    score += totalWordValue[i];
   }
 
   // console.log({ result1, result2, result3, result4, result5, result8, result10 });
