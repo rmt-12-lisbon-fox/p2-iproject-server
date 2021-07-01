@@ -1,5 +1,7 @@
 const axios = require('axios')
-require('dotenv').config()
+if (process.env.NODE_ENV === 'development') {
+    require('dotenv').config()
+  }
 const NewsAPI = require('newsapi');
 
 let newsapi = new NewsAPI(process.env.NEWSAPI_KEY);

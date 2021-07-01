@@ -1,5 +1,7 @@
 const axios = require('axios')
-require('dotenv').config()
+if (process.env.NODE_ENV === 'development') {
+  require('dotenv').config()
+}
 
 const instance = axios.create({
     headers: {

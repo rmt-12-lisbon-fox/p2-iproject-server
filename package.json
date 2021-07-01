@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "dev": "SET NODE_ENV=development&&nodemon nodemon app.js",
+    "dev": "SET NODE_ENV=development&&nodemon app.js",
     "seeder": "SET NODE_ENV=development&&npx sequelize db:seed --seed",
     "sequelize": "SET NODE_ENV=development&&npx sequelize",
     "start": "node app.js",
