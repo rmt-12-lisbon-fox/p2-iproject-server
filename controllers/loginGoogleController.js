@@ -5,6 +5,7 @@ const { User } = require("../models");
 class LoginGoogleController {
   static loginGooglePost(req, res, next) {
     const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
+    console.log(client);
     let payload = null;
     client
       .verifyIdToken({

@@ -14,21 +14,21 @@ module.exports = {
     await queryInterface.bulkInsert("Challenges", [
       {
         name: "Make one word",
-        wordLong: 14,
+        wordLong: 12,
         totalWords: 1,
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
         name: "Make two words",
-        wordLong: 12,
+        wordLong: 10,
         totalWords: 2,
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
         name: "Make three words",
-        wordLong: 10,
+        wordLong: 8,
         totalWords: 3,
         createdAt: new Date(),
         updatedAt: new Date(),
