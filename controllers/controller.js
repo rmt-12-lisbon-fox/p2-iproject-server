@@ -109,11 +109,15 @@ class Controller {
     console.log(UserId)
     console.log(id)
     Portofolio.update(input, {
-      where: {id: 9},
-      // returning: true,
+      where: { id },
+      returning: true,
     })
     .then(array => {
       console.log('>>>>>>>>>>>>>>>>>>>masuk')
+      console.log(array)
+      if (array[0]) res.status(200).json(array[1][0])
+      else next({code:404})
+
     })
     .catch(err => {
       let errors
