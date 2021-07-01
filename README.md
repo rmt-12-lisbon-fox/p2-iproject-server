@@ -1,5 +1,5 @@
-# p2-cms-customer-server
-API for cms and customer websites. This app has : 
+# Rate Your Investor
+This app has : 
 * RESTful endpoint for CRU operation
 * JSON formatted response
 
@@ -237,7 +237,7 @@ _Response (200)_
 _Response (404 - Not Found)_
 ```
 {
-    "message": "error: movie not found"
+    "message": "error: review not found"
 }
 ```
 
@@ -312,12 +312,6 @@ _Response (400 - Bad Request)_
     ]
 }
 ```
-```
-{
-    "error": "Input Error",
-    "message": "Only formats .jpg, .jpeg, .png, are allowed, with max. size of 225kB"
-}
-```
 
 _Response (401 - Unauthorized)_
 ```
@@ -345,7 +339,7 @@ _Response (500 - Internal Server Error)_
 ---
 ### POST /register
 
-> Register new user (admin)
+> Register new user (founder)
 
 _Request Header_
 ```
@@ -802,7 +796,7 @@ not needed
 _Response (200)_
 ```
 {
-    "message": "Jump VC is now verified"
+    "message": "Jump VC is now verified. Whatsapp Notification Sent to 6281319023264"
 }
 ```
 
@@ -842,7 +836,58 @@ _Response (500 - Internal Server Error)_
     "message": "<error message>"
 }
 ```
+---
 ### GET /investors
+
+> Get verified investors
+
+_Request Header_
+```
+not needed
+```
+
+_Request Body_
+```
+not needed
+```
+
+_Response (200)_
+```
+[
+    {
+        "id": 2,
+        "name": "BigMoney VC",
+        "company_name": "BigMoney VC",
+        "region": "Southeast Asia",
+        "industry": "Multi-Industry",
+        "website_url": "https://www.bigmoneyvc.com",
+        "linkedin_url": "https://www.linkedin.com/company/jump-informatique/",
+        "investor_type": "Venture Capital",
+        "status": "Verified"
+    },
+    {
+        "id": 1,
+        "name": "Jump VC",
+        "company_name": "Jump VC",
+        "region": "China & Hong-Kong",
+        "industry": "Media & Entertainment",
+        "website_url": "https://www.jumpvc.com",
+        "linkedin_url": "https://www.linkedin.com/company/jump-informatique/",
+        "investor_type": "Venture Capital",
+        "status": "Verified"
+    }
+]
+```
+
+_Response (500 - Internal Server Error)_
+```
+{
+    "error": "Internal Server Error",
+    "message": "<error message>"
+}
+```
+---
+### GET /investors/all
 
 > Get all investors
 
@@ -868,7 +913,7 @@ _Response (200)_
         "website_url": "https://www.bigmoneyvc.com",
         "linkedin_url": "https://www.linkedin.com/company/jump-informatique/",
         "investor_type": "Venture Capital",
-        "status": "Verified"
+        "status": "Unverified"
     },
     {
         "id": 1,
@@ -989,4 +1034,271 @@ _Response (500 - Internal Server Error)_
 }
 ```
 ---
-### GET /founders/verify/:id
+### PATCH /founders/verify/:id
+
+> Update founder status
+
+_Request Header_
+```
+not needed
+```
+
+_Request Params_
+```
+{
+    "id": integer (required)
+}
+```
+
+_Request Body_
+```
+not needed
+```
+
+_Response (200)_
+```
+{
+    "message":  "Thanks Galuh for verifying! Your account is active, you can now write a new review"
+}
+```
+
+_Response (404 - Not Found)_
+```
+{
+    "message": "error: user not found"
+}
+```
+
+_Response (500 - Internal Server Error)_
+```
+{
+    "error": "Internal Server Error",
+    "message": "<error message>"
+}
+```
+### GET /news
+
+> Get all news from 3rd party API
+
+_Request Header_
+```
+not needed
+```
+
+_Request Body_
+```
+not needed
+```
+
+_Response (200)_
+```
+[
+    {
+        "source": {
+            "id": null,
+            "name": "Rappler"
+        },
+        "author": "Reuters",
+        "title": "Crypto art about gender transition fetches $2.16M at Christie's - Rappler",
+        "description": "'I feel like, a lot of times, trans voices aren't heard or aren't as respected, so to have my platform to say 'hey look, this is my life and look at what we're doing' – it means the world,' says artist Victor Langlois",
+        "url": "https://www.rappler.com/technology/crypto-art-gender-transition-christies-auction-june-2021",
+        "urlToImage": "https://assets2.rappler.com/2021/07/crypto-art-1625106362064.jpg",
+        "publishedAt": "2021-07-01T02:26:00Z",
+        "content": "\"I feel like, a lot of times, trans voices aren't heard or aren't as respected, so to have my platform to say 'hey look, this is my life and look at what we're doing' it means the world,\" Langlois sa… [+18 chars]"
+    },
+    {
+        "source": {
+            "id": null,
+            "name": "Kotaku Australia"
+        },
+        "author": null,
+        "title": "Cyberpunk 2077's Jackie Deserved Better - Kotaku Australia",
+        "description": "When CD Projekt Red eventually get fixes out for Cyberpunk 2077, the studio might be able to finally give Jackie the billing he deserves.",
+        "url": "https://www.kotaku.com.au/2021/07/cyberpunk-2077-jackie-deserved-better/",
+        "urlToImage": "https://imgix.kotaku.com.au/content/uploads/sites/3/2020/12/15/cyberpunk-2077-jackie-1.jpg?ar=16%3A9&auto=format&fit=crop&q=65&w=1280",
+        "publishedAt": "2021-07-01T02:00:00Z",
+        "content": "Cyberpunk 2077‘s performance is apparently fine and it’s back on the PlayStation Store. Which is great and all, because it means that CD Projekt Red might be able to start correcting some of the game… [+9950 chars]"
+    },
+    {
+        "source": {
+            "id": null,
+            "name": "GSMArena.com"
+        },
+        "author": "Vlad",
+        "title": "Samsung Galaxy A03s gets Bluetooth certified on its way to the market - GSMArena.com news - GSMArena.com",
+        "description": "The A03s first leaked last month, and its official unveiling can't be far.",
+        "url": "https://www.gsmarena.com/samsung_galaxy_a03s_gets_bluetooth_certified_on_its_way_to_the_market-news-49827.php",
+        "urlToImage": "https://fdn.gsmarena.com/imgroot/news/21/06/galaxy-a03s-bluetooth/-476x249w4/gsmarena_001.jpg",
+        "publishedAt": "2021-07-01T01:57:01Z",
+        "content": "Samsung is working on revamping its entry-level model in the A-series, the one that starts with a zero. The Galaxy A03s has already leaked in some detail back in May, and now it's been spotted at the… [+900 chars]"
+    },
+    {
+        "source": {
+            "id": null,
+            "name": "SiliconANGLE News"
+        },
+        "author": null,
+        "title": "Instagram spreads wings with plans to add paying subscribers and focus on video - SiliconANGLE News",
+        "description": "Instagram spreads wings with plans to add paying subscribers and focus on video - SiliconANGLE",
+        "url": "https://siliconangle.com/2021/06/30/instagram-spreads-wings-plans-add-paying-subscribers-focus-more-video/",
+        "urlToImage": "https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2021/06/alexander-shatov-71Qk8ODIBko-unsplash-1.jpg",
+        "publishedAt": "2021-07-01T01:30:09Z",
+        "content": "Facebook Inc.-owned Instagram said today its planning to add a paid subscription model to the platform so fans can see exclusive content from those they follow.\r\nSimilar to what Twitter Inc. recently… [+2603 chars]"
+    },
+    {
+        "source": {
+            "id": null,
+            "name": "Nintendo Life"
+        },
+        "author": "Nintendo Life",
+        "title": "AI: The Somnium Files – nirvanA Initiative Announced For Nintendo Switch - Nintendo Life",
+        "description": "Arriving in Spring 2022",
+        "url": "https://www.nintendolife.com/news/2021/07/ai_the_somnium_files_n_nirvana_initiative_announced_for_nintendo_switch",
+        "urlToImage": "https://images.nintendolife.com/c212062afaae0/1280x720.jpg",
+        "publishedAt": "2021-07-01T01:30:00Z",
+        "content": "Spike Chunsoft has just announced AI: The Somnium Files nirvanA Initiative is coming to Switch in Spring 2022.\r\nIt's a sequel to the original 2019 detective adventure release. The reveal trailer has … [+839 chars]"
+    },
+    {
+        "source": {
+            "id": null,
+            "name": "Kotaku Australia"
+        },
+        "author": null,
+        "title": "Sea of Thieves: A Pirate’s Life Has A Very Fun Easter Egg - Kotaku Australia",
+        "description": "The whole point of Sea of Thieves: A Pirates Life was that it served as a crossover event between Rare’s...",
+        "url": "https://www.kotaku.com.au/2021/07/sea-of-thieves-a-pirates-life-has-a-very-fun-easter-egg/",
+        "urlToImage": "https://imgix.kotaku.com.au/content/uploads/sites/3/2021/07/01/3c985b2bf439178c4c33d456b2d058ea.png?ar=16%3A9&auto=format&fit=crop&q=65&w=1280",
+        "publishedAt": "2021-07-01T01:00:00Z",
+        "content": "The whole point of Sea of Thieves: A Pirates Life was that it served as a crossover event between Rares pirate game and Disneys Pirates of the Caribbean series. But tucked away at the end of the expa… [+1430 chars]"
+    }
+]
+```
+
+_Response (500 - Internal Server Error)_
+```
+{
+    "error": "Internal Server Error",
+    "message": "<error message>"
+}
+```
+---
+### POST /reviews/translate/:id
+
+> Get translated text from a review content
+
+_Request Header_
+```
+not needed
+```
+
+_Request Params_
+```
+{
+    "id": integer (required)
+}
+```
+
+_Request Body_
+```
+{
+    "language": "<language_code>"
+}
+```
+
+_Response (200)_
+```
+"Respon sangat lambat. Saya melakukan beberapa pertemuan dengan VC namun prosesnya tidak transparan dan sangat lambat. Pada akhirnya, kesepakatan berhasil, tetapi kami harus menunggu lebih dari 10 bulan agar seluruh proses selesai, karena setiap pertemuan, subjek dari pertemuan terakhir diulang"
+```
+
+_Response (400 - Bad Request)_
+```
+{
+    "error": "Bad Request",
+    "message": "Please define your language"
+}
+```
+
+_Response (500 - Internal Server Error)_
+```
+{
+    "error": "Internal Server Error",
+    "message": "<error message>"
+}
+```
+---
+### PATCH /reviews/like/:id
+
+> Add like to a review
+
+_Request Header_
+```
+{
+    "accessToken": "<accessToken>"
+}
+```
+
+_Request Params_
+```
+{
+    "id": integer (required)
+}
+```
+
+_Request Body_
+```
+not needed
+```
+
+_Response (200)_
+```
+{
+    "id": 1,
+    "FounderId": 2,
+    "InvestorId": 1,
+    "reviewer": "Anonymous",
+    "title": "Slow Response",
+    "investor_role": "Lead Investor",
+    "investment_stage": "Seed",
+    "review": "Very slow response. I did a few meetings with the VC however the processes was not transparent and extremely slow. At the end, the deal went through, but we needed to wait more than 10 months for the entire process to pass through, since every single meeting, the subject from last meetings were repeated",
+    "rating_overall": 2,
+    "rating_professionalism": 3,
+    "rating_speed": 1,
+    "rating_dd_complexity": 3,
+    "rating_post_inv_support": 0,
+    "rating_founder_friendly": 2,
+    "likes": 4,
+    "likes_id": [
+        2,
+        3,
+        4,
+        1
+    ],
+    "status": "Unverified",
+    "createdAt": "2021-06-29T10:38:55.495Z",
+    "updatedAt": "2021-07-01T04:19:00.076Z"
+}
+```
+
+_Response (400 - Bad Request)_
+```
+{
+    "error": "Bad Request",
+    "message": "You have already liked this review"
+}
+```
+
+_Response (400 - Not Found)_
+```
+{
+    "error": "Bad Request",
+    "message": "error: review not found"
+}
+```
+
+_Response (500 - Internal Server Error)_
+```
+{
+    "error": "Internal Server Error",
+    "message": "<error message>"
+}
+```
