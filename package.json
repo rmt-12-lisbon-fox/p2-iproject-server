@@ -34,5 +34,9 @@
     "sequelize": "^6.6.4",
     "sequelize-cli": "^6.2.0",
     "socket.io": "^2.3.0"
+  },
+  "engines": {
+    "node": ">= 6.9.4",
+    "npm": ">= 4.4.0"
   }
 }
