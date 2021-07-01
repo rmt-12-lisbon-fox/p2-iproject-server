@@ -1,8 +1,10 @@
 const axios = require('axios')
 const { key, videoData } = require('./listVideo')
-const { User, Program, Schedule } = require('./models')
+const { User, Program, Schedule, Reminder } = require('./models')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+const cron = require('node-cron')
+const nodemailer = require('nodemailer')
 
 class Controller {
     static fetchVideo(req, res) {
@@ -40,9 +42,7 @@ class Controller {
         password = bcrypt.hashSync(password, 10)
 
         User.create({ username, email, password, age, gender } )
-        .then( data => {
-            res.status(201).json({id : data.id, email : data.email})
-        })
+        .then( data => res.status(201).json({id : data.id, email : data.email}))
         .catch(err => console.log(err, `ini error register`))
     }
 
@@ -66,53 +66,184 @@ class Controller {
     }
 
     static fetchPrograms(req, res) {
-        Program.findAll()
-        .then(data => {
-            res.status(200).json(data)
-            console.log(data, `ini data fetch program`)
-        })
-        .catch(err => res.status(500).json({message : `internal server error`}))
+       
+        
+        if(req.query.filter) {
+            let filter = req.query.filter
+            Program.findAll({ where : { type : filter}})
+            .then(data => res.status(200).json(data))
+            .catch(err => res.status(500).json({message : `internal server error`}))
+        } else {
+            Program.findAll()
+            .then(data => res.status(200).json(data))
+            .catch(err => res.status(500).json({message : `internal server error`}))
+        }
     }
     
     static createSchedule(req, res) {
-        let { ProgramId, intensity } = req.body
+        let { ProgramId, intensity, programTitle } = req.body
         let UserId = req.user.id
+        let username = req.user.username
+        let message = `Hi ${username}, you have schedule to do ${programTitle} today. Cheers!`
+        let email = req.user.email
+
+        const transporter = nodemailer.createTransport({
+            service : 'gmail',
+            auth : {
+                user : 'sanjungliu@gmail.com',
+                pass: 'ucdmmrzuwqqhxwfb'
+            }
+        })
+
+        const sendMail = (email) => {
+            const option = {
+                from: '"Go-Exercise-App, Your Coolest Exercise Partner 👻" <no-reply@gmail.com>', 
+                to: email, 
+                subject: "Reminder of Your Exercise Schedule ✔", 
+                text: `Reminder of Your Exercise Schedule ✔`, 
+                html: `<b>${message}</b>`, 
+            }
+
+            transporter.sendMail(option, (err, info) => {
+                if(err) console.error(err)
+                console.log(`Reminder sent to : ${email}`)
+            })
+        }
+
+        // function sendEmail () {
+        //     let transporter = nodemailer.createTransport({
+        //         host: "smtp.gmail.com",
+        //         port: 587,
+        //         secure: false, 
+        //         auth: {
+        //         user: 'sanjungliu@gmail.com', 
+        //         pass: 'ucdmmrzuwqqhxwfb',
+        //         },
+        //     });
+        //     let info =  transporter.sendMail({
+        //         from: '"Go-Exercise-App, Your Coolest Exercise Partner 👻"', 
+        //         to: email, 
+        //         subject: "Reminder of Your Exercise Schedule ✔", 
+        //         text: `Silahkan klik link ini untuk reset password Anda ${link}`, 
+        //         html: `<b>${message}
+        //         </b>`, 
+        //     });
+        // }
 
         Schedule.create({ ProgramId, UserId, intensity })
         .then(data => {
+
+            if(intensity == 'Low') {
+                cron.schedule('*/3 * * * *', () =>  {
+                    sendMail(email)
+                   
+                    console.log('running a task every three minute');
+                    Reminder.create({ message, UserId })
+                    .then( data => {
+                        console.log(data, `ini data create reminder dari Controller <<<<<<<<<<`)
+                    })
+                    .catch( err => {
+                        console.log(err, `ini err create reminder dari Controller <<<<<<<<<`)
+                    })
+                  }, {
+                    timezone: "Asia/Jakarta"
+                  });
+            } else if(intensity == 'Moderate') {
+                cron.schedule('*/1 * * * *', () =>  {
+                    sendMail(email)
+                   
+                    console.log('running a task every two minute');
+                    Reminder.create({ message, UserId })
+                    .then( data => {
+                        console.log(data, `ini data create reminder dari Controller <<<<<<<<<<`)
+                    })
+                    .catch( err => {
+                        console.log(err, `ini err create reminder dari Controller <<<<<<<<<`)
+                    })
+                  }, {
+                    timezone: "Asia/Jakarta"
+                  });
+            } else if(intensity == 'High') {
+                cron.schedule('*/30 * * * * *', () =>  {
+                    sendMail(email)
+
+                    console.log('running a task every minute');
+                    Reminder.create({ message, UserId })
+                    .then( data => {
+                        console.log(data, `ini data create reminder dari Controller <<<<<<<<<<`)
+                    })
+                    .catch( err => {
+                        console.log(err, `ini err create reminder dari Controller <<<<<<<<<`)
+                    })
+                  }, {
+                    timezone: "Asia/Jakarta"
+                  });
+            }
+            setTimeout(() => {
+                cron.stop()
+            }, 50000000);
             res.status(201).json(data)
-            console.log(data, `ini data create schedule`)
         })
-        .catch(err => {
-            res.status(500).json({message : `internal server error`})
-            console.log(err, `ini err create schedule`)
-        })
+        .catch(err => res.status(500).json({message : `internal server error`}))
     }
 
     static fetchSchedule(req, res) {
         let UserId = req.user.id
         User.findByPk(UserId, { include : Program})
-        .then(data => {
-            res.status(200).json(data.Programs)
-            console.log(data.Programs, `ini data dari fetch my program`)
-        })
-        .catch(err => {
-            console.log(err, `ini error dari fetch my program`)
-        })
+        .then(data => res.status(200).json(data))
+        .catch(err => res.status(500).json({message : `internal server error`}))
     }
 
     static programDetail(req, res) {
         let id = req.params.id
         Program.findByPk(id)
-        .then(data => {
-            res.status(200).json(data)
-            console.log(data, `ini data detail program`)
+        .then(data => res.status(200).json(data))
+        .catch(err => res.status(500).json({message : `internal server error`}))
+    }
+
+    static deleteSchedule(req, res) {
+        console.log(req.body, `masuk delete schedule`)
+        let { id } = req.body
+        Schedule.destroy({ where : { id }})
+        .then( data => {
+            if (data) {
+                console.log(`sukses hapus schedule <<<<<<<<`)
+                res.status(200).json({ message : `succeed delete schedule`})
+            } else {
+                res.status(500).json({ message : `internal server error`})
+            }
         })
-        .catch(err => {
-            console.log(err, `ini err detail program`)
+        .catch( err => {
+            console.log(err, `error hapus schedule <<<<<<<<`)
+            res.status(500).json({ message : `internal server error`})
+        } )
+    }
+
+    static fetchReminder(req, res) {
+        let UserId = req.user.id
+
+        Reminder.findAll({ where : { UserId }, order : [['createdAt', 'desc']]})
+        .then( data => {
+            res.status(200).json(data)
+        })
+        .catch( err => {
+            console.log(err, `ini err reminder dari Controller`)
+            res.status(500).json({ message : `internal server error`})
         })
     }
 
+    static createReminder(req, res) {
+        let { message } = req.body
+        let UserId = req.user.id
+
+        Reminder.create({ message, UserId })
+        .then( data => {
+            console.log(data, `ini data create dari Controller create reminder`)
+        })
+        .catch( err => {
+            console.log(err, `ini err dari Controller create reminder`)
+        })
+    }
 }
 
 module.exports = Controller

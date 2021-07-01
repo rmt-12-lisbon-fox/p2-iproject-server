@@ -6,6 +6,7 @@ const port = process.env.PORT || 3000
 const cors = require('cors')
 const Controller = require('./controller')
 const checkLogin = require('./checkLogin')
+const authorize = require('./authorize')
 
 app.use(express.urlencoded({extended : false}))
 app.use(express.json())
@@ -24,6 +25,11 @@ app.get('/programs/:id', Controller.programDetail)
 
 app.get('/mySchedule', Controller.fetchSchedule)
 app.post('/mySchedule', Controller.createSchedule)
+
+app.get('/reminders', Controller.fetchReminder)
+app.post('/reminders', Controller.createReminder)
+
+app.delete('/mySchedule', Controller.deleteSchedule)
 
 app.listen(port, () => console.log(`server listen at port ${port}`))
 
