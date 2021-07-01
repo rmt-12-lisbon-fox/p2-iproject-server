@@ -1,12 +1,13 @@
-var jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 
 function generateJWT(payload){
-  var token = jwt.sign(payload, 'rahasia');
+  let token = jwt.sign(payload, 'rahasia');
   return token
 }
 
 function decodeJWt(req){
-  var data = jwt.verify(req.headers.access_token, 'rahasia');
+  console.log(req.headers, `<< ini req`)
+  let data = jwt.verify(req.headers.access_token, 'rahasia');
   return data
 }
 

@@ -18,15 +18,18 @@ let graphOptions = {
   },
   scale: {
     pointLabels: {
+      fontColor: "black",
       fontSize: 14
     },
     ticks: {
       beginAtZero: true,
+      fontColor: "black",
       max: 500,
       display: true
     }
   },
   title: {
+    fontColor: "black",
     display: true,
     text: 'Daily Recommended Dietary Allowance Accomplishment',
     fontSize: 24,
@@ -35,7 +38,10 @@ let graphOptions = {
   },
   legend: {
     position: 'bottom',
-    display: true
+    display: true,
+    labels : {
+      fontColor : "black"
+    }
   }
 };
 
@@ -46,13 +52,13 @@ let graphData = {
       {
         label: "Your Intake",
         data: [p, f, s, co, ca, e],
-        backgroundColor: ['rgba(63, 81, 181, 1)'],
+        backgroundColor: ['rgba(63, 81, 181, 0.1)'],
         borderColor: 'rgba(63, 81, 181, 1)',
       },
       {
         label: "Ideal RDA",
-        backgroundColor: ['rgba(89,189,240, 0.75)'],
-        borderColor: 'rgba(89,189,240, 0.75)',
+        backgroundColor: ['rgba(250, 33, 33, 0.5)'],
+        borderColor: 'rgb(250, 33, 33)',
         data: [65, 75, 30, 300, 430, 265],
       }
     ]
