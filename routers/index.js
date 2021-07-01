@@ -30,6 +30,8 @@ router.get('/market', Controller.market)
 router.get('/adzan', Controller.adzan)
 
 router.use(authentification)
+router.post('/portofolio', Controller.portofolio)
+router.put('/portofolio/:id', Controller.portofolioPut)
 router.get('/bestxrp', Controller.bestxrp)
 router.get('/bestbtc', Controller.bestbtc)
 router.get('/besteth', Controller.besteth)
