@@ -1,5 +1,6 @@
 const { User, History, Deck } = require('../models')
 const { jwtCreate } = require('../helpers/jwt')
+const { bcryptCheck } = require('../helpers/bcrypt')
 // const { Op } = require('sequelize')
 
 class AuthController {
@@ -30,6 +31,7 @@ class AuthController {
     }
     static async postLogin(req, res, next) {
         const { username, email, password } = req.body
+        // console.log(req.body)
         let newUser
         try {
             if (email) {
@@ -37,15 +39,16 @@ class AuthController {
             } else if (username) {
                 newUser = await User.findOne({ where: { username } })
             }
-            if (newUser && newUser.password === password) {
+            if (newUser && bcryptCheck(password, newUser.password)) {
                 try {
                     const access_token = jwtCreate({ id: newUser.id, username: newUser.username, })
-                    res.status(201).json({ id: newUser.id, username: newUser.username, access_token })
+                    res.status(200).json({ id: newUser.id, username: newUser.username, access_token })
                 } catch {
                     // console.log('JWT Error')
                     next({ code: 500 })
                 }
             } else {
+                // console.log(err)
                 next({ code: 400, msg: 'Invalid username/password' })
             }
         } catch (error) {
