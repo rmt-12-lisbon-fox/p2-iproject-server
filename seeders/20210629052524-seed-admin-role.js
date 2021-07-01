@@ -1,5 +1,7 @@
 'use strict';
-require('dotenv').config()
+if (process.env.NODE_ENV === 'development') {
+  require('dotenv').config()
+}
 let hashPassword = require('../helpers/passwordHashingSeeder.js')
 
 module.exports = {
