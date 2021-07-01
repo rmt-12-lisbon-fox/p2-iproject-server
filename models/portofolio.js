@@ -17,7 +17,15 @@ module.exports = (sequelize, DataTypes) => {
     title: DataTypes.STRING,
     quantity: DataTypes.INTEGER,
     price: DataTypes.INTEGER,
-    status: DataTypes.STRING,
+    status: {
+      type: DataTypes.STRING,
+      validate: {
+        isIn: {
+          args: [['buy', 'sell']],
+          msg: 'input not valid'
+        }
+      }
+    },
     UserId: DataTypes.INTEGER
   }, {
     sequelize,
