@@ -1,4 +1,7 @@
 # Rate Your Investor
+Deployed App: 
+https://rate-your-investor.herokuapp.com
+
 This app has : 
 * RESTful endpoint for CRU operation
 * JSON formatted response
