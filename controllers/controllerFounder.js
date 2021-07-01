@@ -231,8 +231,8 @@ class Controller {
             return payload
         })
         .then(payload => {
-            // console.log(payload.email)
-            return User.findOne({ 
+            console.log(payload.email)
+            return Founder.findOne({ 
                 where: { email: payload.email } 
             })
         })
@@ -245,6 +245,7 @@ class Controller {
             }
         })
         .then(user => {
+            // console.log('masuk sini!!!', user)
             let googleUser = {}
             googleUser.id = user.id
             googleUser.first_name = user.first_name
