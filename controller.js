@@ -12,7 +12,7 @@ class Controller {
             url : `https://www.googleapis.com/youtube/v3/videos?id=xRt4LSANIoU&key=${key}&part=snippet&fields=items(id,snippet(title,thumbnails(medium)))`,
             method : `get`,
         })
-        .then( ({data}) => console.log(data, `ini data fetch video`))
+        .then( ({data}) => res.send(data))
         .catch(err => console.log(err, `ini error dari fetch`))
     }
 
@@ -109,26 +109,6 @@ class Controller {
                 console.log(`Reminder sent to : ${email}`)
             })
         }
-
-        // function sendEmail () {
-        //     let transporter = nodemailer.createTransport({
-        //         host: "smtp.gmail.com",
-        //         port: 587,
-        //         secure: false, 
-        //         auth: {
-        //         user: 'sanjungliu@gmail.com', 
-        //         pass: 'ucdmmrzuwqqhxwfb',
-        //         },
-        //     });
-        //     let info =  transporter.sendMail({
-        //         from: '"Go-Exercise-App, Your Coolest Exercise Partner 👻"', 
-        //         to: email, 
-        //         subject: "Reminder of Your Exercise Schedule ✔", 
-        //         text: `Silahkan klik link ini untuk reset password Anda ${link}`, 
-        //         html: `<b>${message}
-        //         </b>`, 
-        //     });
-        // }
 
         Schedule.create({ ProgramId, UserId, intensity })
         .then(data => {

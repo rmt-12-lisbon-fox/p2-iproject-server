@@ -29,7 +29,7 @@ app.post('/mySchedule', Controller.createSchedule)
 app.get('/reminders', Controller.fetchReminder)
 app.post('/reminders', Controller.createReminder)
 
-app.delete('/mySchedule', Controller.deleteSchedule)
+// app.delete('/mySchedule', Controller.deleteSchedule)
 
 app.listen(port, () => console.log(`server listen at port ${port}`))
 
