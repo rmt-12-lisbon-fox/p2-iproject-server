@@ -31,8 +31,10 @@ from typing import Any, Text, Dict, List
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import SlotSet
-from api.server_api import covidSymptoms
-from api.server_api import coughTypeChecker
+# from api.server_api import covidSymptoms
+# from api.server_api import coughTypeChecker
+import requests
+
 
 class ActionCheckCovid(Action):
     def name(self) -> Text:
@@ -67,13 +69,27 @@ class ActionCheckCovid(Action):
         # print(f"USER INPUT di action <<<<< {userInput}")
 
         try:
-          hasCovidSymptoms = covidSymptoms(userInput)
-          if hasCovidSymptoms:
+          url = 'http://localhost:3000/checkCovidSymptoms'
+          # print(f"{userInput} <<<<< USER INPUT")
+          response = requests.get(url, data = userInput)
+          json_data = response.json()
+          # print(f"JSON DATA >>>> {json_data}")
+          if json_data["has_covid_symptoms"] == '1':
             dispatcher.utter_message("\nYou have covid-19 symptoms!\nPlease go to your nearest hospital, here's a list of hospital you can go to https://covid19.go.id/daftar-rumah-sakit-rujukan")
           else:
             dispatcher.utter_message("\nGreat news, you don't have covid-19 symptoms!\nIf you still need examination, please contact your nearest hospital.\nHere's a list of hospital you can go to https://covid19.go.id/daftar-rumah-sakit-rujukan")
         except:
             dispatcher.utter_message("I'm sorry, there's something wrong with your input or the server. Please try again later")
+
+
+        # try:
+        #   hasCovidSymptoms = covidSymptoms(userInput)
+        #   if hasCovidSymptoms:
+        #     dispatcher.utter_message("\nYou have covid-19 symptoms!\nPlease go to your nearest hospital, here's a list of hospital you can go to https://covid19.go.id/daftar-rumah-sakit-rujukan")
+        #   else:
+        #     dispatcher.utter_message("\nGreat news, you don't have covid-19 symptoms!\nIf you still need examination, please contact your nearest hospital.\nHere's a list of hospital you can go to https://covid19.go.id/daftar-rumah-sakit-rujukan")
+        # except:
+        #     dispatcher.utter_message("I'm sorry, there's something wrong with your input or the server. Please try again later")
 
         return []
 
@@ -87,11 +103,26 @@ class ActionCheckCough(Action):
           domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
       urlSlot = tracker.get_slot("url")
+
       try:
-        result = coughTypeChecker(urlSlot)
-        dispatcher.utter_message(result + "\nIf you have a dry cough, please check for COVID-19.\nHere's the link to see a list of antigen swab test sites https://kesehatan.kontan.co.id/news/inilah-daftar-rumah-sakit-dan-klinik-penyedia-tes-pcr-swab-virus-corona?page=all")
+        url = 'http://localhost:3000/checkCoughType'
+        response = requests.get(url, data = { "url" : urlSlot })
+        json_data = response.json()
+        result = json_data["result"]
+        result_text = ''
+        for data in result:
+          result_text += f"The cough type is {data['coughType']} from {data['startSeconds']} to {data['endSeconds']} seconds\n"
+        # print(f"{result_text} <<<< RESULT TEXT")
+        dispatcher.utter_message(result_text + "\nIf you have a dry cough, please check for COVID-19.\nHere's the link to see a list of antigen swab test sites https://kesehatan.kontan.co.id/news/inilah-daftar-rumah-sakit-dan-klinik-penyedia-tes-pcr-swab-virus-corona?page=all")
       except:
         dispatcher.utter_message("I'm sorry, there's something wrong with your input or the server. Please try again later")
+
+
+      # try:
+      #   result = coughTypeChecker(urlSlot)
+      #   dispatcher.utter_message(result + "\nIf you have a dry cough, please check for COVID-19.\nHere's the link to see a list of antigen swab test sites https://kesehatan.kontan.co.id/news/inilah-daftar-rumah-sakit-dan-klinik-penyedia-tes-pcr-swab-virus-corona?page=all")
+      # except:
+      #   dispatcher.utter_message("I'm sorry, there's something wrong with your input or the server. Please try again later")
 
       # result = coughTypeChecker(urlSlot)
       # dispatcher.utter_message(result + "\n If you have a dry cough, please check for COVID-19.\nHere's the link to see a list of antigen swab test sites https://kesehatan.kontan.co.id/news/inilah-daftar-rumah-sakit-dan-klinik-penyedia-tes-pcr-swab-virus-corona?page=all")
