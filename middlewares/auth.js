@@ -42,15 +42,15 @@ function authorization(req, res, next) {
     })
     .then(data => {
         if(data){
-            next()
             if(req.user.id === data.userId) {
+                next()
             }
             else {
                 next({code: 403})
             }
         }
         else {
-            next({code: 404, message: "Food not found"})
+            next({code: 404, message: "Anime not found"})
         }
     })
     .catch(err => {
