@@ -105,16 +105,11 @@ class Controller {
     const id = +req.params.id
     const {title, quantity, price, status} = req.body
     const input = {title, quantity, price, status}
-    console.log(input)
-    console.log(UserId)
-    console.log(id)
     Portofolio.update(input, {
-      where: { id },
+      where: { id, UserId },
       returning: true,
     })
     .then(array => {
-      console.log('>>>>>>>>>>>>>>>>>>>masuk')
-      console.log(array)
       if (array[0]) res.status(200).json(array[1][0])
       else next({code:404})
 
