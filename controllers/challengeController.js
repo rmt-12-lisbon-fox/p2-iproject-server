@@ -26,21 +26,6 @@ class ChallengeController {
         next({ statusCode: 500 });
       });
   }
-  static challengePost(req, res, next) {
-    const { email, password } = req.body;
-    Challenge.create({ email, password })
-      .then((challenge) => {
-        res.status(201).json(challenge);
-      })
-      .catch((err) => {
-        if (err.name === "SequelizeUniqueConstraintError" || err.name === "SequelizeValidationError") {
-          err = err.errors.map((e) => e.message);
-          res.status(400).json({ message: err });
-        } else {
-          next({ statusCode: 500 });
-        }
-      });
-  }
 }
 
 module.exports = ChallengeController;
