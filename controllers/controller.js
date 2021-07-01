@@ -11,10 +11,9 @@ class Controller {
 
     axios.get('https://api.edamam.com/api/recipes/v2?type=public&q=chicken&app_id=f281effa&app_key=4fd220a5347b8cb87f3a9948820a0b18&diet=balanced&imageSize=REGULAR')
     .then(function (response) {
-      console.log(response.data);
       res.status(200).json(response.data.hits)
     }).catch(function (error) {
-      console.error(error);
+      next(error);
     });
   }
 
@@ -79,8 +78,13 @@ class Controller {
 
     getAPIData(food)
     .then(json => {
-      res.status(200).json(json)
-    });
+      if (json.foods.length > 0) {
+        res.status(200).json(json)
+      } else {
+        res.status(404).json({ message : "query not found"})
+      }
+    })
+    .catch(next)
   }
 
   static recordDiet(req, res, next) {

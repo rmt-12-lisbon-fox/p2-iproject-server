@@ -27,7 +27,7 @@ app.get('/diet', controller.getDietData)
 
 
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
+  console.log(`Your app listening at http://localhost:${port}`)
 })
 
 app.use(errorHandler)

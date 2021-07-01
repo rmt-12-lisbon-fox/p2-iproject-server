@@ -1,7 +1,7 @@
 function errorHandler (err, req, res, next) {
   let code = err.code || 500
   let message = err.message || "server eror bang"
-  console.log(err, `<<< 24`)
+  console.log(err, `<<< from error handler`)
 
   if (err.name === "SequelizeValidationError") {
     message = err.errors[0].message

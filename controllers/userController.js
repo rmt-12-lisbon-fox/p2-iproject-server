@@ -23,7 +23,6 @@ class userController {
         })
         .then( user => {
             if (user) {
-                console.log(user, `<<< 26`)
                 // jika email google tsb sdh ada maka kasih JWT
                 // masih bingung kenapa return user, padahal user bukan promise
                 return user
