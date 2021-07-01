@@ -4,7 +4,8 @@ let translate = require('../helpers/translate.js')
 class Controller {
     static getReviews(req, res, next) { // OK
         Review.findAll({
-            include: [Investor, Founder]
+            include: [Investor, Founder],
+            order: [['likes', 'DESC']]
         })
         .then(reviews => {
             res.status(200).json(reviews)
@@ -150,7 +151,8 @@ class Controller {
         
         Review.findByPk(reviewId)
         .then(review => {
-            if (!req.body.language) {
+            if (!req.body.language || req.body.language == '') {
+                console.log(req.body, 'REQ BODYYYYY')
                 res.status(400).json({message: 'Please define your language'})
             } else {
                 req.messageToTranslate = review.review

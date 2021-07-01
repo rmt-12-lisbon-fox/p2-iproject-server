@@ -19,20 +19,25 @@ class Controller {
             newInvestor.website_url = req.body.website_url
         } else if (req.body.website_url.includes("www")) {
             newInvestor.website_url = `https://${req.body.website_url}`
-        } else {
+        } else if (req.body.website_url.length> 0) {
             newInvestor.website_url = `https://www.${req.body.website_url}`
+        } else {
+            newInvestor.website_url = ''
         }
 
         if (req.body.linkedin_url.includes("https://www") || req.body.linkedin_url.includes("http://www")) {
             newInvestor.linkedin_url = req.body.linkedin_url
         } else if (req.body.linkedin_url.includes("www")) {
             newInvestor.linkedin_url = `https://${req.body.linkedin_url}`
-        } else {
+        } else if (req.body.website_url.length> 0) {
             newInvestor.linkedin_url = `https://www.${req.body.linkedin_url}`
+        } else {
+            newInvestor.linkedin_url = ''
         }
 
         newInvestor.investor_type = req.body.investor_type
         newInvestor.status = 'Unverified'
+        newInvestor.requesterId = req.loggedUser.id
         
         Investor.create(newInvestor)
         .then(user => {
@@ -56,9 +61,9 @@ class Controller {
     }
 
     static fetchInvestors(req, res, next) { // OK
-        Investor.findAll({
-            where: {status: 'Verified'}
-        })
+        Investor.findAll({where: {
+            status: 'Verified'
+        }})
         .then(investors => {
             let allInvestors = []
             let investor;
@@ -85,8 +90,11 @@ class Controller {
     }
 
     static fetchAllInvestors(req, res, next) { // OK
-        Investor.findAll()
+        Investor.findAll({
+            order: ['id']
+        })
         .then(investors => {
+            console.log(investors, 'ASDASD')
             let allInvestors = []
             let investor;
             for (let i = 0; i < investors.length; i++) {
@@ -154,12 +162,16 @@ class Controller {
         Investor.findByPk(investorId)
         .then(user => {
             if (user) {
-                investor = user
-                return Investor.update({status: 'Verified'}, {
-                    where: {
-                        id: investorId
-                    }
-                })
+                if(user.status == 'Unverified') {
+                    investor = user
+                    return Investor.update({status: 'Verified'}, {
+                        where: {
+                            id: investorId
+                        }
+                    })    
+                } else {
+                    res.status(404).json({ message: 'error: this user is already verified'})                    
+                }
             } else {
                 res.status(404).json({ message: 'error: user not found'})
             }
