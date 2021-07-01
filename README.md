@@ -304,3 +304,55 @@ _Response (401 - No Auth)_
 }
 ```
 ----
+
+## USER BASIC END POINT
+
+### POST /gauth
+
+This endpoint used to log user in via Google OAuth 2.0
+
+&nbsp;
+
+
+_Request Header_
+
+
+You should first manage to get the google id token via your client then pass it as headers to server
+
+Example Request Header:
+
+```json
+
+{
+    "id_token" : "comeyJhbGciOiJSUzI1NiIsImtpZCI6IjZhMW.QyNmQ5OTJiZTdhNGI2ODliZGNlMTkxMWY0ZTlhZGM.3NWQ5ZjEiLCJ0eXAiOiJKV1QifQ
+"
+}
+
+```
+
+_Response (200 - OK)_
+``` json
+{
+    "access token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJhZG1pbjNAYWRtaW4uY29tIiwiaWF0IjoxNjI0MTE5ODM2fQ.PRQrO5g6w25jDNfRId5EBgOXBp93OL01fsE0UZ6RVTI",
+    "DB-Data": {
+        "id": 3,
+        "username": "JohnDoe",
+        "email": "admin-john@admin.com",
+        "role": "staff",
+        "phoneNumber": "085618452225",
+        "address": "Vanya Park, BSD, Tangerang, Banten",
+        "createdAt": "2021-06-19T16:23:27.365Z",
+        "updatedAt": "2021-06-19T16:23:27.365Z"
+    }
+}
+```
+
+_Response 500_
+```json
+{
+    "message": "The verifyIdToken method requires an ID Token"
+}
+```
+
+
+&nbsp;
