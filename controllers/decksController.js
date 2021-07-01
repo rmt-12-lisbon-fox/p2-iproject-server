@@ -14,11 +14,24 @@ class DecksController {
         const UserId = +req.user.id
         const {name, total, deckCode, qrCode, totalPrice} = req.body
         try {
-            const newDeck = await Deck.create({name, total, deckCode, qrCode, totalPrice, UserId})
-            // deck has been saved
-            await History.create({UserId, description: `Deck named ${newDeck.name} has been created by user id ${UserId}`})
-            res.status(200).json(newDeck)
-        } catch {
+            const foundDeck = await Deck.findOne({where: {name}})
+
+            if (foundDeck) {
+                foundDeck.total = total
+                foundDeck.deckCode = deckCode
+                foundDeck.qrCode = qrCode
+                foundDeck.totalPrice = totalPrice
+
+                await foundDeck.save()
+                await History.create({UserId, description: `Deck named ${foundDeck.name} has been updated by user id ${UserId}`})
+                res.status(200).json(foundDeck)
+            } else {    
+                const newDeck = await Deck.create({name, total, deckCode, qrCode, totalPrice, UserId})
+                await History.create({UserId, description: `Deck named ${newDeck.name} has been created by user id ${UserId}`})
+                res.status(200).json(newDeck)
+            }
+        } catch(err) {
+            console.log(err)
             next({code: 500})
         }
     }

@@ -12,7 +12,8 @@ async function authentication(req, res, next) {
                 username: foundUser.username
             }
             next()
-        } catch {
+        } catch (err){
+            // console.log(err)
             next({ code: 401, msg: 'Invalid access token' })
         }
     } else {
