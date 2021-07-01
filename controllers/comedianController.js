@@ -25,6 +25,16 @@ class ComedianController {
         res.status(500).json({ message: err.message })
       })
   }
+
+  static findComedianById(req, res) {
+    Comedian.findByPk(req.params.id)
+      .then(comedian => {
+        res.status(200).json(comedian)
+      })
+      .catch(err => {
+        res.status(500).json({ message: err.message })
+      })
+  }
 }
 
 module.exports = ComedianController

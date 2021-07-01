@@ -6,7 +6,7 @@ let dadJokes = (req, res) => {
       url: 'https://dad-jokes.p.rapidapi.com/random/joke',
       method: 'GET',
       headers: {
-        'x-rapidapi-key': '35bdcf17c8msh2f9991bf7cd8a0dp1e82a9jsn333b8bf6775a',
+        'x-rapidapi-key': process.env.DAD_JOKES_API,
         'x-rapidapi-host': 'dad-jokes.p.rapidapi.com'
       }
     })
