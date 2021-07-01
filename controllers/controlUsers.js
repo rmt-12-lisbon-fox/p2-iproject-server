@@ -38,7 +38,6 @@ class Controller {
                 email: data.email,
                 id: data.id,
             })
-            console.log(data, access_token);
             
             res.status(200).json({
                 access_token, id: data.id, email: data.email
@@ -53,7 +52,7 @@ class Controller {
         let {image_url, mal_id, title} = req.body
 
         let userId = req.user.id
-        let status = "plan to watch"
+        let status = "Plan to Watch"
         let input = {image_url, mal_id, userId, status, title}
 
         Bookmark.create(input)
@@ -114,18 +113,21 @@ class Controller {
     }
 
     static statusBookmark (req, res, next) {
-        let id = req.params.id
+        let mal_id = req.params.id
         let {status} = req.body
         let input = {status}
 
         Bookmark.update(input, {
-            where: {id},
+            where: {
+                userId: req.user.id,
+                mal_id: req.params.id
+            },
             returning: true
         })
         .then(data => {
-            res.json(data);
-            if (data[0][0] == 1) {
-                res.status(200).json({message: 'delete bookmark success'})
+            if (data[0] == 1) {
+                data = data[1][0]
+                res.status(200).json(data)
             }
         })
         .catch(err => {
