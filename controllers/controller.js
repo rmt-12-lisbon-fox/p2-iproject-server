@@ -126,6 +126,11 @@ class Controller {
     .then(instance => res.status(200).json(instance))
     .catch(_ => next({code:500}))
   }
+  static portofolioDelete(req, res, next) {
+    Portofolio.destroy({ where: { id: +req.params.id } })
+    .then(_ => res.status(200).json({message: 'item has been deleted'}))
+    .catch(_ => next({code:500}))
+  }
 }
 
 module.exports = Controller
