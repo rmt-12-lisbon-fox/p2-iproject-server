@@ -6,10 +6,9 @@ const axios = require("axios");
 const { wordCheck } = require("../helpers/scrabble");
 
 function oxfordDictionary(req, res, next) {
+  console.log(req.body, "udah sampai sini?");
   let { wordInput, wordBase } = req.body;
-  console.log(wordInput, wordBase);
   let words = wordCheck(wordBase, wordInput);
-  console.log("error kah?");
 
   // const fields = "pronunciations";
   const strictMatch = "true";
