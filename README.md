@@ -148,6 +148,8 @@ no body
     "address": ""
 }
 ```
+#### required body parameters
+email, password and name
 
 ### Response
 #### 400 - is empty
@@ -250,6 +252,8 @@ no body
     "comment": "Ini Film bagus banget recommended"
 }
 ```
+#### required body parameters
+title and comment
 
 ### Response
 #### 400 - is empty
@@ -388,6 +392,8 @@ id = Review ID
     "comment": "Ini Film bagus banget recommended"
 }
 ```
+#### required body parameters
+comment
 
 ### Response
 #### 404 - not found
