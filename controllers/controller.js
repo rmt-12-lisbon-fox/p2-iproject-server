@@ -78,9 +78,11 @@ class Controller {
 
     getAPIData(food)
     .then(json => {
+      console.log(json.foods.length, `<<< 81`)
       if (json.foods.length > 0) {
         res.status(200).json(json)
       } else {
+        console.log(`ok`)
         res.status(404).json({ message : "query not found"})
       }
     })
