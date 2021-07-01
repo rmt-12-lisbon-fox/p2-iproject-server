@@ -54,6 +54,8 @@ class Controller {
     }
 
     static share(req,res,next){
+        const UserId = req.user.id;
+        const emailSender = req.user.email;
         const {email,name} = req.body
         
         
@@ -69,7 +71,7 @@ class Controller {
             from: 'safetravel13579@gmail.com',
             to: email,
             subject: 'Travel Place Recomendation',
-            text: `Your friend has send a recommendation for vacation to ${name}`
+            text: `Your friend ${emailSender} has send a recommendation for vacation to ${name}`
           };
           
           transporter.sendMail(mailOptions, function(error, info){

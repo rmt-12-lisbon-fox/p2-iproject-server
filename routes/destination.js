@@ -3,11 +3,13 @@ const router = express.Router()
 const controller = require('../controllers/destinationController');
 const auth = require('../middlewares/auth');
 
+router.post('/citiesdestination', controller.getCityDestination)
+
 router.post('/countriesposition', controller.getCountriesPosition)
 
-router.get('/countrydetail', controller.getCountryDetail)
+// router.get('/countrydetail', controller.getCountryDetail)
 
-router.get('/travelplaces', controller.getTravelPlaces)
+// router.get('/travelplaces', controller.getTravelPlaces)
 
 router.post('/destinationinfo', controller.getdestinationinfo)
 

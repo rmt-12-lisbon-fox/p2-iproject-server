@@ -8,7 +8,7 @@ router.post('/register', Controller.register)
 
 router.post('/login', Controller.login) 
 
-router.post('/share', Controller.share) 
+router.post('/share',auth.authe ,Controller.share) 
 
 router.use(errorHandler)
 
