@@ -2,20 +2,31 @@ const { getAPIData, searchById } = require('../helpers/fetch')
 const { User, Food, Diet } = require('../models')
 const { Op } = require("sequelize");
 const createChart = require('../helpers/chart')
+const axios = require("axios").default;
 
 
 class Controller {
 
+  static recipe(req, res, next) {
+
+    axios.get('https://api.edamam.com/api/recipes/v2?type=public&q=chicken&app_id=f281effa&app_key=4fd220a5347b8cb87f3a9948820a0b18&diet=balanced&imageSize=REGULAR')
+    .then(function (response) {
+      console.log(response.data);
+      res.status(200).json(response.data.hits)
+    }).catch(function (error) {
+      console.error(error);
+    });
+  }
+
   static getChart(req, res, next) {
-    let startDate = new Date(2020, 5, 30, 11, 33)
-    let endDate = new Date()
 
     Diet.findAll({
       where : {
         createdAt : {
           [Op.lt]: new Date(),
           [Op.gt]: new Date(new Date() - 24 * 60 * 60 * 1000)
-        }
+        },
+        userId : req.user.id
       },
       include : [ Food ]
     })
@@ -33,14 +44,16 @@ class Controller {
       let carbohydrate = arr.map( el => el.carbohydrate)
 
       const reducer = (accumulator, currentValue) => accumulator + currentValue;
-      sum.protein = proteins.reduce(reducer)
-      sum.energy = energy.reduce(reducer)
-      sum.fat = fat.reduce(reducer)
-      sum.sugars = sugars.reduce(reducer)
-      sum.cholesterol = cholesterol.reduce(reducer)
-      sum.carbohydrate = carbohydrate.reduce(reducer)
+      sum.p = proteins.reduce(reducer)
+      sum.e = energy.reduce(reducer)
+      sum.f = fat.reduce(reducer)
+      sum.s = sugars.reduce(reducer)
+      sum.co = cholesterol.reduce(reducer)
+      sum.ca = carbohydrate.reduce(reducer)
 
-      let chartURL = createChart()
+      let { p, e, f, s, co, ca } = sum
+
+      let chartURL = createChart(p, f, s, co, ca, e)
       res.status(200).json({ chartURL: chartURL})
     })
     .catch(next)

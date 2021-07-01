@@ -1,6 +1,9 @@
 const QuickChart = require('quickchart-js');
 
-function createChart() {
+function createChart(p, f, s, co, ca, e) {
+
+  e = e/10
+
 // Options
 let graphOptions = {
   maintainAspectRatio: true,
@@ -38,11 +41,11 @@ let graphOptions = {
 
 // Data
 let graphData = {
-    labels: ["Protein", "Fat", "Sugars", "Cholesterol", "Carbohydrate"],
+    labels: ["Protein", "Fat", "Sugars", "Cholesterol", "Carbohydrate", "Energy"],
     datasets: [
       {
         label: "Your Intake",
-        data: [29, 135, 130, 278, 260],
+        data: [p, f, s, co, ca, e],
         backgroundColor: ['rgba(63, 81, 181, 1)'],
         borderColor: 'rgba(63, 81, 181, 1)',
       },
@@ -50,7 +53,7 @@ let graphData = {
         label: "Ideal RDA",
         backgroundColor: ['rgba(89,189,240, 0.75)'],
         borderColor: 'rgba(89,189,240, 0.75)',
-        data: [65, 75, 30, 300, 430],
+        data: [65, 75, 30, 300, 430, 265],
       }
     ]
   };
@@ -65,6 +68,7 @@ let graphData = {
     .setWidth(800)
     .setHeight(400)
     .setBackgroundColor('transparent');
+    
   
   // Print the chart URL
   return (myChart.getUrl());

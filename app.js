@@ -15,13 +15,12 @@ app.use(cors())
 
 
 
-// app.post('/login', controller.login)
-// app.post('/register', controller.register)
 app.post('/gauth', userController.googleAuth)
 app.get('/api', controller.getAPI)
+app.get('/recipe', controller.recipe)
 
-app.get('/chart', controller.getChart)
 app.use(auth)
+app.get('/chart', controller.getChart)
 
 app.get('/record', controller.recordDiet)
 app.get('/diet', controller.getDietData)
