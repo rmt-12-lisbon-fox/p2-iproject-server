@@ -90,7 +90,8 @@ class Controller {
     }).catch(_ => { next({code:500}) })
   }
   static portofolioPOST(req, res, next) {
-    const {title, quantity, price, status, UserId} = req.body
+    const UserId = +req.user.id
+    const {title, quantity, price, status} = req.body
     const input = {title, quantity, price, status, UserId}
     Portofolio.create(input)
     .then(instance => res.status(201).json(instance))
