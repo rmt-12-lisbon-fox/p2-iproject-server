@@ -69,7 +69,7 @@ class ActionCheckCovid(Action):
         # print(f"USER INPUT di action <<<<< {userInput}")
 
         try:
-          url = 'http://localhost:3000/checkCovidSymptoms'
+          url = 'https://deco-express-2.herokuapp.com/checkCovidSymptoms'
           # print(f"{userInput} <<<<< USER INPUT")
           response = requests.get(url, data = userInput)
           json_data = response.json()
@@ -78,7 +78,8 @@ class ActionCheckCovid(Action):
             dispatcher.utter_message("\nYou have covid-19 symptoms!\nPlease go to your nearest hospital, here's a list of hospital you can go to https://covid19.go.id/daftar-rumah-sakit-rujukan")
           else:
             dispatcher.utter_message("\nGreat news, you don't have covid-19 symptoms!\nIf you still need examination, please contact your nearest hospital.\nHere's a list of hospital you can go to https://covid19.go.id/daftar-rumah-sakit-rujukan")
-        except:
+        except Exception as e:
+            print(e)
             dispatcher.utter_message("I'm sorry, there's something wrong with your input or the server. Please try again later")
 
 
@@ -105,16 +106,18 @@ class ActionCheckCough(Action):
       urlSlot = tracker.get_slot("url")
 
       try:
-        url = 'http://localhost:3000/checkCoughType'
+        url = 'https://deco-express-2.herokuapp.com/checkCoughType'
         response = requests.get(url, data = { "url" : urlSlot })
         json_data = response.json()
+        print(json_data)
         result = json_data["result"]
         result_text = ''
         for data in result:
           result_text += f"The cough type is {data['coughType']} from {data['startSeconds']} to {data['endSeconds']} seconds\n"
         # print(f"{result_text} <<<< RESULT TEXT")
         dispatcher.utter_message(result_text + "\nIf you have a dry cough, please check for COVID-19.\nHere's the link to see a list of antigen swab test sites https://kesehatan.kontan.co.id/news/inilah-daftar-rumah-sakit-dan-klinik-penyedia-tes-pcr-swab-virus-corona?page=all")
-      except:
+      except Exception as e:
+        print(e)
         dispatcher.utter_message("I'm sorry, there's something wrong with your input or the server. Please try again later")
 
 
