@@ -181,7 +181,8 @@ class Controller {
         })
         .then(founder => {
             phoneNumber = founder.phoneNumber
-            let message = `Hi ${founder.first_name}!\nThank you for registering a new investor at Rate Your Investor. \n\nWe are letting you know that ${investor.name} is now verified.\n\nYou can start writing a new review for them!\n\nFollow this link to write a new review: <link>`
+            let link = 'https://rate-your-investor.web.app/login'
+            let message = `Hi ${founder.first_name}!\nThank you for registering a new investor at Rate Your Investor. \n\nWe are letting you know that ${investor.name} is now verified.\n\nYou can start writing a new review for them!\n\nFollow this link to write a new review: ${link}`
 
             req.notifPhone = phoneNumber.toString()
             req.notifMessage = message

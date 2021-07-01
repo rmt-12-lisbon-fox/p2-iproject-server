@@ -6,9 +6,12 @@ function sendEmail(founder) {
 
     Founder.findByPk(founderId)
     .then(founder => {
-        email = founder.email
-        first_name = founder.first_name
+        let email = founder.email
+        let id = founder.id
+
+        let first_name = founder.first_name
         name = `${founder.first_name} ${founder.last_name}`
+        let link = `https://rate-your-investor.web.app/verify/${id}`
 
         let content = `
         <tbody>
@@ -33,7 +36,7 @@ function sendEmail(founder) {
         </td>
         </tr>
         <tr>
-        <td style="color:#584040;font-family:adobe-clean,Helvetica Neue,Helvetica,Verdana,Arial,sans-serif;font-size:18px;line-height:22px;padding-top:35px;padding-bottom:5px">Please verify your email address by clicking on <a href="https://rate-your-investor.web.app/founders/verify/${founderId}" style="color:#1473e6;text-decoration:none" target="_blank">this link</a></td>
+        <td style="color:#584040;font-family:adobe-clean,Helvetica Neue,Helvetica,Verdana,Arial,sans-serif;font-size:18px;line-height:22px;padding-top:35px;padding-bottom:5px">Please verify your email address by clicking on <a href="https://rate-your-investor.web.app/verify/${id}" style="color:#1473e6;text-decoration:none" target="_blank">this link</a></td>
         </tr><br><br>
         <tr>
         <td style="color:#2c2c2c;font-family:adobe-clean,Helvetica Neue,Helvetica,Verdana,Arial,sans-serif;font-size:18px;line-height:22px;padding-bottom:35px">If you have any further questions, don't hesitate to contact us by replying to this e-mail.</td>
