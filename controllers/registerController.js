@@ -6,7 +6,7 @@ class RegisterController {
     const { email, password, fullName } = req.body;
     User.create({ email, password, name: fullName, role: "member", typeUser: "standard", money: 0 })
       .then((user) => {
-        res.status(201).json({ id: user.id, email: user.email });
+        res.status(201).json({ id: user.id, email: user.email, fullName: user.name });
       })
       .catch((err) => {
         if (err.name === "SequelizeUniqueConstraintError" || err.name === "SequelizeValidationError") {
