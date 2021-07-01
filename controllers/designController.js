@@ -136,7 +136,6 @@ class Controller {
             UsersId: req.user.id,
             CategoriesId: req.body.CategoriesId
         }
-        console.log(input)
 
         if (req.image && req.image[0]){
             input.image1 = req.image[0]
@@ -175,9 +174,7 @@ class Controller {
     }
     static sendEmail(req, res){
         const input = {
-            from: req.body.from,
             to: req.body.to,
-            password: req.body.password,
             subject: req.body.subject,
             content: req.body.content
         }
@@ -185,8 +182,8 @@ class Controller {
         const transporter = nodemailer.createTransport({
             service: 'hotmail',
             auth: {
-                user: input.from,
-                pass: input.password
+                user: 'sennadwip@outlook.com',
+                pass: 'Laras12345678'
             },
             tls: {
                 rejectUnauthorized: false
@@ -194,7 +191,7 @@ class Controller {
         })
 
         const options = {
-            from: input.from,
+            from: 'sennadwip@outlook.com',
             to: input.to,
             subject: input.subject,
             text: input.content
