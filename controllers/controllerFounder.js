@@ -153,7 +153,15 @@ class Controller {
                 .catch(err => {
                     next({ name: err.name, validation: err.errors, code: 500, message: err.message })
                 })    
-            }
+            } else {
+                if (fileType && !fileSize) {
+                    next({ code: 400, message: 'Image size exceeds maximum limit. Max. size is 225kB' })
+                } else if (!fileType && fileSize) {
+                    next({ code: 400, message: 'Invalid image format. Only formats .jpg, .jpeg, .png, are allowed'})
+                } else {
+                    next({ code: 400, message: 'Invalid image format & file size. Only formats .jpg, .jpeg, .png, are allowed, with max. size of 225kB' })
+                }
+            }  
         }
     }
 
