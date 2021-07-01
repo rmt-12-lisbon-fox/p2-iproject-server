@@ -6,6 +6,7 @@ const authFounder = require ('../middlewares/authorizationFounder.js')
 const adminAuth = require ('../middlewares/authorizationAdmin.js')
 
 router.get('/', ControllerInvestor.fetchInvestors) // OK
+router.get('/all', ControllerInvestor.fetchAllInvestors) // OK
 router.get('/:id', ControllerInvestor.fetchInvestorProfile) // OK
 
 router.use(authentication)

@@ -23,8 +23,30 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     FounderId: DataTypes.INTEGER,
-    InvestorId: DataTypes.INTEGER,
-    reviewer: DataTypes.STRING,
+    InvestorId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: "Investor can not be blank"
+        },
+        notEmpty: {
+          msg: "Investor can not be blank"
+        }
+      }
+    },
+    reviewer: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: "Please fill your reviewer alias"
+        },
+        notEmpty: {
+          msg: "Please fill your reviewer alias"
+        }
+      }
+    },
     title: {
       type: DataTypes.STRING,
       allowNull: false,

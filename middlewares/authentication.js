@@ -12,6 +12,7 @@ function authentication(req, res, next) {
             .then(loggedUser => { // if user is valid
                 if (loggedUser) {
                     req.loggedUser = loggedUser // saved as object
+                    console.log(loggedUser, 'LOGGEDUSER')
                     next()
                 } else { // if user is not valid (removed, etc.)
                     next({ code: 401, message: 'Invalid User / Login Credentials' })

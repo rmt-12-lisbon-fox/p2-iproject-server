@@ -6,7 +6,8 @@ const authentication = require ('../middlewares/authentication.js')
 router.get('/', ControllerFounder.fetchFounders) // OK
 router.get('/:id', ControllerFounder.fetchFounderProfile) // OK
 
-router.use(authentication)
 router.patch('/verify/:id', ControllerFounder.verifyFounder) // OK
+
+router.use(authentication)
 
 module.exports = router
