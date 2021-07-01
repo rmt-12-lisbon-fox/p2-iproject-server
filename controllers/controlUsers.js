@@ -70,9 +70,18 @@ class Controller {
     }
 
     static findBookmark (req, res, next) {
+        let {status} = req.query
         let id = req.user.id
+        let where = {userId: id}
+
+        if (status != 'All') {
+            where.status = status
+        }
+        
+        // console.log(where);
+
         Bookmark.findAll({
-            where: {userId: id}
+            where
         })
         .then(data => {
             res.status(200).json(data)
