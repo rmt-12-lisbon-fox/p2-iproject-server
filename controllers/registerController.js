@@ -2,7 +2,6 @@ const { User } = require("../models");
 
 class RegisterController {
   static registerPost(req, res, next) {
-    console.log(req.body);
     const { email, password, fullName } = req.body;
     User.create({ email, password, name: fullName, role: "member", typeUser: "standard", money: 0 })
       .then((user) => {
