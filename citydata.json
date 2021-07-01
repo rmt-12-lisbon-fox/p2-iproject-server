@@ -1,0 +1,2582 @@
+[
+    {
+        "name": "ACEH BARAT",
+        "lat": 4.4543,
+        "long": 96.1527
+    },
+    {
+        "name": "ACEH BARAT DAYA",
+        "lat": 3.7963,
+        "long": 97.0068
+    },
+    {
+        "name": "ACEH BESAR",
+        "lat": 5.4529,
+        "long": 95.4778
+    },
+    {
+        "name": "ACEH JAYA",
+        "lat": 4.7874,
+        "long": 95.6458
+    },
+    {
+        "name": "ACEH SELATAN",
+        "lat": 3.3115,
+        "long": 97.3517
+    },
+    {
+        "name": "ACEH SINGKIL",
+        "lat": 2.3589,
+        "long": 97.8722
+    },
+    {
+        "name": "ACEH TAMIANG",
+        "lat": 4.2329,
+        "long": 98.0029
+    },
+    {
+        "name": "ACEH TENGAH",
+        "lat": 4.4483,
+        "long": 96.8351
+    },
+    {
+        "name": "ACEH TENGGARA",
+        "lat": 3.3089,
+        "long": 97.6982
+    },
+    {
+        "name": "ACEH TIMUR",
+        "lat": 4.5224,
+        "long": 97.6114
+    },
+    {
+        "name": "ACEH UTARA",
+        "lat": 4.9786,
+        "long": 97.2221
+    },
+    {
+        "name": "BENER MERIAH",
+        "lat": 4.7514,
+        "long": 96.9525
+    },
+    {
+        "name": "BIREUEN",
+        "lat": 5.1086,
+        "long": 96.6638
+    },
+    {
+        "name": "GAYO LUES",
+        "lat": 3.9552,
+        "long": 97.3517
+    },
+    {
+        "name": "NAGAN RAYA",
+        "lat": 4.1248,
+        "long": 96.493
+    },
+    {
+        "name": "PIDIE",
+        "lat": 5.0743,
+        "long": 95.941
+    },
+    {
+        "name": "PIDIE JAYA",
+        "lat": 5.1548,
+        "long": 96.1951
+    },
+    {
+        "name": "SIMEULUE",
+        "lat": 2.644,
+        "long": 96.0256
+    },
+    {
+        "name": "BANDA ACEH",
+        "lat": 5.5483,
+        "long": 95.3238
+    },
+    {
+        "name": "LANGSA",
+        "lat": 4.4725,
+        "long": 97.9756
+    },
+    {
+        "name": "LHOKSEUMAWE",
+        "lat": 5.1812,
+        "long": 97.1413
+    },
+    {
+        "name": "SABANG",
+        "lat": 5.8926,
+        "long": 95.3238
+    },
+    {
+        "name": "SUBULUSSALAM",
+        "lat": 2.7121,
+        "long": 97.9157
+    },
+    {
+        "name": "ASAHAN",
+        "lat": 2.8175,
+        "long": 99.6341
+    },
+    {
+        "name": "BATUBARA",
+        "lat": 3.1741,
+        "long": 99.5006
+    },
+    {
+        "name": "DAIRI",
+        "lat": 2.8676,
+        "long": 98.2651
+    },
+    {
+        "name": "DELI SERDANG",
+        "lat": 3.4202,
+        "long": 98.7041
+    },
+    {
+        "name": "HUMBANG HASUNDUTAN",
+        "lat": 2.1989,
+        "long": 98.5721
+    },
+    {
+        "name": "KARO",
+        "lat": 3.1053,
+        "long": 98.2651
+    },
+    {
+        "name": "LABUHANBATU",
+        "lat": 2.344,
+        "long": 100.1703
+    },
+    {
+        "name": "LABUHANBATU SELATAN",
+        "lat": 1.8799,
+        "long": 100.1703
+    },
+    {
+        "name": "LABUHANBATU UTARA",
+        "lat": 2.3466,
+        "long": 99.8125
+    },
+    {
+        "name": "LANGKAT",
+        "lat": 3.8654,
+        "long": 98.3088
+    },
+    {
+        "name": "MANDAILING NATAL",
+        "lat": 0.7432,
+        "long": 99.3673
+    },
+    {
+        "name": "NIAS",
+        "lat": 1.0869,
+        "long": 97.7417
+    },
+    {
+        "name": "NIAS BARAT",
+        "lat": 1.0116,
+        "long": 97.4814
+    },
+    {
+        "name": "NIAS SELATAN",
+        "lat": 0.7086,
+        "long": 97.8286
+    },
+    {
+        "name": "NIAS UTARA",
+        "lat": 1.3166,
+        "long": 97.3949
+    },
+    {
+        "name": "PADANG LAWAS",
+        "lat": 1.1187,
+        "long": 99.8125
+    },
+    {
+        "name": "PADANG LAWAS UTARA",
+        "lat": 1.5759,
+        "long": 99.6341
+    },
+    {
+        "name": "PAKPAK BHARAT",
+        "lat": 2.5135,
+        "long": 98.2213
+    },
+    {
+        "name": "SAMOSIR",
+        "lat": 2.6274,
+        "long": 98.7922
+    },
+    {
+        "name": "SERDANG BEDAGAI",
+        "lat": 3.3372,
+        "long": 99.0571
+    },
+    {
+        "name": "SIMALUNGUN",
+        "lat": 2.9782,
+        "long": 99.2786
+    },
+    {
+        "name": "TAPANULI SELATAN",
+        "lat": 1.5775,
+        "long": 99.2786
+    },
+    {
+        "name": "TAPANULI TENGAH",
+        "lat": 1.8493,
+        "long": 98.7041
+    },
+    {
+        "name": "TAPANULI UTARA",
+        "lat": 2.0405,
+        "long": 99.1013
+    },
+    {
+        "name": "TOBA SAMOSIR",
+        "lat": 2.3502,
+        "long": 99.2786
+    },
+    {
+        "name": "BINJAI",
+        "lat": 3.6135,
+        "long": 98.5025
+    },
+    {
+        "name": "GUNUNGSITOLI",
+        "lat": 1.2805,
+        "long": 97.6147
+    },
+    {
+        "name": "MEDAN",
+        "lat": 3.5952,
+        "long": 98.6722
+    },
+    {
+        "name": "PADANGSIDEMPUAN",
+        "lat": 1.3722,
+        "long": 99.273
+    },
+    {
+        "name": "PEMATANGSIANTAR",
+        "lat": 2.97,
+        "long": 99.0682
+    },
+    {
+        "name": "SIBOLGA",
+        "lat": 1.7368,
+        "long": 98.7851
+    },
+    {
+        "name": "TANJUNGBALAI",
+        "lat": 2.9662,
+        "long": 99.7985
+    },
+    {
+        "name": "TEBING TINGGI",
+        "lat": 3.3263,
+        "long": 99.1567
+    },
+    {
+        "name": "AGAM",
+        "lat": -0.2209,
+        "long": 100.1703
+    },
+    {
+        "name": "DHARMASRAYA",
+        "lat": -1.1121,
+        "long": 101.6158
+    },
+    {
+        "name": "KEPULAUAN MENTAWAI",
+        "lat": -1.426,
+        "long": 98.9245
+    },
+    {
+        "name": "LIMA PULUH KOTA",
+        "lat": 0.0734,
+        "long": 100.5296
+    },
+    {
+        "name": "PADANG PARIAMAN",
+        "lat": -0.5547,
+        "long": 100.2152
+    },
+    {
+        "name": "PASAMAN",
+        "lat": 0.2209,
+        "long": 100.1703
+    },
+    {
+        "name": "PASAMAN BARAT",
+        "lat": 0.2213,
+        "long": 99.6341
+    },
+    {
+        "name": "PESISIR SELATAN",
+        "lat": -1.7223,
+        "long": 100.8903
+    },
+    {
+        "name": "SIJUNJUNG",
+        "lat": -0.6647,
+        "long": 101.0712
+    },
+    {
+        "name": "SOLOK",
+        "lat": -0.9644,
+        "long": 100.8903
+    },
+    {
+        "name": "SOLOK SELATAN",
+        "lat": -1.4157,
+        "long": 101.2524
+    },
+    {
+        "name": "TANAH DATAR",
+        "lat": -0.4797,
+        "long": 100.5746
+    },
+    {
+        "name": "BUKITTINGGI",
+        "lat": -0.3039,
+        "long": 100.3835
+    },
+    {
+        "name": "PADANG",
+        "lat": -0.9471,
+        "long": 100.4172
+    },
+    {
+        "name": "PADANGPANJANG",
+        "lat": -0.4661,
+        "long": 100.3984
+    },
+    {
+        "name": "PARIAMAN",
+        "lat": -0.6257,
+        "long": 100.1233
+    },
+    {
+        "name": "PAYAKUMBUH",
+        "lat": -0.2298,
+        "long": 100.6309
+    },
+    {
+        "name": "SAWAHLUNTO",
+        "lat": -0.6841,
+        "long": 100.7323
+    },
+    {
+        "name": "SOLOK",
+        "lat": -0.7885,
+        "long": 100.655
+    },
+    {
+        "name": "BENGKALIS",
+        "lat": 1.4139,
+        "long": 101.6158
+    },
+    {
+        "name": "INDRAGIRI HILIR",
+        "lat": -0.1457,
+        "long": 102.9896
+    },
+    {
+        "name": "INDRAGIRI HULU",
+        "lat": -0.7361,
+        "long": 102.2548
+    },
+    {
+        "name": "KAMPAR",
+        "lat": 0.1467,
+        "long": 101.1617
+    },
+    {
+        "name": "KEPULAUAN MERANTI",
+        "lat": 0.9209,
+        "long": 102.6676
+    },
+    {
+        "name": "KUANTAN SINGINGI",
+        "lat": -0.4412,
+        "long": 101.5248
+    },
+    {
+        "name": "PELALAWAN",
+        "lat": 0.1461,
+        "long": 102.2548
+    },
+    {
+        "name": "ROKAN HILIR",
+        "lat": 1.6464,
+        "long": 100.8
+    },
+    {
+        "name": "ROKAN HULU",
+        "lat": 1.0411,
+        "long": 100.4397
+    },
+    {
+        "name": "SIAK",
+        "lat": 0.8119,
+        "long": 101.798
+    },
+    {
+        "name": "DUMAI",
+        "lat": 1.6666,
+        "long": 101.4002
+    },
+    {
+        "name": "PEKANBARU",
+        "lat": 0.5071,
+        "long": 101.4478
+    },
+    {
+        "name": "BINTAN",
+        "lat": 1.0619,
+        "long": 104.5189
+    },
+    {
+        "name": "KARIMUN",
+        "lat": 0.7698,
+        "long": 103.4049
+    },
+    {
+        "name": "KEPULAUAN ANAMBAS",
+        "lat": 3.1055,
+        "long": 105.6537
+    },
+    {
+        "name": "LINGGA",
+        "lat": -0.4726,
+        "long": 104.4258
+    },
+    {
+        "name": "NATUNA",
+        "lat": 4,
+        "long": 108.25
+    },
+    {
+        "name": "BATAM",
+        "lat": 1.1301,
+        "long": 104.0529
+    },
+    {
+        "name": "TANJUNG PINANG",
+        "lat": 0.9186,
+        "long": 104.4665
+    },
+    {
+        "name": "PULAU TAMBELAN BINTAN",
+        "lat": 1.1216,
+        "long": 107.3259
+    },
+    {
+        "name": "PEKAJANG LINGGA",
+        "lat": -0.0752,
+        "long": 104.6305
+    },
+    {
+        "name": "PULAU SERASAN NATUNA",
+        "lat": 2.5179,
+        "long": 109.0513
+    },
+    {
+        "name": "PULAU MIDAI NATUNA",
+        "lat": 2.9979,
+        "long": 107.7755
+    },
+    {
+        "name": "PULAU LAUT NATUNA",
+        "lat": 4.7103,
+        "long": 107.971
+    },
+    {
+        "name": "BATANGHARI",
+        "lat": -1.7084,
+        "long": 103.0818
+    },
+    {
+        "name": "BUNGO",
+        "lat": -1.6401,
+        "long": 101.8892
+    },
+    {
+        "name": "KERINCI",
+        "lat": -1.872,
+        "long": 101.4339
+    },
+    {
+        "name": "MERANGIN",
+        "lat": -2.1753,
+        "long": 101.9805
+    },
+    {
+        "name": "MUARO JAMBI",
+        "lat": -1.5521,
+        "long": 103.8216
+    },
+    {
+        "name": "SAROLANGUN",
+        "lat": -2.323,
+        "long": 102.7135
+    },
+    {
+        "name": "TANJUNG JABUNG BARAT",
+        "lat": -1.1058,
+        "long": 103.0818
+    },
+    {
+        "name": "TANJUNG JABUNG TIMUR",
+        "lat": -1.1024,
+        "long": 103.8216
+    },
+    {
+        "name": "TEBO",
+        "lat": -1.2593,
+        "long": 102.3464
+    },
+    {
+        "name": "JAMBI",
+        "lat": -1.6101,
+        "long": 103.6131
+    },
+    {
+        "name": "SUNGAI PENUH",
+        "lat": -2.0634,
+        "long": 101.3947
+    },
+    {
+        "name": "BENGKULU SELATAN",
+        "lat": -4.3248,
+        "long": 103.0357
+    },
+    {
+        "name": "BENGKULU TENGAH",
+        "lat": -3.6962,
+        "long": 102.3922
+    },
+    {
+        "name": "BENGKULU UTARA",
+        "lat": -3.2663,
+        "long": 101.9805
+    },
+    {
+        "name": "KAUR",
+        "lat": -4.5216,
+        "long": 103.2663
+    },
+    {
+        "name": "KEPAHIANG",
+        "lat": -3.613,
+        "long": 102.6676
+    },
+    {
+        "name": "LEBONG",
+        "lat": -3.1455,
+        "long": 102.209
+    },
+    {
+        "name": "MUKOMUKO",
+        "lat": -2.6449,
+        "long": 101.4339
+    },
+    {
+        "name": "REJANG LEBONG",
+        "lat": -3.4548,
+        "long": 102.6676
+    },
+    {
+        "name": "SELUMA",
+        "lat": -4.0499,
+        "long": 102.7135
+    },
+    {
+        "name": "BENGKULU",
+        "lat": -3.7928,
+        "long": 102.2608
+    },
+    {
+        "name": "BANYUASIN",
+        "lat": -2.6096,
+        "long": 104.7521
+    },
+    {
+        "name": "EMPAT LAWANG",
+        "lat": -3.7286,
+        "long": 102.8975
+    },
+    {
+        "name": "LAHAT",
+        "lat": -3.8009,
+        "long": 103.3587
+    },
+    {
+        "name": "MUARA ENIM",
+        "lat": -3.7114,
+        "long": 104.0072
+    },
+    {
+        "name": "MUSI BANYUASIN",
+        "lat": -2.5442,
+        "long": 103.7289
+    },
+    {
+        "name": "MUSI RAWAS",
+        "lat": -3.0957,
+        "long": 103.0818
+    },
+    {
+        "name": "MUSI RAWAS UTARA",
+        "lat": -2.7878,
+        "long": 102.7135
+    },
+    {
+        "name": "OGAN ILIR",
+        "lat": -3.4265,
+        "long": 104.6121
+    },
+    {
+        "name": "OGAN KOMERING ILIR",
+        "lat": -3.456,
+        "long": 105.2195
+    },
+    {
+        "name": "OGAN KOMERING ULU",
+        "lat": -4.0283,
+        "long": 104.0072
+    },
+    {
+        "name": "OGAN KOMERING ULU SELATAN",
+        "lat": -4.6682,
+        "long": 104.0072
+    },
+    {
+        "name": "OGAN KOMERING ULU TIMUR",
+        "lat": -3.8568,
+        "long": 104.7521
+    },
+    {
+        "name": "PENUKAL ABAB LEMATANG ILIR",
+        "lat": -3.2398,
+        "long": 104.0072
+    },
+    {
+        "name": "LUBUKLINGGAU",
+        "lat": -3.2996,
+        "long": 102.8572
+    },
+    {
+        "name": "PAGAR ALAM",
+        "lat": -4.042,
+        "long": 103.2279
+    },
+    {
+        "name": "PALEMBANG",
+        "lat": -2.9761,
+        "long": 104.7754
+    },
+    {
+        "name": "PRABUMULIH",
+        "lat": -3.4214,
+        "long": 104.2437
+    },
+    {
+        "name": "BANGKA",
+        "lat": -1.8743,
+        "long": 105.923
+    },
+    {
+        "name": "BANGKA BARAT",
+        "lat": -1.8405,
+        "long": 105.5005
+    },
+    {
+        "name": "BANGKA SELATAN",
+        "lat": -2.7411,
+        "long": 106.4406
+    },
+    {
+        "name": "BANGKA TENGAH",
+        "lat": -2.4008,
+        "long": 106.2051
+    },
+    {
+        "name": "BELITUNG",
+        "lat": -2.7217,
+        "long": 107.7636
+    },
+    {
+        "name": "BELITUNG TIMUR",
+        "lat": -2.8678,
+        "long": 108.1429
+    },
+    {
+        "name": "PANGKAL PINANG",
+        "lat": -2.1316,
+        "long": 106.1169
+    },
+    {
+        "name": "LAMPUNG TENGAH",
+        "lat": -4.8008,
+        "long": 105.3131
+    },
+    {
+        "name": "LAMPUNG UTARA",
+        "lat": -4.8134,
+        "long": 104.7521
+    },
+    {
+        "name": "LAMPUNG SELATAN",
+        "lat": -5.5623,
+        "long": 105.5474
+    },
+    {
+        "name": "LAMPUNG BARAT",
+        "lat": -5.1095,
+        "long": 104.1466
+    },
+    {
+        "name": "LAMPUNG TIMUR",
+        "lat": -5.1135,
+        "long": 105.6882
+    },
+    {
+        "name": "MESUJI",
+        "lat": -4.0045,
+        "long": 105.3131
+    },
+    {
+        "name": "PESAWARAN",
+        "lat": -5.4932,
+        "long": 105.0791
+    },
+    {
+        "name": "PESISIR BARAT",
+        "lat": -5.2928,
+        "long": 104.1234
+    },
+    {
+        "name": "PRINGSEWU",
+        "lat": -5.3331,
+        "long": 104.9856
+    },
+    {
+        "name": "TULANG BAWANG",
+        "lat": -4.3177,
+        "long": 105.5005
+    },
+    {
+        "name": "TULANG BAWANG BARAT",
+        "lat": -4.5257,
+        "long": 105.0791
+    },
+    {
+        "name": "TANGGAMUS",
+        "lat": -5.3027,
+        "long": 104.5655
+    },
+    {
+        "name": "WAY KANAN",
+        "lat": -4.4964,
+        "long": 104.5655
+    },
+    {
+        "name": "BANDAR LAMPUNG",
+        "lat": -5.3971,
+        "long": 105.2668
+    },
+    {
+        "name": "METRO",
+        "lat": -5.1178,
+        "long": 105.3073
+    },
+    {
+        "name": "LEBAK",
+        "lat": -6.5644,
+        "long": 106.2522
+    },
+    {
+        "name": "PANDEGLANG",
+        "lat": -6.7483,
+        "long": 105.6882
+    },
+    {
+        "name": "SERANG",
+        "lat": -6.1397,
+        "long": 106.0405
+    },
+    {
+        "name": "TANGERANG",
+        "lat": -6.1872,
+        "long": 106.4877
+    },
+    {
+        "name": "CILEGON",
+        "lat": -6.0025,
+        "long": 106.0111
+    },
+    {
+        "name": "SERANG",
+        "lat": -6.1104,
+        "long": 106.164
+    },
+    {
+        "name": "TANGERANG",
+        "lat": -6.2024,
+        "long": 106.6527
+    },
+    {
+        "name": "TANGERANG SELATAN",
+        "lat": -6.2835,
+        "long": 106.7113
+    },
+    {
+        "name": "BANDUNG",
+        "lat": -7.1341,
+        "long": 107.6215
+    },
+    {
+        "name": "BANDUNG BARAT",
+        "lat": -6.8652,
+        "long": 107.492
+    },
+    {
+        "name": "BEKASI",
+        "lat": -6.2474,
+        "long": 107.1485
+    },
+    {
+        "name": "BOGOR",
+        "lat": -6.5518,
+        "long": 106.6291
+    },
+    {
+        "name": "CIAMIS",
+        "lat": -7.3321,
+        "long": 108.3493
+    },
+    {
+        "name": "CIANJUR",
+        "lat": -7.358,
+        "long": 107.1957
+    },
+    {
+        "name": "CIREBON",
+        "lat": -6.6899,
+        "long": 108.4751
+    },
+    {
+        "name": "GARUT",
+        "lat": -7.5012,
+        "long": 107.7636
+    },
+    {
+        "name": "INDRAMAYU",
+        "lat": -6.3373,
+        "long": 108.3258
+    },
+    {
+        "name": "KARAWANG",
+        "lat": -6.3227,
+        "long": 107.3376
+    },
+    {
+        "name": "KUNINGAN",
+        "lat": -7.0138,
+        "long": 108.5701
+    },
+    {
+        "name": "MAJALENGKA",
+        "lat": -6.7791,
+        "long": 108.2852
+    },
+    {
+        "name": "PANGANDARAN",
+        "lat": -7.6151,
+        "long": 108.4988
+    },
+    {
+        "name": "PURWAKARTA",
+        "lat": -6.5649,
+        "long": 107.4322
+    },
+    {
+        "name": "SUBANG",
+        "lat": -6.3488,
+        "long": 107.7636
+    },
+    {
+        "name": "SUKABUMI",
+        "lat": -6.8649,
+        "long": 106.9536
+    },
+    {
+        "name": "SUMEDANG",
+        "lat": -6.8329,
+        "long": 107.9532
+    },
+    {
+        "name": "TASIKMALAYA",
+        "lat": -7.6513,
+        "long": 108.1429
+    },
+    {
+        "name": "BANDUNG",
+        "lat": -6.9175,
+        "long": 107.6191
+    },
+    {
+        "name": "BANJAR",
+        "lat": -7.3707,
+        "long": 108.5342
+    },
+    {
+        "name": "BEKASI",
+        "lat": -6.2383,
+        "long": 106.9756
+    },
+    {
+        "name": "BOGOR",
+        "lat": -6.5971,
+        "long": 106.806
+    },
+    {
+        "name": "CIMAHI",
+        "lat": -6.8841,
+        "long": 107.5413
+    },
+    {
+        "name": "CIREBON",
+        "lat": -6.732,
+        "long": 108.5523
+    },
+    {
+        "name": "DEPOK",
+        "lat": -6.4025,
+        "long": 106.7942
+    },
+    {
+        "name": "SUKABUMI",
+        "lat": -6.9277,
+        "long": 106.93
+    },
+    {
+        "name": "TASIKMALAYA",
+        "lat": -7.3506,
+        "long": 108.2172
+    },
+    {
+        "name": "JAKARTA",
+        "lat": -6.1751,
+        "long": 106.865
+    },
+    {
+        "name": "ADMINISTRASI KEPULAUAN SERIBU",
+        "lat": -5.6122,
+        "long": 106.617
+    },
+    {
+        "name": "BANJARNEGARA",
+        "lat": -7.3794,
+        "long": 109.6163
+    },
+    {
+        "name": "BANYUMAS",
+        "lat": -7.4832,
+        "long": 109.1404
+    },
+    {
+        "name": "BATANG",
+        "lat": -7.0392,
+        "long": 109.9021
+    },
+    {
+        "name": "BLORA",
+        "lat": -7.0122,
+        "long": 111.3799
+    },
+    {
+        "name": "BOYOLALI",
+        "lat": -7.4318,
+        "long": 110.6884
+    },
+    {
+        "name": "BREBES",
+        "lat": -6.9592,
+        "long": 108.9027
+    },
+    {
+        "name": "CILACAP",
+        "lat": -7.6178,
+        "long": 108.9027
+    },
+    {
+        "name": "DEMAK",
+        "lat": -6.9239,
+        "long": 110.6646
+    },
+    {
+        "name": "GROBOGAN",
+        "lat": -7.1542,
+        "long": 110.9507
+    },
+    {
+        "name": "JEPARA",
+        "lat": -6.5827,
+        "long": 110.6787
+    },
+    {
+        "name": "KARANGANYAR",
+        "lat": -7.6387,
+        "long": 111.046
+    },
+    {
+        "name": "KEBUMEN",
+        "lat": -7.6681,
+        "long": 109.6525
+    },
+    {
+        "name": "KENDAL",
+        "lat": -7.0265,
+        "long": 110.1879
+    },
+    {
+        "name": "KLATEN",
+        "lat": -7.6579,
+        "long": 110.6646
+    },
+    {
+        "name": "KUDUS",
+        "lat": -6.7726,
+        "long": 110.8791
+    },
+    {
+        "name": "MAGELANG",
+        "lat": -7.4305,
+        "long": 110.2832
+    },
+    {
+        "name": "PATI",
+        "lat": -6.745,
+        "long": 111.046
+    },
+    {
+        "name": "PEKALONGAN",
+        "lat": -7.0517,
+        "long": 109.6163
+    },
+    {
+        "name": "PEMALANG",
+        "lat": -7.0599,
+        "long": 109.4259
+    },
+    {
+        "name": "PURBALINGGA",
+        "lat": -7.3059,
+        "long": 109.4259
+    },
+    {
+        "name": "PURWOREJO",
+        "lat": -7.6965,
+        "long": 109.9989
+    },
+    {
+        "name": "REMBANG",
+        "lat": -6.8082,
+        "long": 111.4276
+    },
+    {
+        "name": "SEMARANG",
+        "lat": -7.1765,
+        "long": 110.4739
+    },
+    {
+        "name": "SRAGEN",
+        "lat": -7.4303,
+        "long": 111.0092
+    },
+    {
+        "name": "SUKOHARJO",
+        "lat": -7.6484,
+        "long": 110.8553
+    },
+    {
+        "name": "TEGAL",
+        "lat": -6.8588,
+        "long": 109.1048
+    },
+    {
+        "name": "TEMANGGUNG",
+        "lat": -7.2749,
+        "long": 110.0892
+    },
+    {
+        "name": "WONOGIRI",
+        "lat": -7.8846,
+        "long": 111.046
+    },
+    {
+        "name": "WONOSOBO",
+        "lat": -7.3632,
+        "long": 109.9002
+    },
+    {
+        "name": "MAGELANG",
+        "lat": -7.4797,
+        "long": 110.2177
+    },
+    {
+        "name": "PEKALONGAN",
+        "lat": -6.8898,
+        "long": 109.6746
+    },
+    {
+        "name": "SALATIGA",
+        "lat": -7.3305,
+        "long": 110.5084
+    },
+    {
+        "name": "SEMARANG",
+        "lat": -7.0051,
+        "long": 110.4381
+    },
+    {
+        "name": "SURAKARTA",
+        "lat": -7.5755,
+        "long": 110.8243
+    },
+    {
+        "name": "TEGAL",
+        "lat": -6.8797,
+        "long": 109.1256
+    },
+    {
+        "name": "BANTUL",
+        "lat": -7.919,
+        "long": 110.3785
+    },
+    {
+        "name": "GUNUNGKIDUL",
+        "lat": -8.0305,
+        "long": 110.6169
+    },
+    {
+        "name": "KULON PROGO",
+        "lat": -7.8267,
+        "long": 110.1641
+    },
+    {
+        "name": "SLEMAN",
+        "lat": -7.7325,
+        "long": 110.4024
+    },
+    {
+        "name": "YOGYAKARTA",
+        "lat": -7.7956,
+        "long": 110.3695
+    },
+    {
+        "name": "BANGKALAN",
+        "lat": -7.0384,
+        "long": 112.9137
+    },
+    {
+        "name": "BANYUWANGI",
+        "lat": -8.2191,
+        "long": 114.3691
+    },
+    {
+        "name": "BLITAR",
+        "lat": -8.0955,
+        "long": 112.1609
+    },
+    {
+        "name": "BOJONEGORO",
+        "lat": -7.3175,
+        "long": 111.7615
+    },
+    {
+        "name": "BONDOWOSO",
+        "lat": -7.9674,
+        "long": 113.9061
+    },
+    {
+        "name": "GRESIK",
+        "lat": -7.155,
+        "long": 112.5722
+    },
+    {
+        "name": "JEMBER",
+        "lat": -8.1845,
+        "long": 113.6681
+    },
+    {
+        "name": "JOMBANG",
+        "lat": -7.5741,
+        "long": 112.2861
+    },
+    {
+        "name": "KEDIRI",
+        "lat": -7.8232,
+        "long": 112.1907
+    },
+    {
+        "name": "LAMONGAN",
+        "lat": -7.1269,
+        "long": 112.3338
+    },
+    {
+        "name": "LUMAJANG",
+        "lat": -8.0944,
+        "long": 113.1442
+    },
+    {
+        "name": "MADIUN",
+        "lat": -7.6093,
+        "long": 111.6184
+    },
+    {
+        "name": "MAGETAN",
+        "lat": -7.6433,
+        "long": 111.356
+    },
+    {
+        "name": "MALANG",
+        "lat": -8.2422,
+        "long": 112.7152
+    },
+    {
+        "name": "MOJOKERTO",
+        "lat": -7.4699,
+        "long": 112.4351
+    },
+    {
+        "name": "NGANJUK",
+        "lat": -7.5944,
+        "long": 111.9046
+    },
+    {
+        "name": "NGAWI",
+        "lat": -7.461,
+        "long": 111.3322
+    },
+    {
+        "name": "PACITAN",
+        "lat": -8.1263,
+        "long": 111.1414
+    },
+    {
+        "name": "PAMEKASAN",
+        "lat": -7.1051,
+        "long": 113.5252
+    },
+    {
+        "name": "PASURUAN",
+        "lat": -7.786,
+        "long": 112.8582
+    },
+    {
+        "name": "PONOROGO",
+        "lat": -7.8651,
+        "long": 111.4696
+    },
+    {
+        "name": "PROBOLINGGO",
+        "lat": -7.8718,
+        "long": 113.4776
+    },
+    {
+        "name": "SAMPANG",
+        "lat": -7.0402,
+        "long": 113.2394
+    },
+    {
+        "name": "SIDOARJO",
+        "lat": -7.4726,
+        "long": 112.6675
+    },
+    {
+        "name": "SITUBONDO",
+        "lat": -7.7889,
+        "long": 114.1915
+    },
+    {
+        "name": "SUMENEP",
+        "lat": -6.9254,
+        "long": 113.9061
+    },
+    {
+        "name": "TRENGGALEK",
+        "lat": -8.1824,
+        "long": 111.6184
+    },
+    {
+        "name": "TUBAN",
+        "lat": -6.8955,
+        "long": 112.0298
+    },
+    {
+        "name": "TULUNGAGUNG",
+        "lat": -8.0912,
+        "long": 111.9642
+    },
+    {
+        "name": "BATU",
+        "lat": -7.8831,
+        "long": 112.5334
+    },
+    {
+        "name": "BLITAR",
+        "lat": -8.0955,
+        "long": 112.1609
+    },
+    {
+        "name": "KEDIRI",
+        "lat": -7.848,
+        "long": 112.0178
+    },
+    {
+        "name": "MADIUN",
+        "lat": -7.6311,
+        "long": 111.53
+    },
+    {
+        "name": "MALANG",
+        "lat": -7.9666,
+        "long": 112.6326
+    },
+    {
+        "name": "MOJOKERTO",
+        "lat": -7.4705,
+        "long": 112.4401
+    },
+    {
+        "name": "PASURUAN",
+        "lat": -7.6469,
+        "long": 112.8999
+    },
+    {
+        "name": "PROBOLINGGO",
+        "lat": -7.7764,
+        "long": 113.2037
+    },
+    {
+        "name": "SURABAYA",
+        "lat": -7.2575,
+        "long": 112.7521
+    },
+    {
+        "name": "BADUNG",
+        "lat": -8.5819,
+        "long": 115.1771
+    },
+    {
+        "name": "BANGLI",
+        "lat": -8.2976,
+        "long": 115.3549
+    },
+    {
+        "name": "BULELENG",
+        "lat": -8.2239,
+        "long": 114.9517
+    },
+    {
+        "name": "GIANYAR",
+        "lat": -8.4248,
+        "long": 115.2601
+    },
+    {
+        "name": "JEMBRANA",
+        "lat": -8.3233,
+        "long": 114.6668
+    },
+    {
+        "name": "KARANGASEM",
+        "lat": -8.3466,
+        "long": 115.5207
+    },
+    {
+        "name": "KLUNGKUNG",
+        "lat": -8.7278,
+        "long": 115.5444
+    },
+    {
+        "name": "TABANAN",
+        "lat": -8.4596,
+        "long": 115.0466
+    },
+    {
+        "name": "DENPASAR",
+        "lat": -8.6705,
+        "long": 115.2126
+    },
+    {
+        "name": "BIMA",
+        "lat": -8.4354,
+        "long": 118.6265
+    },
+    {
+        "name": "DOMPU",
+        "lat": -8.5364,
+        "long": 118.3462
+    },
+    {
+        "name": "LOMBOK BARAT",
+        "lat": -8.6465,
+        "long": 116.1123
+    },
+    {
+        "name": "LOMBOK TENGAH",
+        "lat": -8.6946,
+        "long": 116.2777
+    },
+    {
+        "name": "LOMBOK TIMUR",
+        "lat": -8.5134,
+        "long": 116.561
+    },
+    {
+        "name": "LOMBOK UTARA",
+        "lat": -8.3739,
+        "long": 116.2777
+    },
+    {
+        "name": "SUMBAWA",
+        "lat": -8.6529,
+        "long": 117.3616
+    },
+    {
+        "name": "SUMBAWA BARAT",
+        "lat": -8.9293,
+        "long": 116.891
+    },
+    {
+        "name": "BIMA",
+        "lat": -8.4643,
+        "long": 118.7449
+    },
+    {
+        "name": "MATARAM",
+        "lat": -8.577,
+        "long": 116.1005
+    },
+    {
+        "name": "ALOR",
+        "lat": -8.2928,
+        "long": 124.5528
+    },
+    {
+        "name": "BELU",
+        "lat": -9.1539,
+        "long": 124.9066
+    },
+    {
+        "name": "ENDE",
+        "lat": -8.6763,
+        "long": 121.7195
+    },
+    {
+        "name": "FLORES TIMUR",
+        "lat": -8.3131,
+        "long": 122.9663
+    },
+    {
+        "name": "KUPANG",
+        "lat": -9.9906,
+        "long": 123.8858
+    },
+    {
+        "name": "LEMBATA",
+        "lat": -8.4719,
+        "long": 123.4832
+    },
+    {
+        "name": "MALAKA",
+        "lat": -9.5309,
+        "long": 124.9066
+    },
+    {
+        "name": "MANGGARAI",
+        "lat": -8.6797,
+        "long": 120.3897
+    },
+    {
+        "name": "MANGGARAI BARAT",
+        "lat": -8.6688,
+        "long": 120.0665
+    },
+    {
+        "name": "MANGGARAI TIMUR",
+        "lat": -8.6207,
+        "long": 120.62
+    },
+    {
+        "name": "NGADA",
+        "lat": -8.743,
+        "long": 120.9876
+    },
+    {
+        "name": "NAGEKEO",
+        "lat": -8.6754,
+        "long": 121.3084
+    },
+    {
+        "name": "ROTE NDAO",
+        "lat": -10.7386,
+        "long": 123.1239
+    },
+    {
+        "name": "SABU RAIJUA",
+        "lat": -10.5541,
+        "long": 121.8335
+    },
+    {
+        "name": "SIKKA",
+        "lat": -8.6766,
+        "long": 122.1292
+    },
+    {
+        "name": "SUMBA BARAT",
+        "lat": -9.6548,
+        "long": 119.3947
+    },
+    {
+        "name": "SUMBA BARAT DAYA",
+        "lat": -9.5391,
+        "long": 119.1391
+    },
+    {
+        "name": "SUMBA TENGAH",
+        "lat": -9.4879,
+        "long": 119.6963
+    },
+    {
+        "name": "SUMBA TIMUR",
+        "lat": -9.9802,
+        "long": 120.3436
+    },
+    {
+        "name": "TIMOR TENGAH SELATAN",
+        "lat": -9.7763,
+        "long": 124.4198
+    },
+    {
+        "name": "TIMOR TENGAH UTARA",
+        "lat": -9.4523,
+        "long": 124.5971
+    },
+    {
+        "name": "KUPANG",
+        "lat": -10.1772,
+        "long": 123.607
+    },
+    {
+        "name": "BENGKAYANG",
+        "lat": 1.0691,
+        "long": 109.6639
+    },
+    {
+        "name": "KAPUAS HULU",
+        "lat": 0.8337,
+        "long": 113.0012
+    },
+    {
+        "name": "KAYONG UTARA",
+        "lat": -0.9226,
+        "long": 110.045
+    },
+    {
+        "name": "KETAPANG",
+        "lat": -1.5698,
+        "long": 110.5215
+    },
+    {
+        "name": "KUBU RAYA",
+        "lat": -0.3534,
+        "long": 109.4735
+    },
+    {
+        "name": "LANDAK",
+        "lat": 0.4237,
+        "long": 109.7592
+    },
+    {
+        "name": "MELAWI",
+        "lat": -0.7001,
+        "long": 111.6661
+    },
+    {
+        "name": "MEMPAWAH",
+        "lat": 0.3897,
+        "long": 109.1404
+    },
+    {
+        "name": "SAMBAS",
+        "lat": 1.3625,
+        "long": 109.2832
+    },
+    {
+        "name": "SANGGAU",
+        "lat": 0.14,
+        "long": 110.5215
+    },
+    {
+        "name": "SEKADAU",
+        "lat": -0.0697,
+        "long": 110.9984
+    },
+    {
+        "name": "SINTANG",
+        "lat": -0.1378,
+        "long": 112.8106
+    },
+    {
+        "name": "PONTIANAK",
+        "lat": -0.0263,
+        "long": 109.3425
+    },
+    {
+        "name": "SINGKAWANG",
+        "lat": 0.906,
+        "long": 108.9872
+    },
+    {
+        "name": "BALANGAN",
+        "lat": -2.326,
+        "long": 115.6155
+    },
+    {
+        "name": "BANJAR",
+        "lat": -3.32,
+        "long": 114.9991
+    },
+    {
+        "name": "BARITO KUALA",
+        "lat": -3.0715,
+        "long": 114.6668
+    },
+    {
+        "name": "HULU SUNGAI SELATAN",
+        "lat": -2.7663,
+        "long": 115.2363
+    },
+    {
+        "name": "HULU SUNGAI TENGAH",
+        "lat": -2.6153,
+        "long": 115.5207
+    },
+    {
+        "name": "HULU SUNGAI UTARA",
+        "lat": -2.4421,
+        "long": 115.1889
+    },
+    {
+        "name": "KOTABARU",
+        "lat": -3.003,
+        "long": 115.9468
+    },
+    {
+        "name": "TABALONG",
+        "lat": -1.8643,
+        "long": 115.5681
+    },
+    {
+        "name": "TANAH BUMBU",
+        "lat": -3.4512,
+        "long": 115.5681
+    },
+    {
+        "name": "TANAH LAUT",
+        "lat": -3.7694,
+        "long": 114.8093
+    },
+    {
+        "name": "TAPIN",
+        "lat": -2.9161,
+        "long": 115.0466
+    },
+    {
+        "name": "BANJARBARU",
+        "lat": -3.4572,
+        "long": 114.8103
+    },
+    {
+        "name": "BANJARMASIN",
+        "lat": -3.3186,
+        "long": 114.5944
+    },
+    {
+        "name": "BARITO SELATAN",
+        "lat": -1.8759,
+        "long": 114.8093
+    },
+    {
+        "name": "BARITO TIMUR",
+        "lat": -2.0124,
+        "long": 115.1889
+    },
+    {
+        "name": "BARITO UTARA",
+        "lat": -0.9587,
+        "long": 115.094
+    },
+    {
+        "name": "GUNUNG MAS",
+        "lat": -1.2522,
+        "long": 113.5729
+    },
+    {
+        "name": "KAPUAS",
+        "lat": -1.8116,
+        "long": 114.3341
+    },
+    {
+        "name": "KATINGAN",
+        "lat": -0.9758,
+        "long": 112.8106
+    },
+    {
+        "name": "KOTAWARINGIN BARAT",
+        "lat": -2.5063,
+        "long": 111.7615
+    },
+    {
+        "name": "KOTAWARINGIN TIMUR",
+        "lat": -2.1225,
+        "long": 112.8106
+    },
+    {
+        "name": "LAMANDAU",
+        "lat": -1.8526,
+        "long": 111.2845
+    },
+    {
+        "name": "MURUNG RAYA",
+        "lat": -0.1362,
+        "long": 114.3341
+    },
+    {
+        "name": "PULANG PISAU",
+        "lat": -2.685,
+        "long": 113.9536
+    },
+    {
+        "name": "SUKAMARA",
+        "lat": -2.6268,
+        "long": 111.2368
+    },
+    {
+        "name": "SERUYAN",
+        "lat": -3.0123,
+        "long": 112.4291
+    },
+    {
+        "name": "PALANGKARAYA",
+        "lat": -2.2161,
+        "long": 113.914
+    },
+    {
+        "name": "BERAU",
+        "lat": 2.0451,
+        "long": 117.3616
+    },
+    {
+        "name": "KUTAI BARAT",
+        "lat": -0.4052,
+        "long": 115.8522
+    },
+    {
+        "name": "KUTAI KARTANEGARA",
+        "lat": -0.1337,
+        "long": 116.6082
+    },
+    {
+        "name": "KUTAI TIMUR",
+        "lat": 0.9434,
+        "long": 116.9852
+    },
+    {
+        "name": "MAHAKAM ULU",
+        "lat": 0.9617,
+        "long": 114.7143
+    },
+    {
+        "name": "PASER",
+        "lat": -1.7175,
+        "long": 115.9468
+    },
+    {
+        "name": "PENAJAM PASER UTARA",
+        "lat": -1.2917,
+        "long": 116.5138
+    },
+    {
+        "name": "BALIKPAPAN",
+        "lat": -1.2379,
+        "long": 116.8529
+    },
+    {
+        "name": "BONTANG",
+        "lat": 0.1209,
+        "long": 117.48
+    },
+    {
+        "name": "SAMARINDA",
+        "lat": -0.4948,
+        "long": 117.1436
+    },
+    {
+        "name": "BULUNGAN",
+        "lat": 2.9042,
+        "long": 116.9852
+    },
+    {
+        "name": "MALINAU",
+        "lat": 3.0731,
+        "long": 116.0414
+    },
+    {
+        "name": "NUNUKAN",
+        "lat": 4.081,
+        "long": 116.6082
+    },
+    {
+        "name": "TANA TIDUNG",
+        "lat": 3.5519,
+        "long": 117.0794
+    },
+    {
+        "name": "TARAKAN",
+        "lat": 3.3274,
+        "long": 117.5785
+    },
+    {
+        "name": "BOALEMO",
+        "lat": 0.7013,
+        "long": 122.2654
+    },
+    {
+        "name": "BONE BOLANGO",
+        "lat": 0.5658,
+        "long": 123.3486
+    },
+    {
+        "name": "GORONTALO",
+        "lat": 0.5693,
+        "long": 122.8084
+    },
+    {
+        "name": "GORONTALO UTARA",
+        "lat": 0.9253,
+        "long": 122.492
+    },
+    {
+        "name": "POHUWATO",
+        "lat": 0.7055,
+        "long": 121.7195
+    },
+    {
+        "name": "GORONTALO",
+        "lat": 0.5435,
+        "long": 123.0568
+    },
+    {
+        "name": "BANTAENG",
+        "lat": -5.5169,
+        "long": 120.0203
+    },
+    {
+        "name": "BARRU",
+        "lat": -4.4364,
+        "long": 119.6499
+    },
+    {
+        "name": "BONE",
+        "lat": -4.7443,
+        "long": 120.0665
+    },
+    {
+        "name": "BULUKUMBA",
+        "lat": -5.4329,
+        "long": 120.2051
+    },
+    {
+        "name": "ENREKANG",
+        "lat": -3.4591,
+        "long": 119.8815
+    },
+    {
+        "name": "GOWA",
+        "lat": -5.3103,
+        "long": 119.7426
+    },
+    {
+        "name": "JENEPONTO",
+        "lat": -5.5546,
+        "long": 119.6731
+    },
+    {
+        "name": "KEPULAUAN SELAYAR",
+        "lat": -6.287,
+        "long": 120.5049
+    },
+    {
+        "name": "LUWU",
+        "lat": -3.3052,
+        "long": 120.2513
+    },
+    {
+        "name": "LUWU TIMUR",
+        "lat": -2.5826,
+        "long": 121.171
+    },
+    {
+        "name": "LUWU UTARA",
+        "lat": -2.269,
+        "long": 119.9741
+    },
+    {
+        "name": "MAROS",
+        "lat": -5.0549,
+        "long": 119.6963
+    },
+    {
+        "name": "PANGKAJENE DAN KEPULAUAN",
+        "lat": -4.805,
+        "long": 119.5572
+    },
+    {
+        "name": "PINRANG",
+        "lat": -3.6483,
+        "long": 119.5572
+    },
+    {
+        "name": "SIDENRENG RAPPANG",
+        "lat": -3.7739,
+        "long": 120.0203
+    },
+    {
+        "name": "SINJAI",
+        "lat": -5.2172,
+        "long": 120.1127
+    },
+    {
+        "name": "SOPPENG",
+        "lat": -4.3519,
+        "long": 119.9278
+    },
+    {
+        "name": "TAKALAR",
+        "lat": -5.4162,
+        "long": 119.4876
+    },
+    {
+        "name": "TANA TORAJA",
+        "lat": -3.0753,
+        "long": 119.7426
+    },
+    {
+        "name": "TORAJA UTARA",
+        "lat": -2.8622,
+        "long": 119.8352
+    },
+    {
+        "name": "WAJO",
+        "lat": -4.0222,
+        "long": 120.0665
+    },
+    {
+        "name": "MAKASSAR",
+        "lat": -5.1477,
+        "long": 119.4327
+    },
+    {
+        "name": "PALOPO",
+        "lat": -3.0016,
+        "long": 120.1985
+    },
+    {
+        "name": "PAREPARE",
+        "lat": -4.0096,
+        "long": 119.6291
+    },
+    {
+        "name": "BOMBANA",
+        "lat": -4.6543,
+        "long": 121.9018
+    },
+    {
+        "name": "BUTON",
+        "lat": -5.3096,
+        "long": 122.9888
+    },
+    {
+        "name": "BUTON SELATAN",
+        "lat": -5.3096,
+        "long": 122.9888
+    },
+    {
+        "name": "BUTON TENGAH",
+        "lat": -5.3891,
+        "long": 122.5599
+    },
+    {
+        "name": "BUTON UTARA",
+        "lat": -4.7023,
+        "long": 123.0339
+    },
+    {
+        "name": "KOLAKA",
+        "lat": -3.9947,
+        "long": 121.5827
+    },
+    {
+        "name": "KOLAKA TIMUR",
+        "lat": -4.2279,
+        "long": 121.9018
+    },
+    {
+        "name": "KOLAKA UTARA",
+        "lat": -3.1347,
+        "long": 121.171
+    },
+    {
+        "name": "KONAWE",
+        "lat": -3.938,
+        "long": 122.0837
+    },
+    {
+        "name": "KONAWE KEPULAUAN",
+        "lat": -4.1361,
+        "long": 123.1239
+    },
+    {
+        "name": "KONAWE SELATAN",
+        "lat": -4.2028,
+        "long": 122.4467
+    },
+    {
+        "name": "KONAWE UTARA",
+        "lat": -3.3803,
+        "long": 122.0837
+    },
+    {
+        "name": "MUNA",
+        "lat": -4.9016,
+        "long": 122.6277
+    },
+    {
+        "name": "MUNA BARAT",
+        "lat": -4.9016,
+        "long": 122.6277
+    },
+    {
+        "name": "WAKATOBI",
+        "lat": -5.6504,
+        "long": 123.8902
+    },
+    {
+        "name": "BAU-BAU",
+        "lat": -5.5071,
+        "long": 122.5969
+    },
+    {
+        "name": "KENDARI",
+        "lat": -3.9985,
+        "long": 122.513
+    },
+    {
+        "name": "BANGGAI",
+        "lat": -0.9562,
+        "long": 122.6277
+    },
+    {
+        "name": "BANGGAI KEPULAUAN",
+        "lat": -0.9562,
+        "long": 122.6277
+    },
+    {
+        "name": "BANGGAI LAUT",
+        "lat": -1.6735,
+        "long": 123.5504
+    },
+    {
+        "name": "BUOL",
+        "lat": 0.9695,
+        "long": 121.3542
+    },
+    {
+        "name": "DONGGALA",
+        "lat": -0.4233,
+        "long": 119.8352
+    },
+    {
+        "name": "MOROWALI",
+        "lat": -2.6987,
+        "long": 121.9018
+    },
+    {
+        "name": "MOROWALI UTARA",
+        "lat": -1.6312,
+        "long": 121.3542
+    },
+    {
+        "name": "PARIGI MOUTONG",
+        "lat": 0.5818,
+        "long": 120.8039
+    },
+    {
+        "name": "POSO",
+        "lat": -1.6469,
+        "long": 120.4358
+    },
+    {
+        "name": "SIGI",
+        "lat": -1.386,
+        "long": 119.8815
+    },
+    {
+        "name": "TOJO UNA-UNA",
+        "lat": -1.0988,
+        "long": 121.537
+    },
+    {
+        "name": "TOLI-TOLI",
+        "lat": 0.8768,
+        "long": 120.758
+    },
+    {
+        "name": "PALU",
+        "lat": -0.9003,
+        "long": 119.878
+    },
+    {
+        "name": "BOLAANG MONGONDOW",
+        "lat": 0.6871,
+        "long": 124.0641
+    },
+    {
+        "name": "BOLAANG MONGONDOW SELATAN",
+        "lat": 0.4053,
+        "long": 123.8411
+    },
+    {
+        "name": "BOLAANG MONGONDOW TIMUR",
+        "lat": 0.7153,
+        "long": 124.4642
+    },
+    {
+        "name": "BOLAANG MONGONDOW UTARA",
+        "lat": 0.907,
+        "long": 123.2657
+    },
+    {
+        "name": "KEPULAUAN SANGIHE",
+        "lat": 3.6329,
+        "long": 125.5001
+    },
+    {
+        "name": "KEPULAUAN SIAU TAGULANDANG BIARO",
+        "lat": 2.346,
+        "long": 125.4124
+    },
+    {
+        "name": "KEPULAUAN TALAUD",
+        "lat": 4.3067,
+        "long": 126.8035
+    },
+    {
+        "name": "MINAHASA",
+        "lat": 1.2169,
+        "long": 124.8183
+    },
+    {
+        "name": "MINAHASA SELATAN",
+        "lat": 1.0947,
+        "long": 124.4642
+    },
+    {
+        "name": "MINAHASA TENGGARA",
+        "lat": 1.0279,
+        "long": 124.7299
+    },
+    {
+        "name": "MINAHASA UTARA",
+        "lat": 1.5328,
+        "long": 124.9948
+    },
+    {
+        "name": "BITUNG",
+        "lat": 1.4404,
+        "long": 125.1217
+    },
+    {
+        "name": "KOTAMOBAGU",
+        "lat": 0.7244,
+        "long": 124.3199
+    },
+    {
+        "name": "MANADO",
+        "lat": 1.4748,
+        "long": 124.8421
+    },
+    {
+        "name": "TOMOHON",
+        "lat": 1.3229,
+        "long": 124.8405
+    },
+    {
+        "name": "MAJENE",
+        "lat": -3.0297,
+        "long": 118.9063
+    },
+    {
+        "name": "MAMASA",
+        "lat": -2.9118,
+        "long": 119.325
+    },
+    {
+        "name": "MAMUJU",
+        "lat": -2.492,
+        "long": 119.325
+    },
+    {
+        "name": "MAMUJU TENGAH",
+        "lat": -1.9354,
+        "long": 119.5108
+    },
+    {
+        "name": "MAMUJU UTARA",
+        "lat": -1.5265,
+        "long": 119.5108
+    },
+    {
+        "name": "POLEWALI MANDAR",
+        "lat": -3.3419,
+        "long": 119.1391
+    },
+    {
+        "name": "BURU",
+        "lat": -3.3307,
+        "long": 126.6957
+    },
+    {
+        "name": "BURU SELATAN",
+        "lat": -3.7274,
+        "long": 126.6957
+    },
+    {
+        "name": "KEPULAUAN ARU",
+        "lat": -6.1947,
+        "long": 134.5502
+    },
+    {
+        "name": "MALUKU BARAT DAYA",
+        "lat": -7.7852,
+        "long": 126.3498
+    },
+    {
+        "name": "MALUKU TENGAH",
+        "lat": -3.0167,
+        "long": 129.4864
+    },
+    {
+        "name": "MALUKU TENGGARA",
+        "lat": -5.7512,
+        "long": 132.7272
+    },
+    {
+        "name": "MALUKU TENGGARA BARAT",
+        "lat": -7.5323,
+        "long": 131.3611
+    },
+    {
+        "name": "SERAM BAGIAN BARAT",
+        "lat": -3.1272,
+        "long": 128.4008
+    },
+    {
+        "name": "SERAM BAGIAN TIMUR",
+        "lat": -3.4233,
+        "long": 130.2271
+    },
+    {
+        "name": "AMBON",
+        "lat": -3.6554,
+        "long": 128.1908
+    },
+    {
+        "name": "TUAL",
+        "lat": -5.6266,
+        "long": 132.7521
+    },
+    {
+        "name": "HALMAHERA BARAT",
+        "lat": 1.359,
+        "long": 127.5961
+    },
+    {
+        "name": "HALMAHERA TENGAH",
+        "lat": 0.442,
+        "long": 128.3587
+    },
+    {
+        "name": "HALMAHERA UTARA",
+        "lat": 1.5074,
+        "long": 127.8937
+    },
+    {
+        "name": "HALMAHERA SELATAN",
+        "lat": -1.5109,
+        "long": 127.7238
+    },
+    {
+        "name": "KEPULAUAN SULA",
+        "lat": -1.8456,
+        "long": 125.3431
+    },
+    {
+        "name": "HALMAHERA TIMUR",
+        "lat": 1.3121,
+        "long": 128.485
+    },
+    {
+        "name": "PULAU MOROTAI",
+        "lat": 2.3657,
+        "long": 128.4008
+    },
+    {
+        "name": "PULAU TALIABU",
+        "lat": -1.8268,
+        "long": 124.7741
+    },
+    {
+        "name": "TERNATE",
+        "lat": 0.771,
+        "long": 127.3695
+    },
+    {
+        "name": "TIDORE KEPULAUAN",
+        "lat": 0.674,
+        "long": 127.4041
+    },
+    {
+        "name": "ASMAT",
+        "lat": -5.0574,
+        "long": 138.3988
+    },
+    {
+        "name": "BIAK NUMFOR",
+        "lat": -1.0381,
+        "long": 135.9801
+    },
+    {
+        "name": "BOVEN DIGOEL",
+        "lat": -5.74,
+        "long": 140.3482
+    },
+    {
+        "name": "DEIYAI",
+        "lat": -4.0975,
+        "long": 136.4393
+    },
+    {
+        "name": "DOGIYAI",
+        "lat": -4.0454,
+        "long": 135.6763
+    },
+    {
+        "name": "INTAN JAYA",
+        "lat": -3.5076,
+        "long": 136.7478
+    },
+    {
+        "name": "JAYAPURA",
+        "lat": -2.9879,
+        "long": 139.8547
+    },
+    {
+        "name": "JAYAWIJAYA",
+        "lat": -4.0004,
+        "long": 138.7995
+    },
+    {
+        "name": "KEEROM",
+        "lat": -3.345,
+        "long": 140.7624
+    },
+    {
+        "name": "KEPULAUAN YAPEN",
+        "lat": -1.7469,
+        "long": 136.1709
+    },
+    {
+        "name": "LANNY JAYA",
+        "lat": -3.971,
+        "long": 138.319
+    },
+    {
+        "name": "MAMBERAMO RAYA",
+        "lat": -2.5331,
+        "long": 137.7638
+    },
+    {
+        "name": "MAMBERAMO TENGAH",
+        "lat": -2.3746,
+        "long": 138.319
+    },
+    {
+        "name": "MAPPI",
+        "lat": -6.7606,
+        "long": 139.6911
+    },
+    {
+        "name": "MERAUKE",
+        "lat": -7.7838,
+        "long": 139.0413
+    },
+    {
+        "name": "MIMIKA",
+        "lat": -4.4553,
+        "long": 137.1362
+    },
+    {
+        "name": "NABIRE",
+        "lat": -3.5095,
+        "long": 135.7521
+    },
+    {
+        "name": "NDUGA",
+        "lat": -4.4069,
+        "long": 138.2394
+    },
+    {
+        "name": "PANIAI",
+        "lat": -3.7876,
+        "long": 136.3625
+    },
+    {
+        "name": "PEGUNUNGAN BINTANG",
+        "lat": -4.559,
+        "long": 140.5136
+    },
+    {
+        "name": "PUNCAK",
+        "lat": -3.8649,
+        "long": 137.6062
+    },
+    {
+        "name": "PUNCAK JAYA",
+        "lat": -3.4468,
+        "long": 137.8427
+    },
+    {
+        "name": "SARMI",
+        "lat": -2.4678,
+        "long": 139.2031
+    },
+    {
+        "name": "SUPIORI",
+        "lat": -0.7295,
+        "long": 135.6385
+    },
+    {
+        "name": "TOLIKARA",
+        "lat": -3.4811,
+        "long": 138.4787
+    },
+    {
+        "name": "WAROPEN",
+        "lat": -1.7469,
+        "long": 136.1709
+    },
+    {
+        "name": "YAHUKIMO",
+        "lat": -4.494,
+        "long": 139.528
+    },
+    {
+        "name": "YALIMO",
+        "lat": -3.7853,
+        "long": 139.4466
+    },
+    {
+        "name": "JAYAPURA",
+        "lat": -2.5916,
+        "long": 140.669
+    },
+    {
+        "name": "YAPEN WAROPEN",
+        "lat": -1.7469,
+        "long": 136.1709
+    },
+    {
+        "name": "FAKFAK",
+        "lat": -3.0977,
+        "long": 133.0195
+    },
+    {
+        "name": "KAIMANA",
+        "lat": -3.2884,
+        "long": 133.9437
+    },
+    {
+        "name": "MANOKWARI",
+        "lat": -0.999,
+        "long": 133.0195
+    },
+    {
+        "name": "MANOKWARI SELATAN",
+        "lat": -0.999,
+        "long": 133.0195
+    },
+    {
+        "name": "MAYBRAT",
+        "lat": -1.2971,
+        "long": 132.3151
+    },
+    {
+        "name": "PEGUNUNGAN ARFAK",
+        "lat": -1.1555,
+        "long": 133.7142
+    },
+    {
+        "name": "RAJA AMPAT",
+        "lat": -1.0915,
+        "long": 130.8779
+    },
+    {
+        "name": "SORONG",
+        "lat": -1.1223,
+        "long": 131.4883
+    },
+    {
+        "name": "SORONG SELATAN",
+        "lat": -1.7658,
+        "long": 132.1573
+    },
+    {
+        "name": "TAMBRAUW",
+        "lat": -0.7819,
+        "long": 132.3938
+    },
+    {
+        "name": "TELUK BINTUNI",
+        "lat": -1.9057,
+        "long": 133.3295
+    },
+    {
+        "name": "TELUK WONDAMA",
+        "lat": -2.8552,
+        "long": 134.3237
+    },
+    {
+        "name": "SORONG",
+        "lat": -0.8762,
+        "long": 131.2558
+    }
+]
