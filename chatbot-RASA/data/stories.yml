@@ -1,0 +1,73 @@
+
+version: "2.0"
+stories:
+- story: interactive_story_1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: ask_bot_ability
+  - action: utter_ability
+  - intent: ask_covid_info
+  - action: utter_infocovid
+  - intent: ask_covid_symptoms
+  - action: utter_covidSymptoms
+  - intent: check_symptoms
+  - action: covid_symptoms_form
+  - active_loop: covid_symptoms_form
+  - slot_was_set:
+    - requested_slot: gender
+  - slot_was_set:
+    - gender: male
+  - slot_was_set:
+    - requested_slot: age
+  - slot_was_set:
+    - age: '36'
+  - slot_was_set:
+    - requested_slot: headAche
+  - slot_was_set:
+    - headAche: yes
+  - slot_was_set:
+    - requested_slot: contact
+  - slot_was_set:
+    - contact: yes
+  - slot_was_set:
+    - requested_slot: abroad
+  - slot_was_set:
+    - abroad: yes
+  - slot_was_set:
+    - requested_slot: fever
+  - slot_was_set:
+    - fever: yes
+  - slot_was_set:
+    - requested_slot: cough
+  - slot_was_set:
+    - cough: yes
+  - slot_was_set:
+    - requested_slot: shortBreath
+  - slot_was_set:
+    - shortBreath: yes
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit
+  - action: utter_slot_values_covid_symptoms
+  - action: action_check_covid
+  - action: action_restart
+  - intent: check_cough_type
+  - action: cough_type_form
+  - active_loop: cough_type_form
+  - slot_was_set:
+    - requested_slot: url
+  - slot_was_set:
+    - url: https://sound-example.s3.us-east-2.amazonaws.com/cough-example.wav
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit
+  - action: utter_slot_values_cough_type
+  - action: action_check_cough
+  - action: action_restart
+  - intent: ask_covid_info
+  - action: utter_infocovid
+  - intent: thankyou_compliment
+  - action: utter_thankyou_feedback
