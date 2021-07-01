@@ -16,7 +16,6 @@ router.use(authentication);
 
 router.use("/games", gameRoute);
 router.use("/challenges", challengeRoute);
-router.use("/challenges", challengeRoute);
 
 module.exports = router;
 

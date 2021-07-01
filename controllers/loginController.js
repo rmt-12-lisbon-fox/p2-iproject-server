@@ -11,7 +11,6 @@ class LoginController {
       },
     })
       .then((user) => {
-        console.log(user);
         if (user) {
           if (comparePassword(password, user.password)) {
             const access_token = generateJWT({
@@ -27,7 +26,6 @@ class LoginController {
         }
       })
       .catch((err) => {
-        console.log(err, "ini error");
         next({ statusCode: 500 });
       });
   }
