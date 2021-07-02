@@ -4,6 +4,7 @@ const registerRouter = require("../routes/registerRouter");
 const loginGoogle = require("../routes/loginGoogle");
 const challengeRoute = require("../routes/challengeRoute");
 const gameRoute = require("../routes/gameRoute");
+const apiRoute = require("../routes/apiRoute");
 
 const { authentication } = require("../middlewares/auth");
 const errorHandler = require("../middlewares/errorHandler");
@@ -11,6 +12,7 @@ const errorHandler = require("../middlewares/errorHandler");
 router.use("/login", loginRouter);
 router.use("/register", registerRouter);
 router.use("/loginGoogle", loginGoogle);
+router.use("/", apiRoute);
 
 router.use(authentication);
 
