@@ -13,8 +13,10 @@ class ChallengeController {
   }
   static challengeGetOne(req, res, next) {
     req.challenge = req.params.id;
+    console.log(req.params.id);
     Challenge.findByPk(req.params.id)
       .then((challenge) => {
+        console.log(challenge);
         if (challenge) {
           const wordChallenge = wordSetting(challenge.wordLong, challenge.totalWords);
           res.status(200).json(wordChallenge);

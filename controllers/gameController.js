@@ -1,4 +1,4 @@
-const { Game } = require("../models/index");
+const { Game, Word } = require("../models/index");
 const { wordSetting, wordValue } = require("../helpers/scrabble");
 
 class GameController {
@@ -11,29 +11,33 @@ class GameController {
         next({ statusCode: 500 });
       });
   }
-  static gamePost(req, res, next) {
-    console.log("masuk sini?");
-    let { ChallengeId } = req.body;
-    let wordResult = [];
-    req.oxfordDictionary.forEach((word) => {
-      if (word.status === "fulfilled") {
-        wordResult.push(word.value.data.word);
-      }
-    });
-    let wordInputValue = wordValue(wordResult);
-
-    Game.create({ UserId: req.user.id, ChallengeId, score: wordInputValue.score })
-      .then((game) => {
-        res.status(201).json(game);
-      })
-      .catch((err) => {
-        if (err.name === "SequelizeUniqueConstraintError" || err.name === "SequelizeValidationError") {
-          err = err.errors.map((e) => e.message);
-          res.status(400).json({ message: err });
-        } else {
-          next({ statusCode: 500 });
+  static async gamePost(req, res, next) {
+    try {
+      let { ChallengeId } = req.body;
+      let wordResult = [];
+      req.oxfordDictionary.forEach((word) => {
+        if (word.status === "fulfilled") {
+          wordResult.push(word.value.data.word);
         }
       });
+      let wordInputValue = wordValue(wordResult);
+      let game = await Game.create({ UserId: req.user.id, ChallengeId, score: wordInputValue.score });
+
+      let wordCreate = [];
+      for (let i = 0; i < wordResult.length; i++) {
+        wordCreate.push(await Word.create({ UserId: req.user.id, ChallengeId, word: wordResult[i], score: wordInputValue.totalWordValue[i] }));
+      }
+      console.log(wordCreate);
+
+      res.status(201).json({ game, word: wordCreate });
+    } catch (err) {
+      if (err.name === "SequelizeUniqueConstraintError" || err.name === "SequelizeValidationError") {
+        err = err.errors.map((e) => e.message);
+        res.status(400).json({ message: err });
+      } else {
+        next({ statusCode: 500 });
+      }
+    }
   }
 }
 
