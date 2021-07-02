@@ -79,58 +79,6 @@ class Controller {
             res.status(500).json({ message: err.message})
         })
     }
-
-    static loginGoogle(req,res,next) {
-        const client = new OAuth2Client(process.env.GOOGLE_ID);
-        client.verifyIdToken({
-        idToken: req.body.idToken,
-        audience: process.env.GOOGLE_ID,
-        })
-        .then(ticket => {
-            payload = ticket.getPayload();
-            console.log(payload, '<<<<<<< PAYLOAD');
-
-            return User.findOne({
-                where: {
-                    email: payload.email
-                }
-            })
-        })
-        .then(data => {
-            if(data) {
-
-                const access_token = generateJWT({
-                    id: data.id,
-                    email: data.email
-                })
-                
-                res.status(200).json({ access_token, id:data.id, firstName: data.firstName, lastName: data.lastName })
-            } else {
-                User.create({
-                firstName: payload.name,
-                lastName: payload.name,
-                email: payload.email,
-                password: process.env.PASSWORD_GOOGLE,
-               })
-               .then(data => {
-
-                    const access_token = generateJWT({
-                        id: data.id,
-                        email: data.email
-                    })
-                   res.status(200).json({ access_token, id:data.id, firstName: data.firstName, lastName: data.lastName })
-               })
-               .catch(err => {
-                //    console.log(err);
-                res.status(500).json({ meesage: err.message})
-               })
-            }
-        })
-        .catch(err => {
-            // console.log(err);
-            res.status(500).json({ meesage: err.message})
-        })
-    }
 }
 
 module.exports = Controller

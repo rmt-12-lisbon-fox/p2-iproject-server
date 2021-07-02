@@ -6,7 +6,6 @@ const authentication = require('../middlewares/authentication');
 
 router.post('/register', UserController.register)
 router.post('/login', UserController.login)
-router.post('/googleLogin', UserController.loginGoogle)
 
 router.use(authentication)
 
