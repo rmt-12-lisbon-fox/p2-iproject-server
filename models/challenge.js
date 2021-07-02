@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Challenge.belongsToMany(models.User, { through: models.Competition, foreignKey: "ChallengeId" });
       Challenge.belongsToMany(models.User, { through: models.Game, foreignKey: "ChallengeId" });
+      Challenge.belongsToMany(models.User, { through: models.Word, foreignKey: "ChallengeId" });
     }
   }
   Challenge.init(
