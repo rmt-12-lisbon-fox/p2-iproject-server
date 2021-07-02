@@ -121,7 +121,9 @@ class Controller {
     })
   }
   static portofolio(req, res, next) {
+    const UserId = +req.user.id
     Portofolio.findAll({
+      where: { UserId },
       order: [['updatedAt', 'desc']]
     })
     .then(instance => res.status(200).json(instance))
