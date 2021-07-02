@@ -17,6 +17,7 @@ app.post('/videos', Controller.postToDatabase)
 
 app.post('/register', Controller.register)
 app.post('/login', Controller.login)
+app.post('/googleLogin', Controller.googleLogin)
 
 app.use(checkLogin)
 
@@ -25,12 +26,11 @@ app.get('/programs/:id', Controller.programDetail)
 
 app.get('/mySchedule', Controller.fetchSchedule)
 app.post('/mySchedule', Controller.createSchedule)
+app.delete('/mySchedule/:id', Controller.deleteSchedule)
 
 app.get('/reminders', Controller.fetchReminder)
 app.post('/reminders', Controller.createReminder)
-
-// app.delete('/mySchedule', Controller.deleteSchedule)
+app.delete('/reminders/:id', Controller.deleteOneReminder)
 
 app.listen(port, () => console.log(`server listen at port ${port}`))
 
-// postgres://jolybhhjimakjs:3919618a118754aa3fbdead2674010c16d978fbe3b251ecb40762259f1103c66@ec2-35-169-188-58.compute-1.amazonaws.com:5432/dcrubjd1ftvqhe

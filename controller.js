@@ -3,11 +3,14 @@ const { key, videoData } = require('./listVideo')
 const { User, Program, Schedule, Reminder } = require('./models')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-const cron = require('node-cron')
-const nodemailer = require('nodemailer')
+const sendMail = require('./helpers/nodemailer')
+const {OAuth2Client} = require('google-auth-library');
+
 
 class Controller {
+    
     static fetchVideo(req, res) {
+        
         axios({
             url : `https://www.googleapis.com/youtube/v3/videos?id=xRt4LSANIoU&key=${key}&part=snippet&fields=items(id,snippet(title,thumbnails(medium)))`,
             method : `get`,
@@ -65,6 +68,38 @@ class Controller {
         .catch(err => res.status(500).json({message : `internal server error`}))
     }
 
+    static googleLogin(req, res, next) {
+        let payload
+        const client = new OAuth2Client('832054159268-ii58a2oalrdov85rqm5c2jg4eoi53uci.apps.googleusercontent.com')
+        client.verifyIdToken({
+            idToken: req.body.id_token,
+            audience: '832054159268-ii58a2oalrdov85rqm5c2jg4eoi53uci.apps.googleusercontent.com'
+        })
+        .then( ticket => {
+            payload = ticket.getPayload()
+            return User.findOne( {where : { email : payload.email }})
+        })
+        .then( foundUser => {
+            if (foundUser) {
+               return foundUser
+            } else {
+              return User.create({ 
+                    username : payload.name, 
+                    email : payload.email, 
+                    password : 'rahasia',
+                })
+            }
+        })
+        .then(user => {
+            let access_token = jwt.sign({
+                id : user.id,
+                email : user.email
+            }, 'rahasia')
+            res.status(200).json({ access_token, username: user.username })
+        })
+        .catch(err => next(err) )
+    }
+
     static fetchPrograms(req, res) {
        
         
@@ -84,84 +119,69 @@ class Controller {
         let { ProgramId, intensity, programTitle } = req.body
         let UserId = req.user.id
         let username = req.user.username
-        let message = `Hi ${username}, you have schedule to do ${programTitle} today. Cheers!`
+        let link = `<a href="http://localhost:8080/detail">Link</a>`
+        
+        let messageReminder = `Hi ${username}, just reminds you, you have a schedule to do "${programTitle}" in next 2 hours. Cheers!`
+        let messageEmail = `Hi ${username}, just reminds you, you have a schedule to do "${programTitle}" in next 1 hour. Here's the ${link} to the exercise video. Cheers!`
         let email = req.user.email
 
+        var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute:'numeric' };
+        let dateFormatted  = new Date(intensity);
+        dateFormatted = dateFormatted.toLocaleDateString("en-US", options)
+        let message = `Thank You ${username}, you have scheduled to do "${programTitle}" at ${dateFormatted}. Cheers!`
+
+        let beforeSchedule = new Date(intensity)
+        beforeSchedule.setHours( beforeSchedule.getHours() - 2)
+        let afterSchedule = new Date(intensity)
+        afterSchedule.setHours( afterSchedule.getHours() + 1)
+
+        const schedule = require('node-schedule')
+        const nodemailer = require('nodemailer')
         const transporter = nodemailer.createTransport({
             service : 'gmail',
-            auth : {
-                user : 'sanjungliu@gmail.com',
-                pass: 'ucdmmrzuwqqhxwfb'
-            }
+            auth : { user : 'sanjungliu@gmail.com', pass: 'ucdmmrzuwqqhxwfb' }
         })
-
-        const sendMail = (email) => {
+        const sendMailNotification = (email) => {
+            const option = {
+                from: '"Go-Exercise-App, Your Coolest Exercise Partner 👻" <no-reply@gmail.com>', 
+                to: email,
+                subject: "Confirmation of Exercise Schedule ✔", 
+                text: `Confirmation of Exercise Schedule ✔`, 
+                html: `<b>${message}</b>`, 
+            }
+            transporter.sendMail(option, (err, info) => { if(err) console.error(err) })
+        }
+        const sendMailReminder = (email) => {
             const option = {
                 from: '"Go-Exercise-App, Your Coolest Exercise Partner 👻" <no-reply@gmail.com>', 
                 to: email, 
                 subject: "Reminder of Your Exercise Schedule ✔", 
                 text: `Reminder of Your Exercise Schedule ✔`, 
-                html: `<b>${message}</b>`, 
+                html: `<b>${messageEmail}</b>`, 
             }
-
-            transporter.sendMail(option, (err, info) => {
-                if(err) console.error(err)
-                console.log(`Reminder sent to : ${email}`)
-            })
+            transporter.sendMail(option, (err, info) => { if(err) console.error(err) })
         }
 
-        Schedule.create({ ProgramId, UserId, intensity })
+        Schedule.create({ ProgramId, UserId, intensity : dateFormatted })
         .then(data => {
 
-            if(intensity == 'Low') {
-                cron.schedule('*/3 * * * *', () =>  {
-                    sendMail(email)
-                   
-                    console.log('running a task every three minute');
-                    Reminder.create({ message, UserId })
-                    .then( data => {
-                        console.log(data, `ini data create reminder dari Controller <<<<<<<<<<`)
-                    })
-                    .catch( err => {
-                        console.log(err, `ini err create reminder dari Controller <<<<<<<<<`)
-                    })
-                  }, {
-                    timezone: "Asia/Jakarta"
-                  });
-            } else if(intensity == 'Moderate') {
-                cron.schedule('*/1 * * * *', () =>  {
-                    sendMail(email)
-                   
-                    console.log('running a task every two minute');
-                    Reminder.create({ message, UserId })
-                    .then( data => {
-                        console.log(data, `ini data create reminder dari Controller <<<<<<<<<<`)
-                    })
-                    .catch( err => {
-                        console.log(err, `ini err create reminder dari Controller <<<<<<<<<`)
-                    })
-                  }, {
-                    timezone: "Asia/Jakarta"
-                  });
-            } else if(intensity == 'High') {
-                cron.schedule('*/30 * * * * *', () =>  {
-                    sendMail(email)
-
-                    console.log('running a task every minute');
-                    Reminder.create({ message, UserId })
-                    .then( data => {
-                        console.log(data, `ini data create reminder dari Controller <<<<<<<<<<`)
-                    })
-                    .catch( err => {
-                        console.log(err, `ini err create reminder dari Controller <<<<<<<<<`)
-                    })
-                  }, {
-                    timezone: "Asia/Jakarta"
-                  });
-            }
-            setTimeout(() => {
-                cron.stop()
-            }, 50000000);
+            const jobDelete = schedule.scheduleJob(afterSchedule, function(){
+                console.log(`masuk after schedule`)
+                Schedule.destroy({ where : {id : data.id }})
+                .then( data => console.log(data))
+                .catch( err => console.log(err, `ini err delete schedule <<<<<<<<<`))
+            })
+            sendMailNotification(email)
+            Reminder.create({ message, UserId })
+                .then( data => {})
+                .catch( err =>console.log(err, `ini err create reminder dari Controller <<<<<<<<<`))
+    
+            const job = schedule.scheduleJob(beforeSchedule, function(){
+                sendMailReminder(email)
+                Reminder.create({ message:messageReminder, UserId })
+                .then( data => console.log(data, `ini data create reminder`))
+                .catch( err => console.log(err, `ini err create reminder <<<<<<<<<`))
+            });
             res.status(201).json(data)
         })
         .catch(err => res.status(500).json({message : `internal server error`}))
@@ -182,12 +202,10 @@ class Controller {
     }
 
     static deleteSchedule(req, res) {
-        console.log(req.body, `masuk delete schedule`)
-        let { id } = req.body
+        let id = req.params.id
         Schedule.destroy({ where : { id }})
         .then( data => {
             if (data) {
-                console.log(`sukses hapus schedule <<<<<<<<`)
                 res.status(200).json({ message : `succeed delete schedule`})
             } else {
                 res.status(500).json({ message : `internal server error`})
@@ -223,6 +241,13 @@ class Controller {
         .catch( err => {
             console.log(err, `ini err dari Controller create reminder`)
         })
+    }
+
+    static deleteOneReminder(req, res) {
+        let id = req.params.id
+        Reminder.destroy({ where : { id }})
+        .then( data => res.status(200).json({ message : `succeed delete reminder`} ))
+        .catch(err => res.status(500).json({ message : `ini error dari delete reminder`}))
     }
 }
 
