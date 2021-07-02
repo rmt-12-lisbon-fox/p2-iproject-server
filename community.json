@@ -1,0 +1,37 @@
+[
+    {
+        "name": "Relationship Advice",
+        "imageUrl": "https://cdn.dribbble.com/users/1626229/screenshots/6240403/love_affairs.jpg",
+        "description": "Helping you solve relationship problems, even when it feels hopeless. Or you can just share your relationship"
+    },
+    {
+        "name": "Positive Thinking",
+        "imageUrl": "https://cdn.dribbble.com/users/56024/screenshots/14220352/media/684762b398c3b8d554f2a2946e4fd768.jpg",
+        "description": "Discuss about how to be a positive thihnking, talk about any positive thing"
+    },
+    {
+        "name": "Getting Motivated",
+        "imageUrl": "https://cdn.dribbble.com/users/467606/screenshots/11128832/media/d9ed1da47c91ac31a8db63167fd8a2f5.jpg",
+        "description": "Share Anything to help you getting motivated "
+    },
+    {
+        "name": "Loneliness",
+        "imageUrl": "https://cdn.dribbble.com/users/76454/screenshots/7034505/media/e0c6ad8c462b3427fa140af4dec51f19.png",
+        "description": "Create connections between people, to relieve the sadness"
+    },
+    {
+        "name": "Anxiety",
+        "imageUrl": "https://cdn.dribbble.com/users/26059/screenshots/5613354/gt_06-b_strangers_w.jpg",
+        "description": "A safe community for people who dealing with Anxiety"
+    },
+    {
+        "name": "Passion",
+        "imageUrl": "https://cdn.dribbble.com/users/2417352/screenshots/14983340/media/93c52ac43b0a0075bee1b32e74d86332.png",
+        "description": "Discuss about passion, how to know your passion"
+    },
+    {
+        "name": "Find a Dream Job",
+        "imageUrl": "https://cdn.dribbble.com/users/579162/screenshots/15411770/media/b4d04a686ae5cce7a12ebfec7e92caaf.jpeg",
+        "description": "Sharing about your dream job or discuss how to achieve your dream"
+    }
+]
