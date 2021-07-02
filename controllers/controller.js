@@ -1,4 +1,4 @@
-const {Signal} = require('../models')
+const {Signal, Portofolio} = require('../models')
 const axios = require('axios')
 const { Sequelize, Op } = require('sequelize')
 const { QueryTypes } = require('sequelize');
@@ -88,6 +88,51 @@ class Controller {
     .then(([instance]) => {
       res.status(200).json({doge: instance.signal})
     }).catch(_ => { next({code:500}) })
+  }
+  static portofolioPOST(req, res, next) {
+    const UserId = +req.user.id
+    const {title, quantity, price, status} = req.body
+    const input = {title, quantity, price, status, UserId}
+    Portofolio.create(input)
+    .then(instance => res.status(201).json(instance))
+    .catch(err => {
+      let errors
+      if (err.errors) errors = err.errors.flatMap(m => m.message)
+      err.errors ? next({code:400, message: errors}) : next({code:500})
+    })
+  }
+  static portofolioPut(req, res, next) {
+    const UserId = +req.user.id
+    const id = +req.params.id
+    const {title, quantity, price, status} = req.body
+    const input = {title, quantity, price, status}
+    Portofolio.update(input, {
+      where: { id, UserId },
+      returning: true,
+    })
+    .then(array => {
+      if (array[0]) res.status(200).json(array[1][0])
+      else next({code:404})
+    })
+    .catch(err => {
+      let errors
+      if (err.errors) errors = err.errors.flatMap(m => m.message)
+      err.errors ? next({code:400, message: errors}) : next({code:500})
+    })
+  }
+  static portofolio(req, res, next) {
+    const UserId = +req.user.id
+    Portofolio.findAll({
+      where: { UserId },
+      order: [['updatedAt', 'desc']]
+    })
+    .then(instance => res.status(200).json(instance))
+    .catch(_ => next({code:500}))
+  }
+  static portofolioDelete(req, res, next) {
+    Portofolio.destroy({ where: { id: +req.params.id } })
+    .then(_ => res.status(200).json({message: 'item has been deleted'}))
+    .catch(_ => next({code:500}))
   }
 }
 
