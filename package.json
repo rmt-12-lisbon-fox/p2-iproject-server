@@ -26,7 +26,9 @@
     "express": "^4.17.1",
     "form-data": "^4.0.0",
     "jsonwebtoken": "^8.5.1",
+    "kill-port": "^1.6.1",
     "multer": "^1.4.2",
+    "node-schedule": "^2.0.0",
     "pg": "^8.6.0",
     "sequelize": "^6.6.4"
   }

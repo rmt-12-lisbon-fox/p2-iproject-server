@@ -211,7 +211,8 @@ no body
 ### 200 - success
 ```
 {
-    "data": [
+    "count" : 100,
+    "rows": [
         {
             "id": 72302,
             "title": "Run.Catch.Love",

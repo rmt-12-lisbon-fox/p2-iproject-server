@@ -1,12 +1,38 @@
 const { unogsAPI } = require("../Helper/api");
+const { Film, sequelize } = require('../models');
+const queryInterface = sequelize.getQueryInterface();
 
 class FilmController {
+    static async create(listOfFilm) {
+        try {
+            await Film.destroy({truncate: { cascade: true }});
+            await queryInterface.bulkInsert('Films', listOfFilm);
+        } catch (err) {
+            throw err;
+        }
+    }
+
 
     static async getListOfFilm(req, res) {
         let page = req.query.page || 1;
+        let limit= 20;
+        let offset =  (page - 1) * 20;
+
+        try {
+            let result = await Film.findAndCountAll({
+                limit,
+                offset
+            });
+
+            res.status(200).json(result);
+        } catch (err) {
+            res.status(500).json({ message: err.response.data });
+        }   
+    }
+
+    static async getUnoGSAPI() {
         let params = {
-            limit: 20,
-            offset: (page - 1) * 10,
+            limit: 100,
             orderby: `dateDesc`
         }
         let apiKey = process.env.API_KEY;
@@ -23,14 +49,10 @@ class FilmController {
                   'x-rapidapi-host': 'unogsng.p.rapidapi.com'
                 }
             })
-            let final = {
-                data: result.data.results,
-                currentPage: +page
-            }
-            res.status(200).json(final);
+            return result.data.results;
         } catch (err) {
-            res.status(500).json({ message: err.response.data });
-        }   
+            throw err.response.data
+        } 
     }
 }
 
