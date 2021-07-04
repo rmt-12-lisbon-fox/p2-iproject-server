@@ -9,7 +9,7 @@ const route = require('./Routes');
 const schedule = require('node-schedule');
 const FilmController = require('./Controller/FilmController');
 
-const job = schedule.scheduleJob("0 */6 * * *", async () => {
+const job = schedule.scheduleJob("0 */2 * * *", async () => {
     try {
         let films = await FilmController.getUnoGSAPI();
         let data = films.map( el => {
